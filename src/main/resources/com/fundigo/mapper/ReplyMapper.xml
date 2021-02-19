@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fundigo.mapper.ReplyMapper">
+   
+   
+   <select id="rGetFAQList" resultType="com.fundigo.domain.ReplyVO">
+      <![CDATA[
+      select * from reply where bd_type = 'FAQ' and rno > 0 and bno = #{bno}
+      ]]>
+   </select>
+   
+   <select id="rGetCOMMList" resultType="com.fundigo.domain.ReplyVO">
+      <![CDATA[
+      select * from reply where bd_type = 'COMM' and rno > 0 and bno = #{bno}
+      ]]>
+   </select>
+   
+   <select id="rGetNOTIList" resultType="com.fundigo.domain.ReplyVO">
+      <![CDATA[
+      select * from reply where bd_type = 'NOTI' and rno > 0 and bno = #{bno}
+      ]]>
+   </select>
+   
+
+   <insert id="rinsertFAQ">
+      insert into reply(db_type, rno, content, id, bno)
+      values("FAQ", seq_reply.nextval, #{content}, #{id}, #{bno})
+   </insert>
+   <insert id="rInsertCOMM">
+   	  insert into reply(db_type, rno, content, id, bno)
+      values("COMM", seq_reply.nextval, #{content}, #{id}, #{bno})
+   </insert>
+   <insert id="rInsertNOTI">
+  	insert into reply(db_type, rno, content, id, bno)
+      values("NOTI", seq_reply.nextval, #{content}, #{id}, #{bno})
+   </insert>
+   
+   <delete id="rDelete">
+   		delete from reply where rno = #{rno}
+   </delete>
+   
+
+   <update id="rUpdate">
+   	update reply set
+   	content = #{content},
+   	regDate = sysdate
+   	where rno = #{rno}
+   </update>
+
+</mapper>
