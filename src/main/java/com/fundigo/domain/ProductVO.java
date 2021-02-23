@@ -19,12 +19,7 @@ public class ProductVO {
 	private Integer goalPrice;
 	private String goalDate; //DateFormat = "yyyy-MM-dd"
 	
-	private Long list01;
-	private Long list02;
-	private Long list03;
-	private Long list04;
-	
-	private String tag;
+	private String tag; //GDLT GAME, DESIGN, LIFE, TECH
 	
 	private String imgsrc;
 }

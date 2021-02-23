@@ -6,47 +6,33 @@
 <mapper namespace="com.fundigo.mapper.ReplyMapper">
    
    
-   <select id="rGetFAQList" resultType="com.fundigo.domain.ReplyVO">
+   <select id="rGetList" resultType="com.fundigo.domain.ReplyVO">
       <![CDATA[
-      select * from reply where bd_type = 'FAQ' and rno > 0 and bno = #{bno}
+      select * from reply where bno = #{bno}
       ]]>
    </select>
-   
-   <select id="rGetCOMMList" resultType="com.fundigo.domain.ReplyVO">
-      <![CDATA[
-      select * from reply where bd_type = 'COMM' and rno > 0 and bno = #{bno}
-      ]]>
-   </select>
-   
-   <select id="rGetNOTIList" resultType="com.fundigo.domain.ReplyVO">
-      <![CDATA[
-      select * from reply where bd_type = 'NOTI' and rno > 0 and bno = #{bno}
-      ]]>
-   </select>
-   
 
-   <insert id="rinsertFAQ">
-      insert into reply(db_type, rno, content, id, bno)
-      values("FAQ", seq_reply.nextval, #{content}, #{id}, #{bno})
-   </insert>
-   <insert id="rInsertCOMM">
-   	  insert into reply(db_type, rno, content, id, bno)
-      values("COMM", seq_reply.nextval, #{content}, #{id}, #{bno})
-   </insert>
-   <insert id="rInsertNOTI">
-  	insert into reply(db_type, rno, content, id, bno)
-      values("NOTI", seq_reply.nextval, #{content}, #{id}, #{bno})
+   <insert id="rInsert">
+   <selectKey keyProperty = "rno" order = "BEFORE" resultType = "long">
+	select seq_reply.nextval from dual
+	</selectKey>
+      insert into reply(bd_type, rno, content, id, bno)
+      values(#{bd_type}, #{rno}, #{content}, #{id}, #{bno})
    </insert>
    
    <delete id="rDelete">
    		delete from reply where rno = #{rno}
    </delete>
    
+	<select id = "rRead" resultType = "com.fundigo.domain.ReplyVO">
+	select * from reply where rno = #{rno}
+	</select>
+
 
    <update id="rUpdate">
    	update reply set
    	content = #{content},
-   	regDate = sysdate
+   	updateDate = sysdate
    	where rno = #{rno}
    </update>
 

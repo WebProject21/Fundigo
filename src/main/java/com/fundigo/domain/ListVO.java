@@ -8,4 +8,5 @@ public class ListVO {
 	private String title;
 	private String contents;
 	private Integer price;
+	private Long pno;
 }
