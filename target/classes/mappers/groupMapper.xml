@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="arsyu.mapper.groupmapper">
+	
+	<!-- gdetail -->
+	<select id="gdetail" resultType="vo.GroupVO">
+		SELECT G.*, M.MNAME, M.MPROIMG 
+		FROM GROUPTABLE AS G, MEMBER AS M 
+		WHERE G.MEMBER_MID=M.MID AND G.GNO = #{gno}
+	</select>
+	
+	<!-- searchLimit -->
+	<select id="searchLimit" resultType="vo.GroupVO">
+		SELECT * FROM GROUPLIMIT WHERE MEMBER_MID=#{member_mid} AND GROUPTABLE_GNO=#{gno}
+	</select>
+	
+	<!-- searchChat -->
+	<select id="searchChat" resultType="vo.GroupVO">
+		SELECT * FROM GROUPLIMIT WHERE MEMBER_MID=#{member_mid} AND GROUPTABLE_GNO=#{gno} AND GLSTATE='b'
+	</select>
+	
+	<!-- insertLimit -->
+	<insert id="insertLimit">
+		INSERT INTO GROUPLIMIT(MEMBER_MID, GROUPTABLE_GNO) VALUE(#{member_mid}, #{gno})
+	</insert>
+	
+	<!-- insertLimitManager -->
+	<insert id="insertLimitManager">
+		INSERT INTO GROUPLIMIT(GLSTATE ,MEMBER_MID, GROUPTABLE_GNO) VALUE('b', #{member_mid}, #{gno})
+	</insert>
+	
+	<!-- myInfoApplication -->
+	<select id="myInfoApplication" resultType="vo.GroupVO">
+		SELECT GT.*,GL.* 
+		FROM GROUPTABLE AS GT, GROUPLIMIT AS GL
+		WHERE GT.GNO=GL.GROUPTABLE_GNO AND (GL.GLSTATE='a' OR GL.GLSTATE='c') AND GL.MEMBER_MID = #{member_mid}
+	</select>
+	
+	<!-- myInfoApplicationManagement -->
+	<select id="myInfoApplicationManagement" resultType="vo.GroupVO">
+		SELECT GT.*, GL.GLSTATE, GL.MEMBER_MID AS GLMID, GL.GROUPTABLE_GNO AS GLNO, GL.GLREGDATE, M.MNAME
+		FROM GROUPTABLE AS GT, GROUPLIMIT AS GL, MEMBER AS M 
+		WHERE GT.GNO=GL.GROUPTABLE_GNO AND GL.MEMBER_MID=M.MID AND GL.GLSTATE='a' AND GT.MEMBER_MID=#{member_mid}
+		ORDER BY GL.GLREGDATE ASC
+	</select>
+	
+	<!-- myInfoApplicationApprove -->
+	<update id="myInfoApplicationApprove">
+		UPDATE GROUPLIMIT SET GLSTATE='b' WHERE MEMBER_MID=#{member_mid} AND GROUPTABLE_GNO=#{gno}
+	</update>
+	
+	<!-- myInfoApplicationReject -->
+	<update id="myInfoApplicationReject">
+		UPDATE GROUPLIMIT SET GLSTATE='c' WHERE MEMBER_MID=#{member_mid} AND GROUPTABLE_GNO=#{gno}
+	</update>
+	
+	<!-- ginsert -->
+	<insert id="ginsert" parameterType="vo.GroupVO" useGeneratedKeys="true">
+		INSERT INTO GROUPTABLE(GNO, GTITLE, GMEMO, GCONTENT, MEMBER_MID) 
+		VALUE((SELECT IFNULL(MAX(GNO), 0)+1 FROM GROUPTABLE AS GNO), #{gtitle}, #{gmemo}, #{gcontent}, #{member_mid})
+		<selectKey resultType="integer" order="BEFORE" keyProperty="gno">
+			SELECT IFNULL(MAX(GNO), 0)+1 FROM GROUPTABLE AS GNO
+		</selectKey>
+	</insert>
+
+	<!-- groupPopularity -->
+	<select id="groupPopularity" resultType="vo.GroupVO">
+		SELECT GT.*, M.MPROIMG,
+		(SELECT COUNT(*) FROM GROUPLIMIT AS GL WHERE GL.GLSTATE='b' GROUP BY GL.GROUPTABLE_GNO HAVING GL.GROUPTABLE_GNO=GT.GNO) AS GLCNT
+		FROM GROUPTABLE AS GT, MEMBER AS M
+		WHERE GT.MEMBER_MID=M.MID
+		ORDER BY GLCNT DESC LIMIT 8
+	</select>
+	
+	<!-- groupRecom -->
+	<select id="groupRecom" resultType="vo.GroupVO">
+		SELECT GT.*, M.MPROIMG,
+		(SELECT COUNT(*) FROM GROUPLIMIT AS GL WHERE GL.GLSTATE='b' GROUP BY GL.GROUPTABLE_GNO HAVING GL.GROUPTABLE_GNO=GT.GNO) AS GLCNT
+		FROM GROUPTABLE AS GT, MEMBER AS M
+		WHERE GT.MEMBER_MID=M.MID
+		ORDER BY RAND() LIMIT 4
+	</select>
+	
+	<!-- groupAll -->
+	<select id="groupAll" resultType="vo.GroupVO">
+		SELECT GT.*, M.MPROIMG,
+		(SELECT COUNT(*) FROM GROUPLIMIT AS GL WHERE GL.GLSTATE='b' GROUP BY GL.GROUPTABLE_GNO HAVING GL.GROUPTABLE_GNO=GT.GNO) AS GLCNT
+		FROM GROUPTABLE AS GT, MEMBER AS M
+		WHERE GT.MEMBER_MID=M.MID
+		ORDER BY GT.GREGDATE DESC
+	</select>
+	
+	<!-- myInfoJoinGroup -->
+	<select id="myInfoJoinGroup" resultType="vo.GroupVO">
+		SELECT GT.*, M.MNAME, M.MID, GL.*
+		FROM GROUPTABLE AS GT, MEMBER AS M, GROUPLIMIT AS GL
+		WHERE GT.MEMBER_MID=M.MID AND GL.GROUPTABLE_GNO=GT.GNO AND GL.GLSTATE='b' AND GL.MEMBER_MID=#{member_mid}
+	</select>
+	
+	<!-- cinsert -->
+	<insert id="cinsert">
+		INSERT INTO CHATTING(CNO, CCONTENT, GROUPTABLE_GNO, MEMBER_MID)
+		VALUE((SELECT IFNULL(MAX(CNO), 0)+1 FROM CHATTING AS CNO), #{ccontent}, #{grouptable_gno}, #{member_mid})
+	</insert>
+	
+	<select id="cSelect" resultType="vo.ChattingVO">
+		SELECT M.MNAME, C.* FROM MEMBER AS M, CHATTING AS C WHERE M.MID=C.MEMBER_MID AND C.GROUPTABLE_GNO=#{grouptable_gno}
+		ORDER BY CREGDATE ASC
+	</select>
+</mapper>

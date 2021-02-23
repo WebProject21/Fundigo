@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="arsyu.mapper.membermapper">
+	
+	<!-- join -->
+	<insert id="join">
+		INSERT INTO MEMBER(MID, MPW, MNAME, MPHONE) VALUE(#{mid}, #{mpw}, #{mname}, #{mphone})
+	</insert>
+	
+	<!-- login -->
+	<select id="login" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE MID=#{mid} AND MPW=#{mpw}
+	</select>
+	
+	<!-- selectOne -->
+	<select id="selectOne" resultType="MemberVO">
+		SELECT * FROM MEMBER WHERE MID=#{mid}
+	</select>
+	
+	<!-- mPhoneCheck -->
+	<select id="phonecheck" resultType="MemberVO">
+		SELECT MID FROM MEMBER WHERE MPHONE=#{mphone}
+	</select>
+	
+	<!-- mdelete -->
+	<delete id="mdelete">
+		DELETE FROM MEMBER WHERE MID=#{mid}
+	</delete>
+	
+	<!-- mChange -->
+	<update id="mChange">
+		UPDATE MEMBER SET MPW=#{mpw},MPROIMG=#{mproimg} WHERE MID=#{mid}
+	</update>
+</mapper>

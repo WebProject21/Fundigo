@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.fundigo.mapper.ProductMapper">
+
+<!-- product Query -->
+
+<select id = "pGetList" resultType = "com.fundigo.domain.ProductVO">
+<![CDATA[
+select * from product where pno > 0
+]]>
+</select>
+
+<select id = "pRead" resultType = "com.fundigo.domain.ProductVO">
+select * from product where pno = #{pno}
+</select>
+
+<insert id = "pInsert">
+insert into product (pno, title, description, id, list01, list02, list03, list04, imgsrc, goalPrice, goalDate, tag)
+values (seq_product.nextval,#{title}, #{description},#{id}, #{list01}, #{list02}, #{list03}. #{list04}, #{imgsrc}, #{goalPrice}, #{goalDate}, #{tag})
+</insert>
+
+<insert id = "pInsertSelectKey">
+<selectKey keyProperty = "pno" order = "BEFORE" resultType = "long">
+select seq_product.nextval from dual
+</selectKey>
+insert into product (pno, title, description, id, list01, list02, list03, list04, imgsrc, goalPrice, goalDate, tag)
+values (#{pno},#{title}, #{description},#{id}, #{list01}, #{list02, jdbcType=LONGVARCHAR}, #{list03, jdbcType=LONGVARCHAR}, #{list04, jdbcType=LONGVARCHAR}, #{imgsrc, jdbcType=VARCHAR}, #{goalPrice}, TO_DATE(#{goalDate} , 'yyyy-mm-dd'), #{tag})
+
+</insert>
+
+
+
+<delete id ="pDelete">
+delete from product where pno = #{pno}
+</delete>
+
+<update id = "pUpdate">
+update product
+set title = #{title},
+content = #{description},
+list01 = #{list01},
+list02 = #{list02},
+list03 = #{list03},
+list04 = #{list04},
+imgsrc = #{imgsrc},
+goalPrice = #{goalPrice},
+goalDate = #{goalDate},
+tag = #{tag}
+where pno = #{pno}
+</update>
+
+<update id = "pUpdateCount">
+update product
+set readCount = #{readCount}
+where pno = #{pno}
+</update>
+
+<!-- list Query -->
+
+<insert id = "lInsertSelectKey">
+<selectKey keyProperty = "code" order = "BEFORE" resultType = "long">
+select seq_list.nextval from dual
+</selectKey>
+insert into pro_list (code, title, contents, price)
+values (#{code},#{title}, #{contents}, #{price})
+</insert>
+
+<select id = "getLastCode" resultType = "long">
+select code from (select * from pro_list order by rownum desc) where rownum = 1
+</select>
+
+</mapper>
