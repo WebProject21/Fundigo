@@ -195,6 +195,25 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+            
+          <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+					
+							<directory>${project.basedir}/local_repo</directory>
+							<includes>
+								<include>ojdbc6.jar</include>
+							</includes>
+							<targetPath>WEB-INF/lib</targetPath>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+            
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
