@@ -1,5 +1,7 @@
 package com.fundigo.domain;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 @Data
@@ -8,7 +10,7 @@ public class ProductVO {
 	private String title;
 	private String description;
 	private String id;
-	private String regdate;
+	private Date regdate;
 	private Integer sponsorNum;
 	private Integer readCount;
 	
