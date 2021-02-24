@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class ProductVO {
+	
 	private Long pno;
 	private String title;
 	private String description;
@@ -17,7 +18,6 @@ public class ProductVO {
 	private Long totalPrice;
 	private Integer goalPrice;
 	private String goalDate; //DateFormat = "yyyy-MM-dd"
-	
 	
 	private String tag;
 	

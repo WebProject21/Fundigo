@@ -10,6 +10,8 @@ public interface ProductMapper {
 	//productMapper
 	public List<ProductVO> pGetList();
 	
+	public List<ProductVO> pGetTagList(String tag);
+	
 	public void pInsertSelectKey(ProductVO product);
 	
 	public void pInsert(ProductVO product);
@@ -22,13 +24,16 @@ public interface ProductMapper {
 	
 	public int pUpdateCount(Long pno);
 	
+	
+	//알고리즘 추천 기능
+	
+	//fundhistory에 맞춘 
+	
+	
 	//listMapper
+	public Long lInsertSelectKey(ListVO list);
 	
-	public void lInsertSelectKey(ListVO list);
-	
-	public Long getLastCode();
-	
-	public List<ListVO> lGetList();
+	public List<ListVO> lGetList(Long pno);
 	
 	public void lInsert(ListVO list);
 	
