@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 	private BoardService service;
-	
+	int a = 0;
 	@GetMapping("/FAQlist")
 	public void FAQlist(Model model) {
 		log.info("list");
