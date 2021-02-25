@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.fundigo.board">
+	<logger name="com.fundigo.controller">
 		<level value="info" />
 	</logger>
 	
