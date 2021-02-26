@@ -25,8 +25,8 @@
 	<delete id="cDelete">
 	 DELETE FROM CLIENT WHERE ID = #{id} and PASSWORD = #{password}
 	</delete>
-<!--   ------------------------------------------------------------------------- -->
-	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
+	
+	<select id="Fselect" resultType="com.fundigo.domain.FundhistoryVO">
 	select id,pno,dates from favorite where id = #{id}
 	</select>
 	
@@ -34,7 +34,7 @@
 	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},#{dates},#{unkno},#{price},#{code})
 	</insert>
 	
-	<select id="getFundList" resultType="com.fundigo.domain.FundhistoryVO">
+	<select id="Fundhselect" resultType="com.fundigo.domain.FundhistoryVO">
 	SELECT pno,TO_CHAR(DATES , 'YYYY-MM-DD') dates ,price FROM FUNDHISTORY WHERE id = #{id}
 	</select>
 	

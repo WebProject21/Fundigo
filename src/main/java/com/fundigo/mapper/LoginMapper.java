@@ -22,12 +22,12 @@ public interface LoginMapper {
 	//checked
 	public int cDelete(LoginVO login);
 	
-	public void Fselect (FundhistoryVO fund);
+	public List<FundhistoryVO> getFundList (String id);
 	//checked
 	public int Finsert(FundhistoryVO fund);
 	//not yet
 	public void PnoSelect(ProductVO product);
 	//checked
-	public void Fundhselect(FundhistoryVO fund);
+	public List<FundhistoryVO> getFavoriteList(String id);
 	
 }

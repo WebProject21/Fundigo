@@ -60,6 +60,7 @@ public class BoardServiceImpl  implements BoardService{
 		
 		return mapper.getFAQList();
 	}
+	@Override
 	public List<BoardVO> getCOMMList(Long pno) {
 		log.info("getList...........");
 		
@@ -76,6 +77,7 @@ public class BoardServiceImpl  implements BoardService{
 		log.info("countup.....");
 		return mapper.countup(board) == 1;
 	}
+	@Override
 	public boolean updateDate(BoardVO board) {
 		log.info("updateDate......");
 		return mapper.updateDate(board) == 1;
