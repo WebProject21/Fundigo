@@ -14,13 +14,13 @@
 	
 	<select id="getCOMMList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'COMM' and bno > 0
+		select * from board where bd_type = 'COMM' and pno = #{pno}
 		]]>
 	</select>
 	
 	<select id="getNOTIList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'NOTI' and bno > 0
+		select * from board where bd_type = 'NOTI' and and pno = #{pno}
 		]]>
 	</select>
 	

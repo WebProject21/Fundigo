@@ -10,5 +10,5 @@ public interface MainService {
 	public void pRegister(ProductVO product);
 	public void lRegister(ListVO list);
 	public ProductVO get(Long pno);
-	
+
 }

@@ -20,8 +20,7 @@ public interface BoardService {
 	
 	
 	public List<BoardVO> getFAQList();
-	public List<BoardVO> getCOMMList();
-	public List<BoardVO> getNOTIList();
-	
+	public List<BoardVO> getCOMMList(Long pno);
+	public List<BoardVO> getNOTIList(Long pno);
 	
 }

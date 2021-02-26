@@ -8,4 +8,5 @@ public interface MainMapper {
 
 	public List<ProductVO> pGetList();	
 	public List<ProductVO> pGetTagList(String tag);
+	
 }

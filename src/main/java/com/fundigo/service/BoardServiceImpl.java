@@ -60,17 +60,16 @@ public class BoardServiceImpl  implements BoardService{
 		
 		return mapper.getFAQList();
 	}
-	@Override
-	public List<BoardVO> getCOMMList() {
+	public List<BoardVO> getCOMMList(Long pno) {
 		log.info("getList...........");
 		
-		return mapper.getCOMMList();
+		return mapper.getCOMMList(pno);
 	}
 	@Override
-	public List<BoardVO> getNOTIList() {
+	public List<BoardVO> getNOTIList(Long pno) {
 		log.info("getList...........");
 		
-		return mapper.getNOTIList();
+		return mapper.getNOTIList(pno);
 	}
 	@Override
 	public boolean countup(BoardVO board) {
