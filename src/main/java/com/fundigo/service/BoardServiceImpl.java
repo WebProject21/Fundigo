@@ -60,7 +60,6 @@ public class BoardServiceImpl  implements BoardService{
 		
 		return mapper.getFAQList();
 	}
-	@Override
 	public List<BoardVO> getCOMMList(Long pno) {
 		log.info("getList...........");
 		

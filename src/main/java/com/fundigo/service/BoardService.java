@@ -23,5 +23,4 @@ public interface BoardService {
 	public List<BoardVO> getCOMMList(Long pno);
 	public List<BoardVO> getNOTIList(Long pno);
 	
-	
 }

@@ -7,8 +7,13 @@ import com.fundigo.domain.BoardVO;
 public interface BoardMapper {
 //	리스트 조회, 질문, 커뮤니티, 공지
 	public List<BoardVO> getFAQList();
+
+	public List<BoardVO> getCOMMList();
+	public List<BoardVO> getNOTIList();
+
 	public List<BoardVO> getCOMMList(Long pno);
 	public List<BoardVO> getNOTIList(Long pno);
+
 	
 //	게시글 1개에 대한 조회
 	public List<BoardVO> selectOne();
