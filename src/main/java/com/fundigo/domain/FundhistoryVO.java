@@ -8,7 +8,7 @@ public class FundhistoryVO {
 	private String id;
 	private String dates;
 	private String unkno;
-	private Long price;
+	private Integer price;
 	private Long code;
 	
 }

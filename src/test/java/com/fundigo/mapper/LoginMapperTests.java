@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fundigo.domain.ProductVO;
-
+import com.fundigo.domain.FundhistoryVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -111,12 +110,21 @@ public class LoginMapperTests {
 //		log.info("fundHistory : " + fund);
 //	}
 	
+//	@Test
+//	public void pnoSelect() {
+//		ProductVO product= new ProductVO();
+//		
+//		product.setPno(12L);
+//		mapper.PnoSelect(product);
+//		log.info(product);
+//	}
+	
 	@Test
-	public void pnoSelect() {
-		ProductVO product= new ProductVO();
+	public void FundPnoSelect() {
+		FundhistoryVO fund = new FundhistoryVO();
+		fund.setPno(12L);
 		
-		product.setPno(12L);
-		mapper.PnoSelect(product);
-		log.info(product);
+		 mapper.getFpnoList(fund);
+		log.info("FundHistory Pno Select : "+ fund);
 	}
 }

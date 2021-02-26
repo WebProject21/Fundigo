@@ -30,4 +30,7 @@ public interface LoginMapper {
 	//checked
 	public List<FundhistoryVO> getFavoriteList(String id);
 	
+	public int Fdelete (FundhistoryVO fund);
+	
+	public void getFpnoList(FundhistoryVO fund);
 }

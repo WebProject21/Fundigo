@@ -23,7 +23,7 @@ public class LoginController {
 	public void memberLogin(LoginVO board, RedirectAttributes rttr) {
 		
 		
-		log.info("login: "+service.getList());
+		//log.info("login: "+service.getList());
 		//unclear value, logic
 	}
 	

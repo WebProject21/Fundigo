@@ -58,6 +58,12 @@ public class LoginServiceImp implements LoginService {
 		log.info("client delete: "+login);
 		return mapper.cDelete(login)==1;
 	}
+
+	@Override
+	public void FavoriteInsert(LoginVO login) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

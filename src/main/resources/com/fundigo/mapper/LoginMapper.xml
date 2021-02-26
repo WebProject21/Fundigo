@@ -25,7 +25,7 @@
 	<delete id="cDelete">
 	 DELETE FROM CLIENT WHERE ID = #{id} and PASSWORD = #{password}
 	</delete>
-<!--   ------------------------------------------------------------------------- -->
+	
 	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
 	select id,pno,dates from favorite where id = #{id}
 	</select>
@@ -39,12 +39,12 @@
 	</select>
 	
 	<select id="PnoSelect" resultType="com.fundigo.domain.ProductVO">
-	SELECT pno,title,description,TO_CHAR(REGDATE , 'YYYY-MM-DD') as regdate,sponsornum ,readcount, totalprice
-	, GOALPRICE,GOALDATE,TAG
-	FROM PRODUCT WHERE pno = #{pno}
+	SELECT * FROM PRODUCT WHERE pno = #{pno}
 	</select> 
 	
-	
+	<select id="getFpnoList" resultType="com.fundigo.domain.FundhistoryVO">
+	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates ,price,code FROM FUNDHISTORY WHERE pno = #{pno}
+	</select>
 	
 	
 <!-- 기호쓸때 쓰는 CDATA	<select id="getList" resultType="com.fundigo.domain.LoginVO">
