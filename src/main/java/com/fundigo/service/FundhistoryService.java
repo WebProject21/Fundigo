@@ -11,9 +11,6 @@ public interface FundhistoryService {
 
 	public void insert(FundhistoryVO fund);
 
-	public void select(FundhistoryVO fund);
+	public FundhistoryVO select(String id, Long pno);
 
-	public void update(FundhistoryVO fund);
-
-	public String delete(FundhistoryVO fund);
 }
