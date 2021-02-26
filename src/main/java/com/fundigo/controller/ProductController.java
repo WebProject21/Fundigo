@@ -24,15 +24,6 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 
 public class ProductController {
-
-	private ProductService service;
-	
-	@GetMapping("/view")
-	public void list(Model model) {
-		
-		log.info("view");
-		model.addAttribute("view", service.get(11L));
-	}
 	
 	private ProductService pService;
 	private BoardService bService;
