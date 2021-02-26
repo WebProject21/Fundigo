@@ -1,5 +1,0 @@
-## Ignore File##
-
-.project
-.classpath
-.settings/
