@@ -26,16 +26,6 @@ public class BoardController {
 		log.info("list");
 		model.addAttribute("list", service.getFAQList());
 	}
-	@GetMapping("/COMMlist")
-	public void COMMlist(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getCOMMList());
-	}
-	@GetMapping("/NOTIlist")
-	public void NOTIlist(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.getNOTIList());
-	}
 	
 	@PostMapping("/FAQregister")
 	public String FAQregister(BoardVO board, RedirectAttributes rttr) {
