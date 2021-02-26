@@ -19,21 +19,11 @@ public class FundhistoryServiceImp implements FundhistoryService{
 	}
 
 	@Override
-	public void select(FundhistoryVO fund) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(FundhistoryVO fund) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String delete(FundhistoryVO fund) {
+	public FundhistoryVO select(String id, Long pno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+	
 }

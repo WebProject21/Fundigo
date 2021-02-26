@@ -36,37 +36,50 @@ public class ProductController {
 	}
 	
 	@PostMapping("/register")
-	public String register(ProductVO product, List<ListVO> lists, RedirectAttributes rttr) {
+	public String register(ProductVO product, RedirectAttributes rttr) {
 		log.info("register : "+product);
 		
 		pService.pRegister(product);
 		
-		for(int i = 0; i< lists.size(); i++) {
+		/*for(int i = 0; i< lists.size(); i++) {
 			pService.lRegister(lists.get(i));
 		}
+		*/
+		
+		rttr.addFlashAttribute("result", product.getPno());
 		
 		return "redirect:/product/view?pno="+product.getPno();
 		
 	}
 	
-	@GetMapping("/comm")
+	@GetMapping("/community")
 	public void commList(@RequestParam("pno") Long pno, Model model) {
 		log.info("commList");
 		model.addAttribute("list",bService.getCOMMList(pno));
 	}
 	
-	
-	@GetMapping("/COMMlist")
-	public void COMMlist(@RequestParam("pno") Long pno, Model model) {
-		log.info("list");
-		model.addAttribute("list", bService.getCOMMList(pno));
-	}
-	@GetMapping("/NOTIlist")
+	@GetMapping("/notice")
 	public void NOTIlist(@RequestParam("pno") Long pno, Model model) {
 		log.info("list");
 		model.addAttribute("list", bService.getNOTIList(pno));
 	}
 	
-	//@PostMapping("/modify")
-	//public void modify()
+	@PostMapping("/modify")
+	public String modify(ProductVO product, List<ListVO> lists, RedirectAttributes rttr) {
+		log.info("modify");
+		
+		if(pService.modify(product, lists)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		
+		return "redirect:/product/view?pno="+product.getPno();
+	}
+	
+	/*
+	@PostMapping("/sponsor")
+	public void sponList(@RequestParam("pno") Long pno, Model model) {
+		log.info("sponsor list");
+		model.addAttribute("list", attributeValue);
+	}
+	*/
 }
