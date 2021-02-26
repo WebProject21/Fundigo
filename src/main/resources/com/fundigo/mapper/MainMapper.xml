@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fundigo.mapper.BoardMapper">
+<mapper namespace="com.fundigo.mapper.MainMapper">
 	<!-- <select id = "pGetList" resultType = "com.fundigo.domain.ProductVO">
 <![CDATA[
 select * from product where pno > 0 order by pno
