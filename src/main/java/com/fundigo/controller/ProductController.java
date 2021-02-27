@@ -36,7 +36,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/register")
-	public String register(ProductVO product, RedirectAttributes rttr) {
+	public String register(ProductVO product, List<ListVO> lists, RedirectAttributes rttr) {
 		log.info("register : "+product);
 		
 		pService.pRegister(product);

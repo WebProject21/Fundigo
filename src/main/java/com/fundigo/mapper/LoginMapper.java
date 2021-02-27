@@ -2,6 +2,8 @@ package com.fundigo.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.fundigo.domain.FundhistoryVO;
 import com.fundigo.domain.LoginVO;
 import com.fundigo.domain.ProductVO;
@@ -30,7 +32,9 @@ public interface LoginMapper {
 	//checked
 	public List<FundhistoryVO> getFavoriteList(String id);
 	
-	public int Fdelete (FundhistoryVO fund);
+	public int Fdelete (@Param("id") String id, @Param("pno") Long pno);
 	
-	public void getFpnoList(FundhistoryVO fund);
+	public List<FundhistoryVO> getFpnoList(Long pno);
+	
+	public FundhistoryVO fundSelect(@Param("id") String id, @Param("pno") Long pno);
 }

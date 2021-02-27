@@ -118,7 +118,7 @@ public class LoginMapperTests {
 //		mapper.PnoSelect(product);
 //		log.info(product);
 //	}
-	
+	/*
 	@Test
 	public void FundPnoSelect() {
 		FundhistoryVO fund = new FundhistoryVO();
@@ -126,5 +126,11 @@ public class LoginMapperTests {
 		
 		 mapper.getFpnoList(fund);
 		log.info("FundHistory Pno Select : "+ fund);
+	}
+	*/
+	
+	@Test
+	public void fundSelectTest() {
+		log.info(mapper.fundSelect("gilsun", 20L));
 	}
 }

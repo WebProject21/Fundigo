@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper  namespace="com.fundigo.mapper.LoginMapper">
+<mapper namespace="com.fundigo.mapper.LoginMapper">
 
 	<insert id="CchoseInsert">
 	INSERT INTO CLIENT(id,name,password,address,phone,nickname,tag) 
@@ -31,7 +31,7 @@
 	</select>
 	
 	<insert id="Finsert">
-	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},#{dates},#{unkno},#{price},#{code})
+	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},sysdate,#{unkno},#{price},#{code})
 	</insert>
 	
 	<select id="getFundList" resultType="com.fundigo.domain.FundhistoryVO">
@@ -43,7 +43,15 @@
 	</select> 
 	
 	<select id="getFpnoList" resultType="com.fundigo.domain.FundhistoryVO">
-	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates ,price,code FROM FUNDHISTORY WHERE pno = #{pno}
+	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates , unkno, price,code FROM FUNDHISTORY WHERE pno = #{pno}
+	</select>
+	
+	<delete id="Fdelete" parameterType = "map">
+	delete from fundhistory where id = #{id} and pno = #{pno}
+	</delete>
+	
+	<select id="fundSelect" parameterType = "map" resultType="com.fundigo.domain.FundhistoryVO">
+	select * from fundhistory where id = #{id} and pno = #{pno}
 	</select>
 	
 	
