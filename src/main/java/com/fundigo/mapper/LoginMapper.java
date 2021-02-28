@@ -23,18 +23,24 @@ public interface LoginMapper {
 	public int cUpdate (LoginVO login);
 	//checked
 	public int cDelete(LoginVO login);
-	
+	//funding History view
 	public List<FundhistoryVO> getFundList (String id);
-	//checked
+	//FundHistory insert
 	public int Finsert(FundhistoryVO fund);
-	//not yet
-	public void PnoSelect(ProductVO product);
-	//checked
-	public List<FundhistoryVO> getFavoriteList(String id);
-	
+	//FundHisroty delete
 	public int Fdelete (@Param("id") String id, @Param("pno") Long pno);
 	
-	public List<FundhistoryVO> getFpnoList(Long pno);
+	//PnoSelect go product
+	public void PnoSelect(ProductVO product);
 	
+	//favorite select base in id
+	public List<FundhistoryVO> getFavoriteList(String id);
+	//favorite insert pno
+	public int FpnoInsert(FundhistoryVO fund);
+	//favorite delete base in id
+	public int FpnoDelete(String id, Long pno);
+	//favorite pno view
+	public List<FundhistoryVO> getFpnoList(Long pno);
+	//fundItem client List
 	public FundhistoryVO fundSelect(@Param("id") String id, @Param("pno") Long pno);
 }
