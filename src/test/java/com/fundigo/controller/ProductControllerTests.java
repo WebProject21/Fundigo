@@ -1,5 +1,7 @@
 package com.fundigo.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -17,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fundigo.domain.ListVO;
 import com.fundigo.domain.ProductVO;
+import com.google.gson.Gson;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -57,7 +61,6 @@ public class ProductControllerTests {
 				.getModelAndView().getModelMap());
 	}
 	*/
-	
 	@Test
 	public void testRegister() throws Exception{
 		
@@ -69,7 +72,7 @@ public class ProductControllerTests {
 		product.setGoalPrice(30000000);
 		product.setTag("D");
 		
-		/*
+
 		List<ListVO> lists = new ArrayList<ListVO>();
 		
 		ListVO list = new ListVO();
@@ -81,15 +84,37 @@ public class ProductControllerTests {
 			list.setPno(product.getPno());
 			lists.add(i, list);
 		}
-		*/
-		
+	
+		String json = new Gson().toJson(product);
 		
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/product/register")
-				.requestAttr("product", product)
-				).andReturn().getModelAndView().getViewName();
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(json))
+				.andExpect(status().isOk())
+				.andReturn();
+				
 		
 		log.info(resultPage);
 		
+	}	 
+	/*
+	@Test
+	public void testSponsor() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders
+				.get("/product/sponsor")
+				.param("pno", "21"))
+				.andReturn()
+				.getModelAndView().getModelMap());
 	}
 	
+	
+	@Test
+	public void testBoardView() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders
+				.get("/product/boardView")
+				.param("bno", "1"))
+				.andReturn()
+				.getModelAndView().getModelMap());
+	}
+	*/
 }

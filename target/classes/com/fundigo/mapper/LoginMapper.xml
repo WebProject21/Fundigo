@@ -54,7 +54,13 @@
 	select * from fundhistory where id = #{id} and pno = #{pno}
 	</select>
 	
+	<insert id="FpnoInsert">
+	INSERT INTO FAVORITE(ID,PNO,DATES VALUES) values (#{id},#{pno},TO_DATE(#{dates} , 'yyyy-mm-dd'))
+	</insert>
 	
+	<delete id="FpnoDelete"  >
+	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
+	</delete>
 <!-- 기호쓸때 쓰는 CDATA	<select id="getList" resultType="com.fundigo.domain.LoginVO">
 	<![CDATA[
 	SELECT id,name,address,phone FROM CLIENT where id = #{id}
