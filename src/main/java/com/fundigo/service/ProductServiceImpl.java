@@ -38,7 +38,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	
-
 	@Override
 	public ProductVO get(Long pno) {
 	
@@ -53,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
 	public boolean modify(ProductVO product, List<ListVO> lists) {
 		
 		log.info("modify....."+product);
-		
+		 
 		for(int i = 0; i<lists.size(); i++) {
 			mapper.lUpdate(lists.get(i));
 		}

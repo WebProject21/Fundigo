@@ -89,7 +89,7 @@ public class LoginMapperTests {
 //		mapper.Fselect(fund);
 //		log.info(fund);
 //	}
-
+	
 	/*
 	 * @Test public void testFinsert() { FundhistoryVO fund= new FundhistoryVO();
 	 * fund.setId("yacobl"); fund.setPno(12); fund.setDates(new

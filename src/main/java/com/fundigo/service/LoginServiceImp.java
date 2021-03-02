@@ -34,37 +34,43 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
-	public void insert(LoginVO login) {
+	public void ClientJoin(LoginVO login) {
 		log.info("login insert: "+login);
 		mapper.cInsert(login);
 	}
 
 	@Override
-	public void select(LoginVO login) {
-		
-		
+	public void Clientselect(LoginVO login) {
+		log.info("login select : "+login);
+		mapper.cSelect(login);
 	}
-	
 	
 
 	@Override
-	public void update(LoginVO login) {
-		
+	public void Clientupdate(LoginVO login) {
+		log.info("login update : "+ login);
+		mapper.cUpdate(login);
 		
 	}
 
 	@Override
-	public boolean delete(LoginVO login) {
+	public boolean Clientwithdraw(LoginVO login) {
 		log.info("client delete: "+login);
 		return mapper.cDelete(login)==1;
 	}
 
 	@Override
-	public void FavoriteInsert(LoginVO login) {
-		// TODO Auto-generated method stub
+	public void FavoriteInsert(FundhistoryVO fund) {
+		log.info("Client Favorite : "+fund);
+		mapper.FpnoInsert(fund);
+		
+		
+	}
+
+	@Override
+	public void FavoirteDelete(FundhistoryVO fund) {
+		
 		
 	}
 	
-
-
 }

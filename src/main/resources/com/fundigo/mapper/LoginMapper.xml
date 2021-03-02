@@ -66,7 +66,6 @@
 	SELECT id,name,address,phone FROM CLIENT where id = #{id}
 	]]>
 	</select> -->
-
 	
 </mapper>
 
