@@ -8,19 +8,22 @@
 	
 	<select id="getFAQList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'FAQ' and bno > 0
+		select * from (select * from board where bd_type = 'FAQ' 
+		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
 	<select id="getCOMMList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'COMM' and pno = #{pno}
+		select * from (select * from board where bd_type = 'COMM' 
+		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
 	<select id="getNOTIList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'NOTI' and and pno = #{pno}
+		select * from (select * from board where bd_type = 'NOTI' 
+		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
