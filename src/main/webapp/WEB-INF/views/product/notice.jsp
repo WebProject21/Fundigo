@@ -2,14 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv = "X-UA-Compatible" content="ie=edge">
 <title>funDigo</title>
-<link rel="stylesheet" type="text/css" href="../css/boardform.css?after">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/boardform.css">
 </head>
 <body>
 	<input type = "hidden" name = "pno" value="${product.pno}">
@@ -28,39 +26,53 @@
 					<div class = "count">조회</div>
 				</div>
 				<div>
-					<div class = "num">5</div>
-					<div class = "title"><a href = "#">글 제목이 들어갑니다.</a></div>
-					<div class = "id">테스트</div>
-					<div class = "date">2021/02/28</div>
-					<div class = "count">1</div>
+					<c:forEach items="${list}" var = "board">
+					<table>
+						<tr>
+							<td><c:out value="${board.bno}"/></td>
+							<td><c:out value="${board.title}"/></td>
+							<td><c:out value="${board.id}"/></td>
+							<td><c:out value="${board.regDate}"/></td>
+							<td><c:out value="${board.updateDate}"/></td>
+							<td><c:out value="${board.readCount}"/></td>
+						</tr>
+					</table>
+					</c:forEach>
 				</div>
 				<div>
-					<div class = "num">4</div>
-					<div class = "title"><a href = "#">글 제목이 들어갑니다.</a></div>
-					<div class = "id">테스트</div>
-					<div class = "date">2021/02/28</div>
-					<div class = "count">1</div>
+					<div class = "num"><c:out value="${board.bno}"/></div>
+					<div class = "title"><a href = "#"><c:out value="${board.title}"/></a></div>
+					<div class = "id"><c:out value="${board.id}"/></div>
+					<div class = "date"><c:out value="${board.regDate}"/></div>
+					<div class = "count"><c:out value="${board.readCount}"/></div>
 				</div>
 				<div>
-					<div class = "num">3</div>
-					<div class = "title"><a href = "#">글 제목이 들어갑니다.</a></div>
-					<div class = "id">테스트</div>
-					<div class = "date">2021/02/28</div>
-					<div class = "count">1</div>
+					<div class = "num"><c:out value="${board.bno}"/></div>
+					<div class = "title"><a href = "#"><c:out value="${board.title}"/></a></div>
+					<div class = "id"><c:out value="${board.id}"/></div>
+					<div class = "date"><c:out value="${board.regDate}"/></div>
+					<div class = "count"><c:out value="${board.readCount}"/></div>
 				</div>
 				<div>
-					<div class = "num">2</div>
-					<div class = "title"><a href = "#">글 제목이 들어갑니다.</a></div>
-					<div class = "id">테스트</div>
-					<div class = "date">2021/02/28</div>
-					<div class = "count">1</div>
+					<div class = "num"><c:out value="${board.bno}"/></div>
+					<div class = "title"><a href = "#"><c:out value="${board.title}"/></a></div>
+					<div class = "id"><c:out value="${board.id}"/></div>
+					<div class = "date"><c:out value="${board.regDate}"/></div>
+					<div class = "count"><c:out value="${board.readCount}"/></div>
 				</div>
 				<div>
-					<div class = "num">1</div>
-					<div class = "title"><a href = "#">글 제목이 들어갑니다.</a></div>
-					<div class = "id">테스트</div>
-					<div class = "date">2021/02/28</div>
-					<div class = "count">1</div>
+					<div class = "num"><c:out value="${board.bno}"/></div>
+					<div class = "title"><a href = "#"><c:out value="${board.title}"/></a></div>
+					<div class = "id"><c:out value="${board.id}"/></div>
+					<div class = "date"><c:out value="${board.regDate}"/></div>
+					<div class = "count"><c:out value="${board.readCount}"/></div>
+				</div>
+				<div>
+					<div class = "num"><c:out value="${board.bno}"/></div>
+					<div class = "title"><a href = "#"><c:out value="${board.title}"/></a></div>
+					<div class = "id"><c:out value="${board.id}"/></div>
+					<div class = "date"><c:out value="${board.regDate}"/></div>
+					<div class = "count"><c:out value="${board.readCount}"/></div>
 				</div>
 			</div>
 			<div class = "board_page">

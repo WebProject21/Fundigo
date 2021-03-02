@@ -20,8 +20,8 @@
 
 <!--  bootstrap grid 그리드 적용을 위한 부트스트랩 적용 -->
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
-<link rel="stylesheet" type="text/css" href="css/main.css?after"> <!-- 폰트 css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-grid.min.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css?after"> <!-- 폰트 css -->
 </head>
 <body>
 	<div class = "row">
