@@ -1,8 +1,5 @@
 package com.fundigo.mapper;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
@@ -11,9 +8,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fundigo.domain.FundhistoryVO;
-import com.fundigo.domain.LoginVO;
-import com.fundigo.domain.ProductVO;
-
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -30,7 +24,7 @@ public class LoginMapperTests {
 	 * mapper.getList().forEach(board->log.info(board)); }
 	 * 
 	 * // @Test public void testInsert() { BoardVO board = new BoardVO();
-	 * board.setTitle("?ƒˆë¡? ?ž‘?„±?•˜?Š” ê¸?"); board.setContent("?ƒˆë¡? ?ž‘?„±?•˜?Š” ?‚´?š©");
+	 * board.setTitle("?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ï¿½?"); board.setContent("?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½");
 	 * board.setWriter("newbie");
 	 * 
 	 * mapper.insert(board);
@@ -40,8 +34,8 @@ public class LoginMapperTests {
 
 	/*
 	 * @Test public void testUpdate() { LoginVO login = new LoginVO();
-	 * login.setPassword("1234"); login.setAddress("°æ±âµµ ¼º³²½Ã ºÐ´ç±¸");
-	 * login.setPhone("01040231111"); login.setNickname("º°¸íÀÔ´Ï´Ù.");
+	 * login.setPassword("1234"); login.setAddress("ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´ç±¸");
+	 * login.setPhone("01040231111"); login.setNickname("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
 	 * login.setTag("tagvalue"); login.setId("yacobl");
 	 * 
 	 * int count = mapper.cUpdate(login); log.info("cUpdate value: "+count);
@@ -73,9 +67,9 @@ public class LoginMapperTests {
 	/*
 	 * @Test public void testInsert() { LoginVO login = new LoginVO();
 	 * 
-	 * login.setId("yacos"); login.setName("ÀÌ½ÂÈÀ"); login.setPassword("12343");
-	 * login.setAddress("°æ±âµµ"); login.setPhone("01030221234");
-	 * login.setNickname("º°’D"); login.setTag("");
+	 * login.setId("yacos"); login.setName("ï¿½Ì½ï¿½ï¿½ï¿½"); login.setPassword("12343");
+	 * login.setAddress("ï¿½ï¿½âµµ"); login.setPhone("01030221234");
+	 * login.setNickname("ï¿½ï¿½ï¿½D"); login.setTag("");
 	 * 
 	 * mapper.cInsert(login); log.info(login); }
 	 */
@@ -116,12 +110,27 @@ public class LoginMapperTests {
 //		log.info("fundHistory : " + fund);
 //	}
 	
+//	@Test
+//	public void pnoSelect() {
+//		ProductVO product= new ProductVO();
+//		
+//		product.setPno(12L);
+//		mapper.PnoSelect(product);
+//		log.info(product);
+//	}
+	/*
 	@Test
-	public void pnoSelect() {
-		ProductVO product= new ProductVO();
+	public void FundPnoSelect() {
+		FundhistoryVO fund = new FundhistoryVO();
+		fund.setPno(12L);
 		
-		product.setPno(12L);
-		mapper.PnoSelect(product);
-		log.info(product);
+		 mapper.getFpnoList(fund);
+		log.info("FundHistory Pno Select : "+ fund);
+	}
+	*/
+	
+	@Test
+	public void fundSelectTest() {
+		log.info(mapper.fundSelect("gilsun", 20L));
 	}
 }

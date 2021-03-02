@@ -1,7 +1,5 @@
 package com.fundigo.service;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

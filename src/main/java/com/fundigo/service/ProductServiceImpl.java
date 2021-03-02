@@ -87,6 +87,7 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.pGetList();
 	}
 	
+	@Override
 	public List<ProductVO> getTagList(String tag){
 		
 		log.info("get Tag List......");

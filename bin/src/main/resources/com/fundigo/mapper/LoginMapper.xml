@@ -2,11 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 <mapper  namespace="com.fundigo.mapper.LoginMapper">
-=======
-<mapper namespace="com.fundigo.mapper.LoginMapper">
->>>>>>> 8bdadcf9e024d6f226f2de6a683f2c4575931c89
 
 	<insert id="CchoseInsert">
 	INSERT INTO CLIENT(id,name,password,address,phone,nickname,tag) 
@@ -30,31 +26,19 @@
 	 DELETE FROM CLIENT WHERE ID = #{id} and PASSWORD = #{password}
 	</delete>
 	
-<<<<<<< HEAD
 	<select id="Fselect" resultType="com.fundigo.domain.FundhistoryVO">
-=======
-	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
->>>>>>> 8bdadcf9e024d6f226f2de6a683f2c4575931c89
 	select id,pno,dates from favorite where id = #{id}
 	</select>
 	
 	<insert id="Finsert">
-<<<<<<< HEAD
 	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},#{dates},#{unkno},#{price},#{code})
 	</insert>
 	
 	<select id="Fundhselect" resultType="com.fundigo.domain.FundhistoryVO">
-=======
-	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},sysdate,#{unkno},#{price},#{code})
-	</insert>
-	
-	<select id="getFundList" resultType="com.fundigo.domain.FundhistoryVO">
->>>>>>> 8bdadcf9e024d6f226f2de6a683f2c4575931c89
 	SELECT pno,TO_CHAR(DATES , 'YYYY-MM-DD') dates ,price FROM FUNDHISTORY WHERE id = #{id}
 	</select>
 	
 	<select id="PnoSelect" resultType="com.fundigo.domain.ProductVO">
-<<<<<<< HEAD
 	SELECT pno,title,description,TO_CHAR(REGDATE , 'YYYY-MM-DD') as regdate,sponsornum ,readcount, totalprice
 	, GOALPRICE,GOALDATE,TAG
 	FROM PRODUCT WHERE pno = #{pno}
@@ -63,30 +47,6 @@
 	
 	
 	
-=======
-	SELECT * FROM PRODUCT WHERE pno = #{pno}
-	</select> 
-	
-	<select id="getFpnoList" resultType="com.fundigo.domain.FundhistoryVO">
-	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates , unkno, price,code FROM FUNDHISTORY WHERE pno = #{pno}
-	</select>
-	
-	<delete id="Fdelete" parameterType = "map">
-	delete from fundhistory where id = #{id} and pno = #{pno}
-	</delete>
-	
-	<select id="fundSelect" parameterType = "map" resultType="com.fundigo.domain.FundhistoryVO">
-	select * from fundhistory where id = #{id} and pno = #{pno}
-	</select>
-	
-	<insert id="FpnoInsert">
-	INSERT INTO FAVORITE(ID,PNO,DATES VALUES) values (#{id},#{pno},TO_DATE(#{dates} , 'yyyy-mm-dd'))
-	</insert>
-	
-	<delete id="FpnoDelete"  >
-	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
-	</delete>
->>>>>>> 8bdadcf9e024d6f226f2de6a683f2c4575931c89
 <!-- 기호쓸때 쓰는 CDATA	<select id="getList" resultType="com.fundigo.domain.LoginVO">
 	<![CDATA[
 	SELECT id,name,address,phone FROM CLIENT where id = #{id}

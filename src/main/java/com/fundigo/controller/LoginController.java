@@ -1,7 +1,6 @@
 package com.fundigo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,7 +23,7 @@ public class LoginController {
 	public void memberLogin(LoginVO board, RedirectAttributes rttr) {
 		
 		
-		log.info("login: "+service.getList());
+		//log.info("login: "+service.getList());
 		//unclear value, logic
 	}
 	
