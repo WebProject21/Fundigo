@@ -1,10 +1,13 @@
 package com.fundigo.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,12 +28,16 @@ import com.google.gson.Gson;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 					   "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @Log4j
 public class ProductControllerTests {
+	
+	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(), MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 	
 	@Setter(onMethod_ = {@Autowired})
 	private WebApplicationContext ctx;
@@ -85,16 +92,20 @@ public class ProductControllerTests {
 			lists.add(i, list);
 		}
 	
-		String json = new Gson().toJson(product);
+		JSONObject data = new JSONObject(); //가능하면 리스트도 json으로 합쳐보기
 		
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/product/register")
+		String json = new Gson().toJson(product);
+
+		
+		mockMvc.perform(MockMvcRequestBuilders.post("/product/register")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(json))
-				.andExpect(status().isOk())
+				.content(json)
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andDo(print())
 				.andReturn();
 				
 		
-		log.info(resultPage);
+		//log.info(resultPage);
 		
 	}	 
 	/*

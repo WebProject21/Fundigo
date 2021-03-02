@@ -40,48 +40,39 @@ public class ProductController {
 		
 		log.info("/view----");
 		model.addAttribute("product", pService.get(pno));
-	}
+		model.addAttribute("lists", pService.getList(pno));
+	}//상품 뷰
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public String register(@RequestBody ProductVO product, List<ListVO> lists, RedirectAttributes rttr) {
+	public String register(@RequestBody ProductVO product, @RequestBody List<ListVO> lists, RedirectAttributes rttr) {
 		log.info("register : "+product);
 		
 		pService.pRegister(product);
 		
-		/*for(int i = 0; i< lists.size(); i++) {
+		for(int i = 0; i< lists.size(); i++) {
 			pService.lRegister(lists.get(i));
 		}
-		*/
 		
-		rttr.addFlashAttribute("product", product.getPno());
+		rttr.addFlashAttribute("product", product);
 		
 		return "redirect:/product/view?pno="+product.getPno();
 		
-	}
+	}//상품 등록
 	
 	@GetMapping("/community")
 	public void commList(@RequestParam("pno") Long pno, Model model) {
 		log.info("commList");
 		model.addAttribute("list",bService.getCOMMList(pno));
 		model.addAttribute("product",pService.get(pno));
-	}
+	}//상품 커뮤니티 페이지
 	
 	@GetMapping("/notice")
 	public void NOTIlist(@RequestParam("pno") Long pno, Model model) {
 		log.info("list");
 		model.addAttribute("list", bService.getNOTIList(pno));
 		model.addAttribute("product",pService.get(pno));
-	}
-	
-	@GetMapping("/boardView")
-	public void boardView(@RequestParam("bno") Long bno, Model model) {
-		log.info("boardView");
-		model.addAttribute("board", bService.get(bno));
-		model.addAttribute("reply", rService.getList(bno));
-	}
-	
-	
+	}//상품 공지 페이지
 	
 	@PostMapping("/modify")
 	public String modify(ProductVO product, List<ListVO> lists, RedirectAttributes rttr) {
@@ -92,7 +83,7 @@ public class ProductController {
 		}
 		
 		return "redirect:/product/view?pno="+product.getPno();
-	}
+	}//상품 수정 페이지
 	
 	@GetMapping("/sponsor")
 	public void sponList(@RequestParam("pno") Long pno, Model model) {
@@ -100,6 +91,6 @@ public class ProductController {
 		log.info("sponsor list");
 		model.addAttribute("list", fService.getList(pno));
 		
-	}
+	}//상품 서포터 목록 페이지
 
 }
