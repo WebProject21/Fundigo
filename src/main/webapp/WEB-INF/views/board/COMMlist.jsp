@@ -24,20 +24,28 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?after"> <!-- 폰트 css -->
 </head>
 <body>
-	<section class = "row">
-		<div class = "contentsNevigation">
-			<nav class = "ContentsNavigation_ProjectContentsNavigation">
-				<div class = "ContentsNavigation_navLeft">
-					
-					<a class = "ContentsNavigation_NavItem" href="/story">스토리</a>
-					<a class = "ContentsNavigation_NavItem" href="/community">커뮤니티</a>
-					<a class = "ContentsNavigation_NavItem" href="/Notice">공지사항</a>
-					
+	<section class = "row list">
+		<div class = "CommunityComment_container">
+			<div class="CommentUserWrapper_container">
+				<div class = "CommentUserWrapper_avater">
+					<div class = "CommentWrapper_Main">
+						<div class = "CommentUserInfo_container">
+							<span class = "CommentUserInfo_name">
+								<Strong>${board.id}</Strong>
+							</span>
+							<span class = "CommentUserInfo_badge">작성자</span>
+							<span class = "commentUserInfo_date">
+								${board.regDate } <!-- 수정 시에는 어떻게 할 것인가? -->
+							</span>
+						</div>
+						<div class = "CommentTextContent_Container">
+							<div class = "CommentTextContent_COntentBox">
+								${board.content}
+							</div>
+						</div>
+					</div>
 				</div>
-			</nav>
-		</div>
-		<div class = "ProjectPage ProjectCommunity">
-			<div class = ></div>
+			</div>
 		</div>
 	</section>
 </body>
