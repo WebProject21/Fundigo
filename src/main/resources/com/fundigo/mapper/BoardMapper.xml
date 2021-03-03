@@ -8,22 +8,23 @@
 	
 	<select id="getFAQList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from (select * from board where bd_type = 'FAQ' 
+		select bno, title, id, to_char(regDate, 'YY/MM/DD') regDate, readcount from (select * from board where bd_type = 'FAQ' 
 		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
 	<select id="getCOMMList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from (select * from board where bd_type = 'COMM' 
+		select bno, title, id, to_char(regDate, 'YY/MM/DD') regDate, readcount from (select * from board where bd_type = 'COMM' 
 		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
 	<select id="getNOTIList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from (select * from board where bd_type = 'NOTI' 
-		and pno = #{pno} order by bno desc) where rownum <= 10
+		select bno, title, id, to_char(regDate, 'YY-MM-DD') regDate, readcount from (
+		select * from board where bd_type = 'NOTI' and pno = '1' order by 
+		bno desc) where rownum <= 10
 		]]>
 	</select>
 	
