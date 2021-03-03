@@ -38,7 +38,7 @@ public interface LoginMapper {
 	//favorite insert pno
 	public int FpnoInsert(FundhistoryVO fund);
 	//favorite delete base in id
-	public int FpnoDelete(String id, Long pno);
+	public int FpnoDelete(@Param("id") String id,@Param("pno") Long pno);
 	//favorite pno view
 	public List<FundhistoryVO> getFpnoList(Long pno);
 	//fundItem client List

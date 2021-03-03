@@ -5,7 +5,6 @@ import java.util.List;
 import com.fundigo.domain.FundhistoryVO;
 import com.fundigo.domain.ListVO;
 
-
 public interface FundhistoryService {
 
 	public List<FundhistoryVO> getList(Long pno);
