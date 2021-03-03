@@ -18,9 +18,8 @@ public interface BoardService {
 	
 	public boolean remove(Long bno);
 	
-	
 	public List<BoardVO> getFAQList();
 	public List<BoardVO> getCOMMList(Long pno);
 	public List<BoardVO> getNOTIList(Long pno);
-	
+	long getListcount();
 }

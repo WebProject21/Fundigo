@@ -19,6 +19,13 @@ import lombok.extern.log4j.Log4j;
 public class BoardMapperTest {
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
+
+	
+	@Test
+	public void testGetListCount() {
+		long count = mapper.getListcount();
+		log.info(count);
+	}
 	
 //	@Test
 //	public void testGetList() {
@@ -91,11 +98,11 @@ public class BoardMapperTest {
 //		log.info(board);
 //	}
 	
-	@Test
-	public void testselectOne() {
-		BoardVO board = mapper.selectOne(23L);
-		log.info(board);
-	}
+//	@Test
+//	public void testselectOne() {
+//		BoardVO board = mapper.selectOne(23L);
+//		log.info(board);
+//	}
 //	
 //	@Test
 //	public void testDelete() {

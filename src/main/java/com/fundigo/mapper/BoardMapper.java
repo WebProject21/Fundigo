@@ -17,6 +17,7 @@ public interface BoardMapper {
 	
 //	게시글 1개에 대한 조회
 	public List<BoardVO> selectOne();
+	public long getListcount();
 
 // insertSelectKey
 	public void insertSelectkey(BoardVO board);
@@ -40,6 +41,7 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	public int countup(BoardVO board);
 	public int updateDate(BoardVO board);
+
 }
 
 //수정일자 수정
