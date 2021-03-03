@@ -18,32 +18,33 @@
 		<div class="board_title">
 			<strong>공지사항</strong>
 			<p>문의 및 건의사항을 작성해주세요!</p>
-				<c:out value="${count.count}"/>
+			
+			<c:out value="${count}" />
 		</div>
 		<div class="container">
 			<div class="row">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<td>번호</td>
-								<td>제목</td>
-								<td>작성자</td>
-								<td>작성일</td>
-								<td>조회수</td>
-							</tr>
-						</thead>
-						<c:forEach items="${list}" var="board">
-							<tr>
-								<td><c:out value="${board.bno}" /></td>
-								<td><c:out value="${board.title}" /></td>
-								<td><c:out value="${board.id}" /></td>
-								<td><c:out value="${board.regDate}" /></td>
-								<td><c:out value="${board.readCount}" /></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<td>번호</td>
+							<td>제목</td>
+							<td>작성자</td>
+							<td>작성일</td>
+							<td>조회수</td>
+						</tr>
+					</thead>
+					<c:forEach items="${list}" var="board">
+						<tr>
+							<td><c:out value="${board.bno}" /></td>
+							<td><c:out value="${board.title}" /></td>
+							<td><c:out value="${board.id}" /></td>
+							<td><c:out value="${board.regDate}" /></td>
+							<td><c:out value="${board.readCount}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
+		</div>
 	</main>
 </body>
 </html>
