@@ -47,3 +47,33 @@
 
 
 }(jQuery));
+
+function scriptQuery() {
+    var script = document.getElementsByTagName('script');   
+    script = script[script.length-1].src  
+       .replace(/^[^\?]+\?/, '')           
+       .replace(/#.+$/, '')                      
+       .split('&');                                   
+     var queries = {}                             
+       , query;
+     while(script.length){                      
+          query = script.shift().split('=');    
+          queries[query[0]] = query[1];   
+     }
+     return queries;
+}
+
+function getParameter(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+$('#menuTab a[href="#notice"]').on('click', function (e) {
+  var pno = getParameter("pno");
+ var url = "http://localhost:8181/product/notice?pno="+pno; 
+
+  $('#notice').load(url) ;
+})
+
