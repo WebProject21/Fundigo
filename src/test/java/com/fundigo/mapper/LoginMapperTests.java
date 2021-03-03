@@ -1,5 +1,8 @@
 package com.fundigo.mapper;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
@@ -24,8 +27,8 @@ public class LoginMapperTests {
 	 * mapper.getList().forEach(board->log.info(board)); }
 	 * 
 	 * // @Test public void testInsert() { BoardVO board = new BoardVO();
-	 * board.setTitle("?���? ?��?��?��?�� �?"); board.setContent("?���? ?��?��?��?�� ?��?��");
-	 * board.setWriter("newbie");
+	 * board.setTitle("?���? ?��?��?��?�� �?");
+	 * board.setContent("?���? ?��?��?��?�� ?��?��"); board.setWriter("newbie");
 	 * 
 	 * mapper.insert(board);
 	 * 
@@ -89,17 +92,21 @@ public class LoginMapperTests {
 //		mapper.Fselect(fund);
 //		log.info(fund);
 //	}
-	
-	/*
-	 * @Test public void testFinsert() { FundhistoryVO fund= new FundhistoryVO();
-	 * fund.setId("yacobl"); fund.setPno(12); fund.setDates(new
-	 * SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()).toString());
-	 * fund.setUnkno("nick"); fund.setPrice(1002); fund.setCode(1);
-	 * 
-	 * int count = mapper.Finsert(fund);
-	 * 
-	 * log.info("count number : "+count); }
-	 */
+
+//	@Test
+//	public void testFinsert() {
+//		FundhistoryVO fund = new FundhistoryVO();
+//		fund.setId("yacobl");
+//		fund.setPno(12);
+//		fund.setDates(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()).toString());
+//		fund.setUnkno("nick");
+//		fund.setPrice(1002);
+//		fund.setCode(code);(1);
+//
+//		int count = mapper.Finsert(fund);
+//
+//		log.info("count number : " + count);
+//	}
 
 //	@Test
 //	public void testFundSelect() {
@@ -109,7 +116,7 @@ public class LoginMapperTests {
 //		 mapper.Fundhselect(fund);
 //		log.info("fundHistory : " + fund);
 //	}
-	
+
 //	@Test
 //	public void pnoSelect() {
 //		ProductVO product= new ProductVO();
@@ -119,18 +126,14 @@ public class LoginMapperTests {
 //		log.info(product);
 //	}
 	/*
-	@Test
-	public void FundPnoSelect() {
-		FundhistoryVO fund = new FundhistoryVO();
-		fund.setPno(12L);
-		
-		 mapper.getFpnoList(fund);
-		log.info("FundHistory Pno Select : "+ fund);
-	}
-	*/
-	
-	@Test
-	public void fundSelectTest() {
-		log.info(mapper.fundSelect("gilsun", 20L));
-	}
+	 * @Test public void FundPnoSelect() { FundhistoryVO fund = new FundhistoryVO();
+	 * fund.setPno(12L);
+	 * 
+	 * mapper.getFpnoList(fund); log.info("FundHistory Pno Select : "+ fund); }
+	 */
+
+//	@Test
+//	public void fundSelectTest() {
+//		log.info(mapper.fundSelect("gilsun", 20L));
+//	}
 }

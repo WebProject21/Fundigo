@@ -21,6 +21,6 @@ public interface LoginService {
 
 	public boolean Clientwithdraw (LoginVO login);
 	
-	public void FavoirteDelete(FundhistoryVO fund);
+	public boolean FavoirteDelete(String id, Long pno);
 	
 }

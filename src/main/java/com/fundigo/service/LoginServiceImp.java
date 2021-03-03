@@ -68,9 +68,11 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
-	public void FavoirteDelete(FundhistoryVO fund) {
+	public boolean FavoirteDelete(String id , Long pno) {
+		log.info("Favorite Delete");
 		
 		
+		return mapper.FpnoDelete(id, pno)==1;	
 	}
 	
 }

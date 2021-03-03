@@ -1,5 +1,8 @@
 package com.fundigo.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,15 +77,22 @@ public class LoginServiceTests {
 //		
 //		login.setId("yacoblee");
 //		login.setPassword("0104021");
+	
 //		service.delete(login);
 //		
 //	}
-	
-	@Test
-	public void FavInsertTest() {
-		FundhistoryVO fund = new FundhistoryVO();
-		fund.setId("yacoblee");
-		fund.setPno(12L);
-		service.FavoriteInsert(fund);
-	}
+
+//		fund.setDates(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+//	@Test
+//	public void FavInsertTest() {
+//		FundhistoryVO fund = new FundhistoryVO();
+//		fund.setId("yacobl");
+//		fund.setPno(12L);
+//		service.FavoriteInsert(fund);
+//	}
+//	@Test
+//	public void getFavoriteDelete() {
+//		service.FavoirteDelete("yacoblee", 12L);
+//		
+//	}
 }

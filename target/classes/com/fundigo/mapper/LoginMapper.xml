@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fundigo.mapper.LoginMapper">
-
+	
 	<insert id="CchoseInsert">
 	INSERT INTO CLIENT(id,name,password,address,phone,nickname,tag) 
 	values(#{id},#{name},#{password},#{address},#{phone},#{nickname},#{tag, jdbcType = VARCHAR})
@@ -55,7 +55,7 @@
 	</select>
 	
 	<insert id="FpnoInsert">
-	INSERT INTO FAVORITE(ID,PNO,DATES VALUES) values (#{id},#{pno},TO_DATE(#{dates} , 'yyyy-mm-dd'))
+	INSERT INTO FAVORITE(ID,PNO,DATES) values (#{id},#{pno},sysdate)
 	</insert>
 	
 	<delete id="FpnoDelete"  >
@@ -66,7 +66,6 @@
 	SELECT id,name,address,phone FROM CLIENT where id = #{id}
 	]]>
 	</select> -->
-	
 	
 </mapper>
 
