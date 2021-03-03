@@ -1,3 +1,14 @@
-@import url('board_media.css');
-@import url('board_style.css');
 
+.table {
+	text-align: center;
+	border: 1px solid #dddddd;
+}
+
+.table th{
+	background-color: #eeeeee;
+	text-align: center;
+}
+
+.btn-primary{
+	
+}
