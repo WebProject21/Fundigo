@@ -1,6 +1,9 @@
 package com.fundigo.controller;
 
+import javax.jws.WebParam.Mode;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -24,11 +27,11 @@ public class LoginController {
 	private BoardService bService;
 	
 	@PostMapping("/memberLogin")
-	public void memberLogin(LoginVO board, RedirectAttributes rttr) {
+	public void memberLogin(LoginVO board, Model model) {
 		
 		
-		//log.info("login: "+service.getList());
-		//unclear value, logic
+		log.info("memberLogin");
+		model.addAttribute("memberLogin");
 	}
 	
 	

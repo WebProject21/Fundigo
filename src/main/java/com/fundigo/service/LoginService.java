@@ -15,7 +15,7 @@ public interface LoginService {
 	
 	public void FavoriteInsert(FundhistoryVO fund);
 	
-	public void Clientselect(LoginVO login);
+	public void Clientselect(String string);
 	
 	public void Clientupdate(LoginVO login);
 
