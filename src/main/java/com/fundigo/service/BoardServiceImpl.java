@@ -82,4 +82,9 @@ public class BoardServiceImpl  implements BoardService{
 		log.info("updateDate......");
 		return mapper.updateDate(board) == 1;
 	}
+	@Override
+	public long getListcount() {
+		log.info("count..........");
+		return mapper.getListcount();
+	}
 }

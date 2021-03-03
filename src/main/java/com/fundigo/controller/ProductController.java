@@ -65,13 +65,16 @@ public class ProductController {
 		log.info("commList");
 		model.addAttribute("list",bService.getCOMMList(pno));
 		model.addAttribute("product",pService.get(pno));
+		model.addAttribute("count", bService.getListcount());
 	}//상품 커뮤니티 페이지
 	
 	@GetMapping("/notice")
 	public void NOTIlist(@RequestParam("pno") Long pno, Model model) {
 		log.info("list");
+		long count = bService.getListcount();
 		model.addAttribute("list", bService.getNOTIList(pno));
 		model.addAttribute("product",pService.get(pno));
+		model.addAttribute("count", count);
 	}//상품 공지 페이지
 	
 	@PostMapping("/modify")
