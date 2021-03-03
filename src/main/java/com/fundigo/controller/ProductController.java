@@ -33,7 +33,6 @@ public class ProductController {
 	private ProductService pService;
 	private BoardService bService;
 	private FundhistoryService fService;
-	private ReplyService rService;
 	
 	@GetMapping("/view")
 	public void view(@RequestParam("pno") Long pno, Model model) {
