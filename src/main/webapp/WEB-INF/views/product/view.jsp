@@ -236,17 +236,6 @@
 
         <div class="container">
 
-            <div class="row">
-
-                <span>Home > </span>
-
-                <span>Men > </span>
-
-                <span>Eyewear > </span>
-
-                <span>Blue Jacket</span>
-
-            </div>
 
         </div>
 
@@ -342,8 +331,6 @@
 
                        </div>
 
-                        
-
                         <button class="btn btn-theme" type="submit">Add to cart</button>
 
                         <div class="social-share">
@@ -370,8 +357,6 @@
                     <c:if test="#{product.tag eq 'L' }">생활</c:if>
                     <c:if test="#{product.tag eq 'T' }">테크</c:if>
                     </p>
-
-                    
 
                     <ul class="product-info-btn">
 

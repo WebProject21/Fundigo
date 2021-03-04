@@ -75,5 +75,12 @@ $('#menuTab a[href="#notice"]').on('click', function (e) {
  var url = "http://localhost:8181/product/notice?pno="+pno; 
 
   $('#notice').load(url) ;
+  history.pushState('', '',url);
+})
+$('#menuTab a[href="#description"]').on('click', function (e) {
+  var pno = getParameter("pno");
+ var url = "http://localhost:8181/product/view?pno="+pno; 
+
+  history.pushState('', '',url);
 })
 
