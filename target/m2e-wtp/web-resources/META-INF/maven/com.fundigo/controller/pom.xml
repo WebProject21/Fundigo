@@ -109,6 +109,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+>>>>>>> 187d080f01d7620989f5fd29f39a212f1369c002
 
 		<!-- Test -->
 		<dependency>
