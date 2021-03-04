@@ -1,6 +1,5 @@
 package com.fundigo.controller;
 
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,29 +17,34 @@ import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
-					   "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
 @Log4j
 public class LoginControllerTests {
-	
-	@Setter(onMethod_ = {@Autowired})
+
+	@Setter(onMethod_ = { @Autowired })
 	private WebApplicationContext ctx;
-	
+
 	private MockMvc mockMvc;
-	
+
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
-	
+
 	@Test
-	public void LoginJoinControllerTests(){
+	public void LoginCheckControllerTests() throws Exception{
 		
-//		log.info(
-//				mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
-//				).andReturn().getModelAndView().getViewName();
-//		
-		
+		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
+				.param("id", "yacobl")
+				.param("password", "010401"))
+				.andReturn().getModelAndView().getModelMap());
+	}
+
+	@Test
+	public void LoginJoin ()  {
+	
+	
 	}
 	
 }
