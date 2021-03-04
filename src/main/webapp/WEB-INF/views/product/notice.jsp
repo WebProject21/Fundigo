@@ -10,7 +10,9 @@
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/bootstrap-grid.min.css">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/boardform.css">
+	href="${path}/resources/css/board/boardform.css">
+	<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/bootstrap.css">
 </head>
 <body>
 	<input type="hidden" name="pno" value="${product.pno}">
@@ -19,7 +21,7 @@
 			<strong>공지사항</strong>
 			<p>문의 및 건의사항을 작성해주세요!</p>
 			
-			<c:out value="${count}" />
+			<c:out value="${count}"/>
 		</div>
 		<div class="container">
 			<div class="row">
@@ -43,6 +45,7 @@
 						</tr>
 					</c:forEach>
 				</table>
+				<a href="/product/notice_register?pno=${product.pno }" class = "btn btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>
 	</main>

@@ -34,7 +34,8 @@ img {
 }
 .social,
 .action {
-
+	padding:65px 0px;
+	margin:20px 0px;
 }
 .social ul,
 .action ul {
@@ -43,22 +44,23 @@ img {
     margin: 0px;
 }
 .social ul li,
-.action ul li {
+.action ul li {	
     float:left;
-    padding: 20px 10px;
+    padding:0px 5px;
 }
 .social ul li a,
 .action ul li a {
-    color: #fff;
+    color:black;
     transition: .2s all ease-in-out;
-    
 }
 
 .social ul li a:hover,
 .action ul li a:hover {
-    color: #666;
+    color: #848484;
     
 }
+
+
 
 .header {
     min-height: 200px;
@@ -574,6 +576,7 @@ p.short-info {
     color: #d5d5d5;
     padding: 12px;
     margin: 0px;
+    
 }
 .qt-area input.qt {
     padding: 8px;
