@@ -11,6 +11,8 @@
 	href="${path}/resources/css/bootstrap-grid.min.css">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/board/boardform.css">
+	<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/bootstrap.css">
 </head>
 <body>
 	<input type="hidden" name="pno" value="${product.pno}">
