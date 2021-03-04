@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fundigo.domain.BoardVO;
 import com.fundigo.domain.ListVO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
@@ -61,21 +62,42 @@ public class ProductController {
 	}//상품 등록
 	
 	@GetMapping("/community")
-	public void commList(@RequestParam("pno") Long pno, Model model) {
+	public void commList(@RequestParam ("pno") Long pno, Model model) {
 		log.info("commList");
 		model.addAttribute("list",bService.getCOMMList(pno));
 		model.addAttribute("product",pService.get(pno));
 		model.addAttribute("count", bService.getListcount());
 	}//상품 커뮤니티 페이지
 	
+	@PostMapping("/community_register")
+	public String COMMregister(@RequestParam ("pno") Long pno, Model model, BoardVO board, RedirectAttributes rttr) {
+		log.info("COMMregister: "+board);
+		bService.COMMregister(board);
+		rttr.addFlashAttribute("result", board.getBno());
+		model.addAttribute("product",pService.get(pno));  
+		return "redirect:/board/view?bno="+board.getBno();
+	}
+	
 	@GetMapping("/notice")
 	public void NOTIlist(@RequestParam("pno") Long pno, Model model) {
 		log.info("list");
-		long count = bService.getListcount();
 		model.addAttribute("list", bService.getNOTIList(pno));
 		model.addAttribute("product",pService.get(pno));
-		model.addAttribute("count", count);
 	}//상품 공지 페이지
+	
+	@GetMapping("/notice_register")
+	public void register(@RequestParam ("pno") Long pno, Model model) {
+		model.addAttribute("product",pService.get(pno));  
+	}
+	
+	@PostMapping("/notice_register")
+	public String NOTIregister(@RequestParam ("pno") Long pno, Model model, BoardVO board, RedirectAttributes rttr) {
+		log.info("NOTIregister: "+board);
+		bService.NOTIregister(board);
+		rttr.addFlashAttribute("result", board.getBno());
+		model.addAttribute("product",pService.get(pno));  
+		return "redirect:/board/view?bno="+board.getBno();
+	}
 	
 	@PostMapping("/modify")
 	public String modify(ProductVO product, List<ListVO> lists, RedirectAttributes rttr) {
@@ -95,5 +117,5 @@ public class ProductController {
 		model.addAttribute("list", fService.getList(pno));
 		
 	}//상품 서포터 목록 페이지
-
+	
 }

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.BoardVO;
 import com.fundigo.service.BoardService;
+import com.fundigo.service.ProductService;
 import com.fundigo.service.ReplyService;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +23,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	private BoardService bService;
 	private ReplyService rService;
+	private ProductService pService;
 	
 	@GetMapping("/faq")
 	public void FAQlist(Model model) {
@@ -35,22 +37,6 @@ public class BoardController {
 		bService.FAQregister(board);
 		rttr.addFlashAttribute("result", board.getBno());
 		return "redirect:/board/faq?bno="+board.getBno();
-	}
-	
-	@PostMapping("/comm_register")
-	public String COMMregister(BoardVO board, RedirectAttributes rttr) {
-		log.info("COMMregister: "+board);
-		bService.COMMregister(board);
-		rttr.addFlashAttribute("result", board.getBno());
-		return "redirect:/board/view?bno="+board.getBno();
-	}
-	
-	@PostMapping("/noti_register")
-	public String NOTIregister(BoardVO board, RedirectAttributes rttr) {
-		log.info("NOTIregister: "+board);
-		bService.NOTIregister(board);
-		rttr.addFlashAttribute("result", board.getBno());
-		return "redirect:/board/view?bno="+board.getBno();
 	}
 	
 	@GetMapping("/view")
@@ -81,7 +67,6 @@ public class BoardController {
 		if(bService.modify(board)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		String list = ""; // 해당 페이지가 어떤 페이지인지를 받아와야함
 		return "redirect:/board/COMMlist";
 	}
 	@PostMapping("/NOTImodify")
@@ -90,7 +75,6 @@ public class BoardController {
 		if(bService.modify(board)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		String list = ""; // 해당 페이지가 어떤 페이지인지를 받아와야함
 		return "redirect:/board/NOTIlist";
 	}
 	

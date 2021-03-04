@@ -131,27 +131,27 @@ public class BoardControllerTests {
 //		log.info(resultPage);
 //	}
 	
-	@Test
-	public void testFAQRemove()throws Exception{
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/FAQremove")
-				.param("bno", "24"))
-				.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
-	}
-	@Test
-	public void testCOMMRemove()throws Exception{
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/COMMremove")
-				.param("bno", "6"))
-				.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
-	}
-	@Test
-	public void testNOTIRemove()throws Exception{
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/NOTIremove")
-				.param("bno", "17"))
-				.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
-	}
-	
+//	@Test
+//	public void testFAQRemove()throws Exception{
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/FAQremove")
+//				.param("bno", "24"))
+//				.andReturn().getModelAndView().getViewName();
+//		log.info(resultPage);
+//	}
+//	@Test
+//	public void testCOMMRemove()throws Exception{
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/COMMremove")
+//				.param("bno", "6"))
+//				.andReturn().getModelAndView().getViewName();
+//		log.info(resultPage);
+//	}
+//	@Test
+//	public void testNOTIRemove()throws Exception{
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/NOTIremove")
+//				.param("bno", "17"))
+//				.andReturn().getModelAndView().getViewName();
+//		log.info(resultPage);
+//	}
+//	
 	
 }

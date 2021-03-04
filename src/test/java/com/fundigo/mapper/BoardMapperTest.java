@@ -21,12 +21,12 @@ public class BoardMapperTest {
 	private BoardMapper mapper;
 
 	
-	@Test
-	public void testGetListCount() {
-		long count = mapper.getListcount();
-		log.info(count);
-	}
-	
+//	@Test
+//	public void testGetListCount() {
+//		long count = mapper.getListcount();
+//		log.info(count);
+//	}
+//	
 //	@Test
 //	public void testGetList() {
 //		mapper.getFAQList().forEach(board -> log.info(board));
@@ -53,17 +53,20 @@ public class BoardMapperTest {
 //		mapper.COMMinsert(board);
 //		log.info(board);
 //	}
-//	@Test
-//	public void testNOTIInsert() {
-//		BoardVO board = new BoardVO();
-//		board.setTitle("testNOTI");
-//		board.setContent("testNOTI");
-//		board.setId("test");
-//		board.setPno("1");
-//		
-//		mapper.NOTIinsert(board);
-//		log.info(board);
-//	}
+	@Test
+	public void testNOTIInsert() {
+		
+		for(int i = 1; i<= 500; i++) {
+			BoardVO board = new BoardVO();
+			board.setTitle("testNOTI");
+			board.setContent("testNOTI");
+			board.setId("test");
+			board.setPno("1");
+		
+			mapper.NOTIinsert(board);
+			log.info(board);
+		}
+	}
 	
 //	@Test
 //	public void testFAQInsertSelectKey() {
