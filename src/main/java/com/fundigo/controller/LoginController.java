@@ -27,14 +27,13 @@ public class LoginController {
 	private BoardService bService;
 	
 	@PostMapping("/memberLogin")
-	public void memberLogin(LoginVO board, Model model) {
-		
-		
-		log.info("memberLogin");
-		model.addAttribute("memberLogin");
+	public String memberLogin(LoginVO login, RedirectAttributes rttr) {
+		log.info("login : "+login);
+		lService.LoginCheck(login);
+		rttr.addFlashAttribute("result", login.getId());
+	
+		return "redirect:/mypage/favorite?id="+login.getId();
+	
 	}
-	
-	
-	
 
 }

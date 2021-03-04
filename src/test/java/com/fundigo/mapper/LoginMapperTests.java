@@ -1,8 +1,5 @@
 package com.fundigo.mapper;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.junit.Test;
 
 import org.junit.runner.RunWith;
@@ -10,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fundigo.domain.FundhistoryVO;
+import com.fundigo.domain.LoginVO;
+
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -21,7 +19,16 @@ public class LoginMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private LoginMapper mapper;
-
+	
+	
+//	@Test
+//	public void LoginCheckTests() {
+//		LoginVO login = new LoginVO();
+//		login.setId("yacobl");
+//		login.setPassword("010401");
+//		mapper.Clogin(login);
+//		log.info("login check: "+login);
+//	}
 	/*
 	 * @Test public void testGetList() {
 	 * mapper.getList().forEach(board->log.info(board)); }

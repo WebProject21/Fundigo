@@ -13,6 +13,10 @@
 	values(#{id},#{name},#{password},#{address},#{phone},#{nickname},#{tag})
 	</insert>
 	
+	<select id="Clogin" resultType="com.fundigo.domain.LoginVO">
+	select id, name, address, phone,nickname,tag from client where id = #{id} and password = #{password}
+	</select>
+	
 	<select id="cSelect" resultType="com.fundigo.domain.LoginVO">
 	select id, name, address, phone from client where id = #{id}
 	</select>

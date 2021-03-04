@@ -13,10 +13,12 @@ import com.fundigo.domain.ProductVO;
 public interface LoginMapper {
 	//not yet
 	public List<LoginVO> getList();
-	//checked
+	//client join
 	public void cInsert(LoginVO login);
 	//null values
-	public void CchoseInsert(LoginVO login);
+//	public void CchoseInsert(LoginVO login);
+	//login check
+	public void Clogin(LoginVO login);
 	//checked
 	public void cSelect (LoginVO login);
 	//checked

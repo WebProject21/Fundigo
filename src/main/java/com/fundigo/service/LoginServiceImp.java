@@ -45,7 +45,6 @@ public class LoginServiceImp implements LoginService {
 		mapper.cSelect(login);
 	}
 	
-
 	@Override
 	public void Clientupdate(LoginVO login) {
 		log.info("login update : "+ login);
@@ -63,16 +62,21 @@ public class LoginServiceImp implements LoginService {
 	public void FavoriteInsert(FundhistoryVO fund) {
 		log.info("Client Favorite : "+fund);
 		mapper.FpnoInsert(fund);
-		
-		
+	
 	}
 
+	@Override
+	public void LoginCheck(LoginVO login) {
+		log.info("login check : "+login);
+		
+		mapper.Clogin(login);
+	}
+	
 	@Override
 	public boolean FavoirteDelete(String id , Long pno) {
 		log.info("Favorite Delete");
 		
-		
 		return mapper.FpnoDelete(id, pno)==1;	
 	}
-	
+
 }

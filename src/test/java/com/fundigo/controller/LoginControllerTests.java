@@ -35,11 +35,11 @@ public class LoginControllerTests {
 	
 	@Test
 	public void LoginJoinControllerTests(){
-//		log.info(
-//				mockMvc.perform(MockMvcRequestBuilders.get("/mypage/joinPage"))
-//				.andReturn()
-//				);
 		
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
+//				).andReturn().getModelAndView().getViewName();
+//		
 		
 	}
 	
