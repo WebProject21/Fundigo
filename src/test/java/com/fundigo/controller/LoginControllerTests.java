@@ -58,7 +58,7 @@ public class LoginControllerTests {
 	@Test
 	public void WithdrawControllertests() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
-				.param("id", "yacobl")
+				.param("id", "yacobl  xx")
 				.param("password", "010401")
 				).andReturn().getModelAndView().getModelMap());
 	}

@@ -3,6 +3,7 @@ package com.fundigo.mapper;
 import java.util.List;
 
 import com.fundigo.domain.ListVO;
+import com.fundigo.domain.ProAttachVO;
 import com.fundigo.domain.ProductVO;
 
 public interface ProductMapper {
@@ -24,6 +25,11 @@ public interface ProductMapper {
 	
 	public int pUpdateCount(Long pno);
 	
+	public void pInsertImg(ProAttachVO img);
+	
+	public List<ProAttachVO> pGetImgList(Long pno);
+	
+	public int pDeleteImg(ProAttachVO img);
 	
 	//알고리즘 추천 기능
 	
