@@ -91,4 +91,11 @@
 	<update id="updateDate">
 		UPDATE BOARD SET updatedate = TO_DATE(#{updateDate}, 'yy/mm/dd') WHERE BNO = #{bno}
 	</update>
+	
+	<!-- 파일첨부를 위한 쿼리 -->
+	
+	<insert id="addAttach">
+		INSERT INTO tbl_attach(fullname, bno) VALUE (#{fullName}, SEQ_BOARD.CURRVAL)
+	</insert>
+	
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fundigo.domain.BoardVO;
 import com.fundigo.mapper.BoardMapper;
@@ -32,7 +33,7 @@ public class BoardServiceImpl  implements BoardService{
 		bmapper.COMMinsertSelectKey(board);	
 	}
 	@Override
-	public void NOTIregister(BoardVO board ) {
+	public void NOTIregister(BoardVO board) {
 		log.info("register........."+board);
 		bmapper.NOTIinsertSelectKey(board);	
 	}
@@ -88,4 +89,23 @@ public class BoardServiceImpl  implements BoardService{
 		log.info("count..........");
 		return bmapper.getListcount();
 	}
+	
+	@Transactional//트랜젝션 처리 메소드로 설정
+	public void create(BoardVO board) throws Exception {
+		String title = board.getTitle();
+		String content = board.getContent();
+		String id = board.getId();
+		title = title.replace("<", "&lt;");
+		title = title.replace("<", "&gt;");
+		id = id.replace("<", "&lt;");
+		id = id.replace("<", "&gt;");
+		title = title.replace(" ", "&nbsp;&nbsp;");
+		id = id.replace(" ", "&nbsp;&nbsp;");
+		content = content.replace("\n", "<br>");
+		board.setTitle(title);
+		board.setContent(content);
+		board.setId(id);
+		Model model = new Model();
+	}
+
 }

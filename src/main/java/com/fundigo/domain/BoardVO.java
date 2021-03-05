@@ -14,4 +14,5 @@ public class BoardVO {
 	private String updateDate;
 	private String pno;
 	private String readCount;
+	private String[] files;
 }
