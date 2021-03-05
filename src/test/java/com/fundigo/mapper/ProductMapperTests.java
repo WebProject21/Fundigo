@@ -1,19 +1,27 @@
 package com.fundigo.mapper;
 
+import java.util.List;
+
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.fundigo.domain.ProAttachVO;
+
+import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class ProductMapperTests {
-	/*
+	
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
-	
+
+	/*
 	@Test
 	public void testGetList() {
 		mapper.pGetList().forEach(product -> log.info(product));
@@ -93,5 +101,20 @@ public class ProductMapperTests {
 	public void testReadCount() {
 		log.info("UPDATE COUNT ---- "+mapper.pUpdateCount(11L));
 		
-	}*/
+	}
+	
+	@Test
+	public void insertImg() {
+		
+		ProAttachVO img = new ProAttachVO();
+		img.setName("test2.jpg");
+		img.setPno(11L);
+		
+		mapper.pInsertImg(img);
+		
+		log.info(img);
+	}
+	*/
+	
+	
 }
