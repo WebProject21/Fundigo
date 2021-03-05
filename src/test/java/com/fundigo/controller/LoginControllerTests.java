@@ -32,19 +32,27 @@ public class LoginControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 
-	@Test
-	public void LoginCheckControllerTests() throws Exception{
-		
-		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
-				.param("id", "yacobl")
-				.param("password", "010401"))
-				.andReturn().getModelAndView().getModelMap());
-	}
+//	@Test
+//	public void LoginCheckControllerTests() throws Exception{
+//		
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
+//				.param("id", "yacobl")
+//				.param("password", "010401"))
+//				.andReturn().getModelAndView().getModelMap()); 
+//	}
 
-	@Test
-	public void LoginJoin ()  {
-	
-	
-	}
+//	@Test
+//	public void LoginJoinControllerTests () throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/JoinPage")
+//				.param("id", "yac")
+//				.param("name", "김민지")
+//				.param("password", "010401")
+//				.param("address", "강남구")
+//				.param("phone", "01040529406")
+//				.param("nickname", "별묭")
+//				.param("tag", "gmae")
+//				).andReturn().getModelAndView().getModelMap());
+//	
+//	}
 	
 }

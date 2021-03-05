@@ -35,5 +35,24 @@ public class LoginController {
 		return "redirect:/mypage/favorite?id="+login.getId();
 	
 	}
+	
+	@PostMapping("/JoinPage")
+	public String JoinPage(LoginVO login, RedirectAttributes rttr) {
+		log.info("Join Page : "+login);
+		lService.ClientJoin(login);
+		rttr.addFlashAttribute("join Result"+login.getId());
+		return "redirect:/mypage/favorite?id="+login.getId();
+	}
+	
+	@PostMapping("/withdraw")
+	public String Withdraw(LoginVO login, RedirectAttributes rttr){
+		log.info("withdraw Page: "+login);
+		lService.Clientwithdraw(login);
+		rttr.addFlashAttribute("Withdraw page");
+		
+		
+		return "redirect:/mainpage/design";
+	}
+	
 
 }
