@@ -54,5 +54,12 @@ public class LoginControllerTests {
 //				).andReturn().getModelAndView().getModelMap());
 //	
 //	}
-	
+	        
+	@Test
+	public void WithdrawControllertests() throws Exception {
+		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mainpage/design")
+				.param("id", "yacobl")
+				.param("passowrd", "010401")
+				).andReturn().getModelAndView().getModelMap());
+	}
 }
