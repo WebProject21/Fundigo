@@ -48,7 +48,7 @@ public class LoginController {
 		rttr.addFlashAttribute("Withdraw page");
 		
 		
-		return "redirect:/mainpage/design";
+		return "redirect:/mypage/memberLogin";
 	}
 	
 
