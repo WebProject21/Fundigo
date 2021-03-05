@@ -1,14 +1,7 @@
-
-.table {
-	text-align: center;
-	border: 1px solid #dddddd;
-}
-
-.table th{
-	background-color: #eeeeee;
-	text-align: center;
-}
-
-.btn-primary{
-	
+/* 첨부파일을 드래그할 영역의 스타일 */
+.fileDrop{
+	width: 600px;
+	height: 70px;
+	border: 2px dotted gray;
+	background-color: gray;
 }

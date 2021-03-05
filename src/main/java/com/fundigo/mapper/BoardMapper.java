@@ -41,7 +41,8 @@ public interface BoardMapper {
 	public int update(BoardVO board);
 	public int countup(BoardVO board);
 	public int updateDate(BoardVO board);
-
+//첨부파일
+	public void addAttach(String fullName);
 }
 
 //수정일자 수정

@@ -8,17 +8,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>funDigo</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
  
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/resources/css/board/boardform.css">
 </head>
+
 <body>
 	<input type="hidden" name="pno" value="${product.pno}">
 	<div class = "container">
-		<form role = "form" action = "/board/notice_register?${product.pno}" method = "post">
+		<form role = "form" action = "/product/notice_register?pno=${product.pno}" method = "post">
+			<input type = "hidden" name = "id" value="${id}" />
+			<h1>${id}</h1>
 			<div class = "col-sm-12 pt-3">
 				<div class ="register">
 					<div class = "register-header register-header-primary">
@@ -40,9 +44,9 @@
 								</tbody>
 							</table>
 							<div class = "row" style = "width: 100%; margin: 0px auto;">
-							<input type= "submit" value = "글쓰기" />
-							<input type = "reset" value="수정" />
-							<input type = "button" value="취소" onclick=""/>
+							<button type= "submit" class = "btn btn-default">등록</button>
+							<button type = "button" value="취소" onclick="location.href='http://localhost:8181/product/notice?pno=${product.pno}'">취소</button>
+							<button type = "reset" value="초기화">리셋</button>
 							</div>
 						</div>
 					</div>
@@ -50,5 +54,13 @@
 			</div>
 		</form>
 	</div>
+	<div>
+		첨부파일 등록
+		<!-- 첨부파일 등록영역 -->
+		<div class = "fileDrop"></div>
+		<!-- 첨부파일 목록 출력 영역 -->
+		<div id = "uploadedList"></div>
+	</div>
+	
 </body>
 </html>

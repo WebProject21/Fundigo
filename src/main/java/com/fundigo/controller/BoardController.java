@@ -10,7 +10,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.BoardVO;
 import com.fundigo.service.BoardService;
-import com.fundigo.service.ProductService;
 import com.fundigo.service.ReplyService;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +22,6 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	private BoardService bService;
 	private ReplyService rService;
-	private ProductService pService;
 	
 	@GetMapping("/faq")
 	public void FAQlist(Model model) {
@@ -58,7 +56,6 @@ public class BoardController {
 		if(bService.modify(board)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		String list = ""; // 해당 페이지가 어떤 페이지인지를 받아와야함
 		return "redirect:/board/FAQlist";
 	}
 	@PostMapping("/COMMmodify")
