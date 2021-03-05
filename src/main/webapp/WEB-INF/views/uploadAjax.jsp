@@ -18,8 +18,8 @@
  			 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 			 crossorigin="anonymous"></script>
 		
-		<script>
-			$(document).ready(function(){
+		
+		<script>$(document).ready(function(){
 				$("#uploadBtn").on("click", function(e){
 					var formData = new FormData();
 					var inputFile = $("input[name='uploadFile']");
@@ -45,6 +45,7 @@
 					}); //$.ajax
 				});
 			});
+			
 		</script>
 </body>
 </html>

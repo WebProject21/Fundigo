@@ -52,7 +52,7 @@ public class UploadController {
 	}
 	
 	@PostMapping("/uploadAjaxAction")
-	public void uploadAjaxPost(MultipartFile[] uploadFile) {
+	public String uploadAjaxPost(MultipartFile[] uploadFile) {
 		log.info("updata ajaax post..........");
 		String uploadFolder = "C:\\upload";
 		
@@ -75,5 +75,6 @@ public class UploadController {
 				log.error(e.getMessage());
 			}//end catch
 		}//end for
+		
 	}
 }
