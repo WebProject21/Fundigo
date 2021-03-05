@@ -44,12 +44,22 @@ public class LoginController {
 	@PostMapping("/withdraw")
 	public String Withdraw(LoginVO login, RedirectAttributes rttr){
 		log.info("withdraw Page: "+login);
+		
 		lService.Clientwithdraw(login);
-		rttr.addFlashAttribute("Withdraw page");
+		rttr.addFlashAttribute("result"+"sucess");
 		
 		
-		return "redirect:/mypage/memberLogin";
+		return "/mypage/memberLogin";
 	}
 	
+	@PostMapping("/modify")
+	public String ClientModify(LoginVO login , RedirectAttributes rttr) {
+		log.info("modify Page:"+login);
+		lService.Clientselect(login);
+		lService.Clientupdate(login);
+		rttr.addFlashAttribute("result", "success");
+		
+		return "redirect:/mypage/favorite?id="+login.getId();
+	}
 
 }

@@ -54,12 +54,24 @@ public class LoginControllerTests {
 //				).andReturn().getModelAndView().getModelMap());
 //	
 //	}
-	        
+	// not yet
+//	@Test
+//	public void WithdrawControllertests() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
+//				.param("id", "yacoblee")
+//				.param("password", "010401")
+//				).andReturn().getModelAndView().getModelMap());
+//	}
+
 	@Test
-	public void WithdrawControllertests() throws Exception {
-		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
-				.param("id", "yacobl  xx")
+	public void FundListContrllerTests() throws Exception {
+		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/favorite")
 				.param("password", "010401")
+				.param("address", "강남구")
+				.param("phone", "01040529406")
+				.param("nickname", "별묭")
+				.param("tag", "gmae")
+				.param("id", "yacobl")
 				).andReturn().getModelAndView().getModelMap());
 	}
 }

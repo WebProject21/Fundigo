@@ -24,7 +24,7 @@ public interface LoginMapper {
 	//checked
 	public int cUpdate (LoginVO login);
 	//checked
-	public int cDelete(LoginVO login);
+	public void cDelete(LoginVO login);
 	//funding History view
 	public List<FundhistoryVO> getFundList (String id);
 	//FundHistory insert

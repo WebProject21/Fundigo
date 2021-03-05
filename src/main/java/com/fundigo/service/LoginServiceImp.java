@@ -53,9 +53,9 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
-	public boolean Clientwithdraw(LoginVO login) {
+	public void Clientwithdraw(LoginVO login) {
 		log.info("client delete: "+login);
-		return mapper.cDelete(login)==1;
+		mapper.cDelete(login);
 	}
 
 	@Override

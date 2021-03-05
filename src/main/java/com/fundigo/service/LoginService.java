@@ -21,7 +21,7 @@ public interface LoginService {
 	
 	public void Clientupdate(LoginVO login);
 	
-	public boolean Clientwithdraw (LoginVO login);
+	public void Clientwithdraw (LoginVO login);
 	
 	public boolean FavoirteDelete(String id, Long pno);
 	
