@@ -14,12 +14,7 @@ public class LoginVO {
 	
 	private String tag;
 
-	//private String date;
-	
-	//private String unknwon;
-	//private int pno;
-	//private int price;
-	//private int code;
+
 	
 	
 	

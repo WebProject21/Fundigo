@@ -13,26 +13,28 @@ import com.fundigo.domain.ProductVO;
 public interface LoginMapper {
 	//not yet
 	public List<LoginVO> getList();
-	//checked
+	//client join
 	public void cInsert(LoginVO login);
 	//null values
-	public void CchoseInsert(LoginVO login);
+//	public void CchoseInsert(LoginVO login);
+	//login check
+	public void Clogin(LoginVO login);
 	//checked
 	public void cSelect (LoginVO login);
 	//checked
 	public int cUpdate (LoginVO login);
 	//checked
-	public int cDelete(LoginVO login);
+	public void cDelete(LoginVO login);
 	//funding History view
 	public List<FundhistoryVO> getFundList (String id);
 	//FundHistory insert
 	public int Finsert(FundhistoryVO fund);
 	//FundHisroty delete
 	public int Fdelete (@Param("id") String id, @Param("pno") Long pno);
-	
+
 	//PnoSelect go product
 	public void PnoSelect(ProductVO product);
-	
+
 	//favorite select base in id
 	public List<FundhistoryVO> getFavoriteList(String id);
 	//favorite insert pno

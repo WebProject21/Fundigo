@@ -13,14 +13,16 @@ public interface LoginService {
 	
 	public void ClientJoin(LoginVO login);
 	
+	public void LoginCheck(LoginVO login);
+	
 	public void FavoriteInsert(FundhistoryVO fund);
 	
 	public void Clientselect(LoginVO login);
 	
 	public void Clientupdate(LoginVO login);
-
-	public boolean Clientwithdraw (LoginVO login);
 	
-	public boolean FavoirteDelete(String id, Long pno);
+	public void Clientwithdraw (LoginVO login);
+	
+	public boolean FavoriteDelete(String id, Long pno);
 	
 }
