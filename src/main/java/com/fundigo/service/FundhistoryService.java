@@ -11,7 +11,9 @@ public interface FundhistoryService {
 	public void register(String id, String unkno, Long code);
 
 	public FundhistoryVO get(String id, Long pno);
-	
+
 	public boolean remove(String id, Long pno);
+
+
 
 }

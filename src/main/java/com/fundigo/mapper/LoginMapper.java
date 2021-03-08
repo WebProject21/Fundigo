@@ -31,10 +31,10 @@ public interface LoginMapper {
 	public int Finsert(FundhistoryVO fund);
 	//FundHisroty delete
 	public int Fdelete (@Param("id") String id, @Param("pno") Long pno);
-	
+
 	//PnoSelect go product
 	public void PnoSelect(ProductVO product);
-	
+
 	//favorite select base in id
 	public List<FundhistoryVO> getFavoriteList(String id);
 	//favorite insert pno

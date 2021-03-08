@@ -44,7 +44,7 @@ public class LoginControllerTests {
 //	@Test
 //	public void LoginJoinControllerTests () throws Exception {
 //		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/JoinPage")
-//				.param("id", "yac")
+//				.param("id", "dlss")
 //				.param("name", "김민지")
 //				.param("password", "010401")
 //				.param("address", "강남구")
@@ -57,21 +57,90 @@ public class LoginControllerTests {
 	// not yet
 //	@Test
 //	public void WithdrawControllertests() throws Exception {
-//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/memberLogin")
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/withdraw")
 //				.param("id", "yacoblee")
 //				.param("password", "010401")
 //				).andReturn().getModelAndView().getModelMap());
 //	}
 
+//	@Test
+//	public void FundListContrllerTests() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/modify")
+//				.param("password", "010401")
+//				.param("address", "강남구")
+//				.param("phone", "01040529406")
+//				.param("nickname", "별먕")
+//				.param("tag", "gmae")
+//				.param("id", "yacobl")
+//				).andReturn().getModelAndView().getModelMap());
+//	}
+
+//	@Test
+//	public void SelcetControllerTests() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/select")
+//				.param("id", "yacobl")
+//			
+//				
+//				).andReturn().getModelAndView().getViewName());
+//	}
+
+//	@Test
+//	public void FavoriteControlltests() throws Exception{
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/favorite")
+//				.param("id", "yac")
+//				).andReturn().getModelAndView().getViewName());
+//	
+//	}
+
+
+//	@Test
+//	public void FundHistoryInsertTests() throws Exception{
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/Favorite_insert")
+//				.param("id", "yacobl")
+//				.param("pno", "12")
+//				
+//				).andReturn().getModelAndView().getModelMap());
+//	}
+
+//	@Test
+//	public void getFundListController() throws Exception{
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/favorite")
+//				.param("id", "yacobl")
+//				).andReturn().getModelAndView().getViewName());
+//	}
+
+//	@Test
+//	public void FundListControllerTests() throws Exception {
+//
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/fundList")
+//		.param("id", "yacobl")
+//		).andReturn().getModelAndView().getViewName());
+//
+//	}
+	
+//	@Test
+//	public void fundGetListcontrollertests() throws Exception {
+//		log.info( mockMvc.perform(MockMvcRequestBuilders.post("/mypage/fundlist_pno")
+//				.param("pno", "12"))
+//				.andReturn().getModelAndView().getViewName());		
+//				
+//	}
 	@Test
-	public void FundListContrllerTests() throws Exception {
-		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/favorite")
-				.param("password", "010401")
-				.param("address", "강남구")
-				.param("phone", "01040529406")
-				.param("nickname", "별묭")
-				.param("tag", "gmae")
-				.param("id", "yacobl")
-				).andReturn().getModelAndView().getModelMap());
+	public void FundRemove () throws Exception {
+		log.info( mockMvc.perform(MockMvcRequestBuilders.post("/mypage/fund_remove")
+		.param("id", "yacobl")
+		.param("pno", "1")
+		).andReturn().getModelAndView().getViewName());	
 	}
+
+//	@Test
+//	public void FavoriteDeleteCotrollerTests() throws Exception {
+//
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/Favorite_delete")
+//			.param("id", "yacobl")
+//			.param("pno", "12")
+//		).andReturn().getModelAndView().getViewName());
+//
+//	}
+	
 }

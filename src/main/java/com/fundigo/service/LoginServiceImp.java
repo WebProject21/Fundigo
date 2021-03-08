@@ -73,7 +73,7 @@ public class LoginServiceImp implements LoginService {
 	}
 	
 	@Override
-	public boolean FavoirteDelete(String id , Long pno) {
+	public boolean FavoriteDelete(String id , Long pno) {
 		log.info("Favorite Delete");
 		
 		return mapper.FpnoDelete(id, pno)==1;	

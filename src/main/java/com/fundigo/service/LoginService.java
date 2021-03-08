@@ -23,6 +23,6 @@ public interface LoginService {
 	
 	public void Clientwithdraw (LoginVO login);
 	
-	public boolean FavoirteDelete(String id, Long pno);
+	public boolean FavoriteDelete(String id, Long pno);
 	
 }
