@@ -70,6 +70,10 @@ public class ProductController {
 	public String COMMregister(@RequestParam ("pno") Long pno, Model model, BoardVO board, RedirectAttributes rttr) {
 		log.info("COMMregister: "+board);
 		bService.COMMregister(board);
+		if(board.getAttachList() != null) {
+			board.getAttachList().forEach(attach -> log.info(attach));
+		}
+		log.info(board.getAttachList());
 		rttr.addFlashAttribute("result", board.getBno());
 		model.addAttribute("product",pService.get(pno));  
 		return "redirect:/board/view?bno="+board.getBno();
@@ -90,8 +94,14 @@ public class ProductController {
 	
 	@PostMapping("/notice_register")
 	public String NOTIregister(@RequestParam ("pno") Long pno, Model model, BoardVO board, RedirectAttributes rttr) {
+		log.info("=============================================================");
 		log.info("NOTIregister: "+board);
+		if(board.getAttachList() != null) {
+			board.getAttachList().forEach(attach -> log.info(attach));
+		}
+		log.info(board.getAttachList());
 		bService.NOTIregister(board);
+		log.info("=============================================================");
 		rttr.addFlashAttribute("result", board.getBno());
 		model.addAttribute("product",pService.get(pno));  
 		return "redirect:/board/view?bno="+board.getBno();

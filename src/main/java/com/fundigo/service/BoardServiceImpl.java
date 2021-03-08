@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fundigo.domain.BoardVO;
+import com.fundigo.mapper.BoardAttachMapper;
 import com.fundigo.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -20,20 +22,55 @@ public class BoardServiceImpl  implements BoardService{
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper bmapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private BoardAttachMapper battachMapper;
+	
+	@Transactional
 	@Override
 	public void FAQregister(BoardVO board) {
 		log.info("register........."+board);
 		bmapper.FAQinsertSelectKey(board);	
+		
+		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		board.getAttachList().forEach(attach ->{
+			attach.setBno(board.getBno());
+			battachMapper.insert(attach);
+		});
 	}
+	@Transactional
 	@Override
 	public void COMMregister(BoardVO board) {
 		log.info("register........."+board);
 		bmapper.COMMinsertSelectKey(board);	
+		
+		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
+			return;
+		}
+		
+		board.getAttachList().forEach(attach ->{
+			attach.setBno(board.getBno());
+			battachMapper.insert(attach);
+		});
 	}
+	
+	@Transactional
 	@Override
 	public void NOTIregister(BoardVO board) {
 		log.info("register........."+board);
 		bmapper.NOTIinsertSelectKey(board);	
+		
+		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
+			System.out.println("null이 들어가 있음.");
+			return;
+		}
+		
+		board.getAttachList().forEach(attach ->{
+			attach.setBno(board.getBno());
+			battachMapper.insert(attach);
+		});
 	}
 
 	@Override
@@ -87,4 +124,5 @@ public class BoardServiceImpl  implements BoardService{
 		log.info("count..........");
 		return bmapper.getListcount();
 	}
+	
 }
