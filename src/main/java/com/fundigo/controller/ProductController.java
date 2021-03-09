@@ -19,6 +19,7 @@ import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
 import com.fundigo.service.FundhistoryService;
 import com.fundigo.service.ProductService;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -59,12 +60,18 @@ public class ProductController {
 	}//상품 등록
 	
 	@GetMapping("/community")
-	public void commList(@RequestParam ("pno") Long pno, Model model) {
+	public void commList(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Model model) {
 		log.info("commList");
 		model.addAttribute("list",bService.getCOMMList(pno));
 		model.addAttribute("product",pService.get(pno));
 		model.addAttribute("count", bService.getListcount());
 	}//상품 커뮤니티 페이지
+	
+	@GetMapping("/community_register")
+	public void COMMregister(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Model model) {
+		model.addAttribute("product",pService.get(pno));  
+		model.addAttribute("id", id);  
+	}
 	
 	@PostMapping("/community_register")
 	public String COMMregister(@RequestParam ("pno") Long pno, Model model, BoardVO board, RedirectAttributes rttr) {
@@ -80,14 +87,15 @@ public class ProductController {
 	}
 	
 	@GetMapping("/notice")
-	public void NOTIlist(@RequestParam("pno") Long pno, Model model) {
+	public void NOTIlist(@RequestParam("pno") Long pno, @RequestParam("id") String id, Model model) {
 		log.info("list");
 		model.addAttribute("list", bService.getNOTIList(pno));
+		model.addAttribute("id", id);
 		model.addAttribute("product",pService.get(pno));
 	}//상품 공지 페이지
 	
 	@GetMapping("/notice_register")
-	public void register(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Model model) {
+	public void NOTIregister(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Model model) {
 		model.addAttribute("product",pService.get(pno));  
 		model.addAttribute("id", id);  
 	}
