@@ -15,13 +15,13 @@
 <script src = "js/all.min.js"></script>
 
 <script  src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script src = "js/main.js"></script>
 
 <!--  bootstrap grid 그리드 적용을 위한 부트스트랩 적용 -->
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
-<link rel="stylesheet" type="text/css" href="css/main.css?after"> <!-- 폰트 css -->
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-grid.min.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css?after"> <!-- 폰트 css -->
 </head>
 <body>
 	<div class = "row">

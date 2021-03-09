@@ -5,22 +5,31 @@
 
 <mapper namespace="com.fundigo.mapper.BoardMapper">
 	
+	<select id = "getListcount" resultType = "long">
+		<![CDATA[
+		select COUNT(*) from board where bd_type = 'NOTI'
+		]]>
+	</select>
 	
 	<select id="getFAQList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'FAQ' and bno > 0
+		select bno, title, id, to_char(regDate, 'YY/MM/DD') regDate, readcount from (select * from board where bd_type = 'FAQ' 
+		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
 	<select id="getCOMMList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'COMM' and pno = #{pno}
+		select bno, title, id, to_char(regDate, 'YY/MM/DD') regDate, readcount from (select * from board where bd_type = 'COMM' 
+		and pno = #{pno} order by bno desc) where rownum <= 10
 		]]>
 	</select>
 	
 	<select id="getNOTIList" resultType="com.fundigo.domain.BoardVO">
 		<![CDATA[
-		select * from board where bd_type = 'NOTI' and and pno = #{pno}
+		select bno, title, id, to_char(regDate, 'YY-MM-DD') regDate, readcount from (
+		select * from board where bd_type = 'NOTI' and pno = #{pno} order by 
+		bno desc) where rownum <= 10
 		]]>
 	</select>
 	
@@ -82,4 +91,11 @@
 	<update id="updateDate">
 		UPDATE BOARD SET updatedate = TO_DATE(#{updateDate}, 'yy/mm/dd') WHERE BNO = #{bno}
 	</update>
+	
+	<!-- 파일첨부를 위한 쿼리 -->
+	
+	<insert id="addAttach">
+		INSERT INTO tbl_attach(fullname, bno) VALUE (#{fullName}, SEQ_BOARD.CURRVAL)
+	</insert>
+	
 </mapper>
