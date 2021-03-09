@@ -1,5 +1,8 @@
 package com.fundigo.controller;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.FundhistoryVO;
 import com.fundigo.domain.LoginVO;
+import com.fundigo.service.BoardService;
 import com.fundigo.service.FundhistoryService;
 import com.fundigo.service.LoginService;
 

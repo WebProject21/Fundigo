@@ -22,32 +22,26 @@ select * from product where tag like #{tag} order by pno
 select * from product where pno = #{pno}
 </select>
 
+<insert id = "pInsert">
+insert into product (pno, title, description, id, list01, list02, list03, list04, imgsrc, goalPrice, goalDate, tag)
+values (seq_product.nextval,#{title}, #{description},#{id}, #{list01}, #{list02}, #{list03}. #{list04}, #{imgsrc}, #{goalPrice}, #{goalDate}, #{tag})
+</insert>
+
 <insert id = "pInsertSelectKey">
 <selectKey keyProperty = "pno" order = "BEFORE" resultType = "long">
 select seq_product.nextval from dual
 </selectKey>
-insert into product (pno, title, description, id, goalPrice, goalDate, tag)
-values (#{pno},#{title}, #{description},#{id}, #{goalPrice}, TO_DATE(#{goalDate} , 'yyyy-mm-dd'), #{tag})
+insert into product (pno, title, description, id, imgsrc, goalPrice, goalDate, tag)
+values (#{pno},#{title}, #{description},#{id}, #{imgsrc, jdbcType=VARCHAR}, #{goalPrice}, TO_DATE(#{goalDate} , 'yyyy-mm-dd'), #{tag})
 
 </insert>
 
-<insert id = "pInsertImg">
-insert into pro_attach(uuid, uploadPath, fileName, fileType, pno) values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pno})
-</insert>
 
-<select id = "pGetImgList" resultType = "com.fundigo.domain.ProAttachVO">
-select * from pro_attach where pno = #{pno}
-</select>
-
-<delete id = "pDeleteImg">
-delete from pro_attach where uuid = #{uuid};
-</delete>
 
 <delete id ="pDelete">
 {
   CALL
     BEGIN
-      DELETE FROM pro_attach where pno = #{pno};
    	  DELETE FROM pro_list WHERE pno = #{pno};
       DELETE FROM product WHERE pno = #{pno};
     END
@@ -69,6 +63,7 @@ update product
 set readCount = readCount +1
 where pno = #{pno}
 </update>
+
 
 
 <!-- list Query -->
