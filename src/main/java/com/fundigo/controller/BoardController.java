@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.BoardVO;
+import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
+import com.fundigo.service.ProductService;
 import com.fundigo.service.ReplyService;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	private BoardService bService;
 	private ReplyService rService;
+	private ProductService pService;
 	
 	@GetMapping("/faq")
 	public void FAQlist(Model model) {
@@ -37,10 +40,20 @@ public class BoardController {
 		return "redirect:/board/faq?bno="+board.getBno();
 	}
 	
-	@GetMapping("/view")
-	public void get(@RequestParam("bno") Long bno, Model model) {
-		log.info("/get");
+	@GetMapping({"/view","/product_modify"})
+	public void get(@RequestParam ("pno") Long pno, @RequestParam("bno") Long bno, Model model) {
+		log.info("/get or /modify");
 		model.addAttribute("board",bService.get(bno));
+		model.addAttribute("product",pService.get(pno));
+	}
+	
+	@PostMapping("product_modify")
+	public String product_modify(BoardVO board, ProductVO product, RedirectAttributes rttr) {
+		log.info("modify"+board);
+		if(bService.modify(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/board/view?pno="+product.getPno()+"&bno="+board.getBno();
 	}
 	
 	@GetMapping("/boardView")
@@ -57,22 +70,6 @@ public class BoardController {
 			rttr.addFlashAttribute("result","success");
 		}
 		return "redirect:/board/FAQlist";
-	}
-	@PostMapping("/COMMmodify")
-	public String COMMmodify(BoardVO board, RedirectAttributes rttr) {
-		log.info("modify:" + board);
-		if(bService.modify(board)) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/board/COMMlist";
-	}
-	@PostMapping("/NOTImodify")
-	public String NOTImodify(BoardVO board, RedirectAttributes rttr) {
-		log.info("modify:" + board);
-		if(bService.modify(board)) {
-			rttr.addFlashAttribute("result","success");
-		}
-		return "redirect:/board/NOTIlist";
 	}
 	
 	@PostMapping("/FAQremove")
@@ -99,4 +96,6 @@ public class BoardController {
 		}
 		return "redirect:/board/NOTIlist";
 	}
+	
+	
 }

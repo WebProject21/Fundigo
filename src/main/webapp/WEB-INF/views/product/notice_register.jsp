@@ -25,12 +25,12 @@
 			<h1>${id}</h1>
 			<div class = "col-sm-12 pt-3">
 				<div class ="register">
-					<div class = "register-header register-header-primary">
-						<h4 class = "register-title"><i class = "fas fa-squre"></i>글 작성</h4>
-						<p class = "register-catagory"></p>
+					<div class = "panel-header panel-header-primary">
+						<h4 class = "panel-title"><i class = "fas fa-squre"></i>글 작성</h4>
+						<p class = "panel-catagory"></p>
 					</div>
-					<div class = "register-body">
-						<div class = "table-responsive">
+					<div class = "panel-body">
+						<div class = "table-panel">
 							<table class = "table">
 								<tbody>
 									<tr style = "line-height: 32px;">
@@ -45,7 +45,7 @@
 							</table>
 							<div class = "row" style = "width: 100%; margin: 0px auto;">
 								<button type= "submit" name = "uploadBtn" class = "btn btn-default">등록</button>
-								<button type = "button" value="취소" onclick="location.href='http://localhost:8181/product/notice?pno=${product.pno}'">취소</button>
+								<button type = "button" value="취소" onclick="location.href='/product/notice?pno=${product.pno}&id=${id}'">취소</button>
 								<button type = "reset" value="초기화">리셋</button>
 							</div>
 							<div class = "row">

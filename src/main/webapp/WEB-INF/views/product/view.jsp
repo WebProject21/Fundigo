@@ -7,13 +7,12 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>funDigo</title>
 
 	<!-- Latest compiled and minified CSS -->
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 	<!-- Google Font -->
 
@@ -23,9 +22,8 @@
 
     <!-- Theme Stylesheet -->
 
-    <link rel="stylesheet" href="../resources/css/view_style.css">
-
-    <link rel="stylesheet" href="../resources/css/view_responsive.css">
+    <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resources/css/bootstrap-grid.min.css" rel="stylesheet">
 
 </head>
 <body>

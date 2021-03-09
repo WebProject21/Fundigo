@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <title>funDigo</title>
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/bootstrap-grid.min.css">
+	href="../resources/css/bootstrap-grid.min.css">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/board/boardform.css">
+	href="../resources/css/board/boardform.css">
 	<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/bootstrap.css">
+	href="../resources/css/bootstrap.min.css">
 </head>
 <body>
 	<input type="hidden" name="pno" value="${product.pno}">
@@ -38,14 +38,14 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bno}" /></td>
-							<td><c:out value="${board.title}" /></td>
+							<td><a href='/board/view?pno=${product.pno}&bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
 							<td><c:out value="${board.id}" /></td>
 							<td><c:out value="${board.regDate}" /></td>
 							<td><c:out value="${board.readCount}" /></td>
 						</tr>
 					</c:forEach>
 				</table>
-				<a href="/product/notice_register?pno=${product.pno }" class = "btn btn-primary pull-right">글쓰기</a>
+				<a href="/product/notice_register?pno=${product.pno }&id=${id}" class = "btn btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>
 	</main>

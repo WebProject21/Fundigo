@@ -28,6 +28,16 @@ public class ProductServiceImpl implements ProductService {
 		log.info("product - register......"+product);
 		mapper.pInsertSelectKey(product);
 		
+		if(product.getAttachList() == null || product.getAttachList().size() <= 0) {
+			System.out.println("product--null이 들어가 있음.");
+			return;
+		}
+		
+		product.getAttachList().forEach(attach ->{
+			attach.setPno(product.getPno());
+			mapper.pInsertImg(attach);
+		});
+		
 	}
 	
 	@Override

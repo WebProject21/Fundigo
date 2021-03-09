@@ -29,24 +29,6 @@
 
                     <div class="product-thumbnail">
 
-                        <div class="col-md-2 col-sm-2 col-xs-2">
-
-                            <ul class="thumb-image">
-
-                                <li class="active"><a href="../resources/images/single-product-1.jpg"><img src="../resources/images/single-product-1.jpg" alt=""></a></li>
-
-                                <li><a href="../resources/images/single-product-2.jpg"><img src="../resources/images/single-product-2.jpg" alt=""></a></li>
-
-                                <li><a href="../resources/images/single-product-3.jpg"><img src="../resources/images/single-product-3.jpg" alt=""></a></li>
-
-                                <li><a href=""><img src="../resources/images/single-product-4.jpg" alt=""></a></li>
-
-                                <li><a href=""><img src="../resources/images/single-product-5.jpg" alt=""></a></li>
-
-                            </ul>
-
-                        </div>
-
                         <div class="col-md-10 col-sm-10 col-xs-10">
 
                             <div class="thumb-main-image"><a href=""><img src="../resources/images/single-product-1.jpg" alt=""></a></div>
@@ -115,7 +97,7 @@
 
                             <ul>
 
-                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                <li class = ""><a href=""><i class="fa fa-facebook"></i></a></li>
 
                                 <li><a href=""><i class="fa fa-twitter"></i></a></li>
 
@@ -130,10 +112,10 @@
                     </form>
 
                     <p><span class="strong-text">카테고리 : </span>
-                    <c:if test="#{product.tag eq 'G' }">게임</c:if>
-                    <c:if test="#{product.tag eq 'D' }">디자인</c:if>
-                    <c:if test="#{product.tag eq 'L' }">생활</c:if>
-                    <c:if test="#{product.tag eq 'T' }">테크</c:if>
+                    <c:if test="#{product.tag eq 'G' }"><c:out value = "게임"></c:out></c:if>
+                    <c:if test="#{product.tag eq 'D' }"><c:out value = "디자인"></c:out></c:if>
+                    <c:if test="#{product.tag eq 'L' }"><c:out value = "생활"></c:out></c:if>
+                    <c:if test="#{product.tag eq 'T' }"><c:out value = "테크"></c:out></c:if>
                     </p>
 
                     <ul class="product-info-btn">
@@ -162,42 +144,40 @@
 
         <div class="row">
 
-            <div class="single-product-tabs" id = "menuTab">
+            <div class="container" id = "menuTab">
 
-                <ul class="nav nav-tabs nav-single-product-tabs">
+                <ul class="nav nav-tabs nav-justified">
 
-                    <li class="active"><a href="#description" data-toggle="tab">상품 설명</a></li>
+                    <li class = "nav-item"><a class = "nav-link active" href="#description" data-load = "true" data-toggle="tab">상품 설명</a></li>
 
-                    <li><a href="#notice" data-toggle="tab" data-url="http://localhost:8181/product/notice?pno=${product.pno }">공지사항</a></li>
+                    <li class = "nav-item"><a class = "nav-link" href="#notice" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/notice?pno=${product.pno }">공지사항</a></li>
                     
-                    <li><a href="#community" data-toggle="tab" data-url="http://localhost:8181/product/community?pno=${product.pno }">커뮤니티</a></li>
+                    <li class = "nav-item"><a class = "nav-link" href="#community" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/community?pno=${product.pno }">커뮤니티</a></li>
                     
-                    <li><a href="#sponsor" data-toggle="tab" data-url="http://localhost:8181/product/sponsor?pno=${product.pno }">서포터</a></li>
+                    <li class = "nav-item"><a class = "nav-link" href="#sponsor" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/sponsor?pno=${product.pno }">서포터</a></li>
 
                 </ul>
 
                 <div class="tab-content">
 
-                    <div class="tab-pane active" id="description">
+                    <div class="container tab-pane active" id="description">
+                    	<div class = "product-desc">
+						<h2>${product.title }</h2>
 
-                        <div class="product-desc">
-
-                            <h2>${product.title }</h2>
-
-                            <p>${product.description }</p>
-                        </div>
-
-                    </div>
-                    
-                    <div class="tab-pane product-desc" id="notice">
+						<p>${product.description }</p>
+						</div>
 						
                     </div>
                     
-                    <div class="tab-pane product-desc" id="community">
+                    <div class="container tab-pane fade product-desc" id="notice">
+						
+                    </div>
+                    
+                    <div class="container tab-pane fade product-desc" id="community">
 
                     </div>
 
-                    <div class="tab-pane product-desc" id="sponsor">
+                    <div class="container tab-pane fade product-desc" id="sponsor">
 
                     </div>
 
@@ -215,7 +195,7 @@
 
             <div class="related-items">
 
-                <ul class="nav nav-tabs nav-single-product-tabs">
+                <ul class="nav nav-tabs">
 
                     <li class="active"><a href="#related" data-toggle="tab">Related Products</a></li>
 

@@ -1,6 +1,7 @@
 package com.fundigo.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -21,5 +22,7 @@ public class ProductVO {
 	
 	private String tag; //GDLT GAME, DESIGN, LIFE, TECH
 	
-	private String imgsrc;
+	private List<ProAttachVO> attachList;
+	
+	
 }

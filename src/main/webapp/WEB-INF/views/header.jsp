@@ -28,18 +28,16 @@
 
 				</div>
 
-				<div class="col-md-7 col-sm-5">
+				<div class="col-md-6 col-sm-5">
 
 					<div class="search-form">
 
 						<form class="navbar-form" role="search">
 
-							<div class="form-group">
-
+							<div class="form-group d-inline-block">
 								<input type="text" class="form-control" placeholder="펀딩을 검색하세요">
 
 							</div>
-
 							<button type="submit" class="btn">
 								<i class="fa fa-search"></i>
 							</button>
@@ -50,12 +48,12 @@
 
 				</div>
 
-				<div class="col-md-2 col-sm-3">
+				<div class="col-md-3 col-sm-3">
 
 					<div class="action pull-right">
 
 						<ul>
-							
+
 							<li><a href=""><i class="fa fa-user"></i>&nbsp; 로그인</a></li>
 
 							<li><a href=""><i class="fa fa-lock"></i>&nbsp; 회원가입</a></li>
@@ -80,50 +78,44 @@
 			<div class="container">
 
 				<!-- Brand and toggle get grouped for better mobile display -->
+				<!-- 
+            <div class="navbar-header">
 
-				<div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navibar" aria-expanded="false">
 
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                <span class="sr-only">Menu</span>
 
-						<span class="sr-only">Menu</span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-					</button>
+                <span class="icon-bar"></span>
 
-				</div>
+                <span class="icon-bar"></span>
 
-				<div class="shop-category nav navbar-nav navbar-left">
+              </button>
+
+            </div>-->
+
+				<div class="shop-category pull-left">
 
 					<!-- Single button -->
 
 					<div class="btn-group">
+							<button type="button"
+								class="btn btn-shop-category dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">카테고리</button>
 
-						<button type="button"
-							class="btn btn-shop-category dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<div class="dropdown-menu dropdown-category">
 
-							카테고리 <span class="caret"></span>
+								<a class="dropdown-item" href="">게임</a> 
+								<a class="dropdown-item" href="">디자인</a> 
+								<a class="dropdown-item" href="">생활</a> 
+								<a class="dropdown-item" href="">테크</a>
+								<div role="separator" class="dropdown-divider"></div>
+								<a class="dropdown-item" href="">개최 예정 펀딩</a> 
+								<a class="dropdown-item" href="">종료 임박 펀딩</a>
 
-						</button>
-
-						<ul class="dropdown-menu">
-
-							<li><a href="">게임</a></li>
-
-							<li><a href="">디자인</a></li>
-
-							<li><a href="">생활</a></li>
-
-							<li><a href="">테크</a></li>
-
-							<li role="separator" class="divider"></li>
-
-							<li><a href="">종료 임박 펀딩</a></li>
-
-							<li><a href="">개체 예정 펀딩</a></li>
-
-						</ul>
+							</div>
 
 					</div>
 
@@ -131,9 +123,9 @@
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 
-				<div class="collapse navbar-collapse" id="navbar">
+				<div class="navbar navbar-expand-sm" id="navibar">
 
-					<ul class="nav navbar-nav navbar-right">
+					<ul class="navbar-nav pull-right">
 
 						<li><a href="#">Home</a></li>
 
@@ -146,7 +138,6 @@
 
 			</div>
 			<!-- /.container-fluid -->
-
 		</nav>
 
 	</div>
