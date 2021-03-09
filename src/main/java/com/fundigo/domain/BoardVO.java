@@ -1,5 +1,6 @@
 package com.fundigo.domain;
 
+import java.util.List;
 import lombok.Data;
 
 @Data
@@ -15,4 +16,6 @@ public class BoardVO {
 	private String pno;
 	private String readCount;
 	private String[] files;
+	
+	private List<BoardAttachVO> attachList;
 }

@@ -1,5 +1,6 @@
 package com.fundigo.mapper;
 
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -15,7 +16,16 @@ public class LoginMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private LoginMapper mapper;
-
+	
+	
+//	@Test
+//	public void LoginCheckTests() {
+//		LoginVO login = new LoginVO();
+//		login.setId("yacobl");
+//		login.setPassword("010401");
+//		mapper.Clogin(login);
+//		log.info("login check: "+login);
+//	}
 	/*
 	 * @Test public void testGetList() {
 	 * mapper.getList().forEach(board->log.info(board)); }

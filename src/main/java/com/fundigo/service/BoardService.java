@@ -22,8 +22,5 @@ public interface BoardService {
 	public List<BoardVO> getCOMMList(Long pno);
 	public List<BoardVO> getNOTIList(Long pno);
 	long getListcount();
-	
-	//첨부파일
-	public void create(BoardVO board) throws Exception;
 
 }

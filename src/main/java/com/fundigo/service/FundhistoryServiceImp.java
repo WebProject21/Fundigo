@@ -31,9 +31,9 @@ public class FundhistoryServiceImp implements FundhistoryService{
 		return mapper.getFpnoList(pno);
 	}
 
+
 	@Override
 	public void register(String id, String unkno, Long code) {
-		// TODO Auto-generated method stub
 		
 		ListVO list = pMapper.lRead(code);
 		
@@ -43,11 +43,9 @@ public class FundhistoryServiceImp implements FundhistoryService{
 		fund.setPrice(list.getPrice());
 		fund.setUnkno(unkno);
 		fund.setId(id);
-		
-		
+
 		log.info("register......."+fund);
-		
-		
+
 		mapper.Finsert(fund);
 	}
 
@@ -55,7 +53,7 @@ public class FundhistoryServiceImp implements FundhistoryService{
 	public FundhistoryVO get(String id, Long pno) {
 		// TODO Auto-generated method stub
 		log.info("select......");
-		
+
 		return mapper.fundSelect(id, pno);
 	}
 
@@ -63,10 +61,8 @@ public class FundhistoryServiceImp implements FundhistoryService{
 	public boolean remove(String id, Long pno) {
 		// TODO Auto-generated method stub
 		log.info("delete.......");
-		
+
 		return mapper.Fdelete(id, pno) == 1;
 	}
 
-
-	
 }

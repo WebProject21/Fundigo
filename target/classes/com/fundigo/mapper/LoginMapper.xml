@@ -13,8 +13,12 @@
 	values(#{id},#{name},#{password},#{address},#{phone},#{nickname},#{tag})
 	</insert>
 	
+	<select id="Clogin" resultType="com.fundigo.domain.LoginVO">
+	select id, name, address, phone,nickname,tag from client where id = #{id} and password = #{password}
+	</select>
+	
 	<select id="cSelect" resultType="com.fundigo.domain.LoginVO">
-	select id, name, address, phone from client where id = #{id}
+	select id, name, address, phone,nickname,tag from client where id = #{id}
 	</select>
 	
 	<update id="cUpdate" >
@@ -29,23 +33,24 @@
 	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
 	select id,pno,dates from favorite where id = #{id}
 	</select>
-	
+	<!-- not yet -->
+	<!-- funding history -->
 	<insert id="Finsert">
 	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},sysdate,#{unkno},#{price},#{code})
 	</insert>
-	
+	<!-- C -->
 	<select id="getFundList" resultType="com.fundigo.domain.FundhistoryVO">
-	SELECT pno,TO_CHAR(DATES , 'YYYY-MM-DD') dates ,price FROM FUNDHISTORY WHERE id = #{id}
+	SELECT pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates ,price FROM FUNDHISTORY WHERE id = #{id}
 	</select>
-	
+	<!-- not yet -->
 	<select id="PnoSelect" resultType="com.fundigo.domain.ProductVO">
 	SELECT * FROM PRODUCT WHERE pno = #{pno}
 	</select> 
-	
+	<!-- not yet -->
 	<select id="getFpnoList" resultType="com.fundigo.domain.FundhistoryVO">
 	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates , unkno, price,code FROM FUNDHISTORY WHERE pno = #{pno}
 	</select>
-	
+	<!-- not yet -->
 	<delete id="Fdelete" parameterType = "map">
 	delete from fundhistory where id = #{id} and pno = #{pno}
 	</delete>
@@ -57,14 +62,9 @@
 	<insert id="FpnoInsert">
 	INSERT INTO FAVORITE(ID,PNO,DATES) values (#{id},#{pno},sysdate)
 	</insert>
-	
+
 	<delete id="FpnoDelete" parameterType = "map" >
 	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
 	</delete>
-<!-- 기호쓸때 쓰는 CDATA	<select id="getList" resultType="com.fundigo.domain.LoginVO">
-	<![CDATA[
-	SELECT id,name,address,phone FROM CLIENT where id = #{id}
-	]]>
-	</select> -->
-	
+
 </mapper>

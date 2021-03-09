@@ -12,9 +12,17 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class LoginServiceTests {
-
+	
 	@Setter(onMethod_ = {@Autowired})
 	private LoginService service;
+	
+//	@Test
+//	public void LoginCheckTests() {
+//		LoginVO login = new LoginVO();
+//		login.setId("yacobl");
+//		login.setPassword("010401");
+//		service.LoginCheck(login);
+//	}
 	
 //	@Test
 //	public void testFundList(){
@@ -69,13 +77,12 @@ public class LoginServiceTests {
 //		LoginVO login = new LoginVO();
 //		
 //		login.setId("yacoblee");
-//		login.setPassword("0104021");
+//		login.setPassword("010401");
 	
 //		service.delete(login);
 //		
 //	}
 
-//		fund.setDates(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 //	@Test
 //	public void FavInsertTest() {
 //		FundhistoryVO fund = new FundhistoryVO();
@@ -88,4 +95,5 @@ public class LoginServiceTests {
 //		service.FavoirteDelete("yacoblee", 12L);
 //		
 //	}
+	
 }
