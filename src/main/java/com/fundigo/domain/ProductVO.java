@@ -22,7 +22,7 @@ public class ProductVO {
 	
 	private String tag; //GDLT GAME, DESIGN, LIFE, TECH
 	
-	private List<ProAttachVO> attachlist;
+	private List<ProAttachVO> attachList;
 	
 	
 }

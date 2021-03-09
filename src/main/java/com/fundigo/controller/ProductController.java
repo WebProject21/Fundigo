@@ -41,9 +41,16 @@ public class ProductController {
 		model.addAttribute("lists", pService.getList(pno));
 	}//상품 뷰
 	
+	@GetMapping("/register")
+	public void proRegister(@RequestParam("id") String id, Model model) {
+		
+		log.info("/register-get-mapping---");
+		model.addAttribute("id", id);
+	}//상품 뷰
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
-	public String register(@RequestBody ProductVO product, @RequestBody List<ListVO> lists, RedirectAttributes rttr) {
+	public String productRegister(@RequestBody ProductVO product, @RequestBody List<ListVO> lists, RedirectAttributes rttr) {
 		log.info("register : "+product);
 		
 		pService.pRegister(product);
@@ -51,6 +58,10 @@ public class ProductController {
 		for(int i = 0; i< lists.size(); i++) {
 			pService.lRegister(lists.get(i));
 		}
+		if(product.getAttachList() != null) {
+			product.getAttachList().forEach(attach -> log.info(attach));
+		}
+		log.info(product.getAttachList());
 		
 		rttr.addFlashAttribute("product", product);
 		rttr.addFlashAttribute("lists", lists);

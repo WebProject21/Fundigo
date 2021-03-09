@@ -3,6 +3,7 @@ package com.fundigo.service;
 import java.util.List;
 
 import com.fundigo.domain.ListVO;
+import com.fundigo.domain.ProAttachVO;
 import com.fundigo.domain.ProductVO;
 
 public interface ProductService {

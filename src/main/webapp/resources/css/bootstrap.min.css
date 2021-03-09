@@ -684,6 +684,57 @@ ul.product-info-btn li:last-child a {
 	border: none;
 }
 
+.footer {
+    background: #23364f;
+    padding: 50px 0px;
+    color: #fff;
+    margin-top: 50px;
+}
+.single-widget {
+    position: relative;
+    padding-right: 20px;
+} 
+.single-widget:after {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    background: #d5d5d5;
+    content: '';
+    height: 100%;
+    min-height: 230px;
+}
+.footer .col-md-3:last-child .single-widget:after {
+    width: 0px;
+}
+.single-widget h2.widget-title {
+    font-size: 18pt;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-bottom: 10px;
+    font-family: 'raleway', sans-serif;
+}
+.widget-inner, .widget-inner a {
+    color: #d5d5d5;
+}
+.widget-inner img {
+    padding: 15px 0px;
+}
+.single-widget ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.single-widget ul li {
+    padding: 5px 0px;
+}
+.copyright {
+    background: #0e0e0e;
+    padding: 30px 0px;
+    color: #fff;
+    font-family: 'raleway', sans-serif;
+}
+
 .figure {
 	display: inline-block
 }
@@ -2127,7 +2178,7 @@ pre code {
 	width: 100%;
 	height: 34px; padding : .375rem .75rem;
 	font-size: 1rem;
-	line-height: 1;
+	line-height: 1.5;
 	color: #495057;
 	background-color: #fff;
 	background-clip: padding-box;
@@ -2652,7 +2703,7 @@ select.form-control:focus::-ms-value {
 	border: 1px solid transparent;
 	padding: .375rem .75rem;
 	font-size: 1rem;
-	line-height: 1;
+	line-height: 1.5;
 	border-radius: .25rem;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out,
 		border-color .15s ease-in-out, box-shadow .15s ease-in-out
@@ -4298,19 +4349,19 @@ tbody.collapse.show {
 	box-shadow: none !important;
 }
 
-.shop-category ul.dropdown-category {
+.shop-category div.dropdown-category {
 	background: #516d8d;
 	border-radius: 0px;
 	border: 0px;
 	padding-top: 17px;
 }
 
-ul.dropdown-category li {
+div.dropdown-category a {
 	padding: 0px;
 	margin: 0px;
 }
 
-ul.dropdown-category li a {
+div.dropdown-category a {
 	padding: 10px 20px;
 	min-width: 220px;
 	color: #ffffff;

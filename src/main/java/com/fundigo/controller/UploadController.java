@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.fundigo.domain.AttachFileDTO;
 import lombok.extern.log4j.Log4j;
@@ -45,7 +46,7 @@ public class UploadController {
 	@PostMapping("/uploadFormAction")
 	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
 		
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "../resources/upload";
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			log.info("----------------------------");
@@ -75,11 +76,11 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO >> uploadAjaxPost(MultipartFile[] uploadFile) {
+	public ResponseEntity<List<AttachFileDTO >> uploadAjaxPost(MultipartHttpServletRequest request, MultipartFile[] uploadFile) {
 		log.info("update ajax post.................");
 		
 		List<AttachFileDTO > list = new ArrayList<>();
-		String uploadFolder = "C:\\upload";
+		String uploadFolder = "../resources/upload";
 		
 		String uploadFolderPath = getFolder();
 		//make folder------------------------------------------------
@@ -157,7 +158,7 @@ public class UploadController {
 	public ResponseEntity<byte[]> getFile(String fileName){
 		log.info("fileName : "+fileName);
 		
-		File file = new File("c:\\upload\\"+fileName);
+		File file = new File("../resource/upload/"+fileName);
 		log.info("file: "+file);
 		ResponseEntity<byte[]> result = null;
 		try {
@@ -175,7 +176,7 @@ public class UploadController {
 	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName){
 		log.info("download file : "+fileName);
 		
-		Resource resource = new FileSystemResource("c:\\upload\\"+fileName);
+		Resource resource = new FileSystemResource("../resources/upload"+fileName);
 		if(resource.exists() == false) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -211,7 +212,7 @@ public class UploadController {
 		File file;
 		
 		try {
-			file = new File("c:\\upload\\"+URLDecoder.decode(fileName,"UTF-8"));
+			file = new File("../resources/upload"+URLDecoder.decode(fileName,"UTF-8"));
 			file.delete();
 			if(type.equals("image")) {
 				String largeFileName = file.getAbsolutePath().replace("s_", "");

@@ -34,13 +34,12 @@
 
 						<form class="navbar-form" role="search">
 
-							<div class="form-group">
-
+							<div class="form-group d-inline-block">
 								<input type="text" class="form-control" placeholder="펀딩을 검색하세요">
 
 							</div>
 							<button type="submit" class="btn">
-								<i class="fa fa-search fa-sm"></i>
+								<i class="fa fa-search"></i>
 							</button>
 
 						</form>
@@ -54,7 +53,7 @@
 					<div class="action pull-right">
 
 						<ul>
-							
+
 							<li><a href=""><i class="fa fa-user"></i>&nbsp; 로그인</a></li>
 
 							<li><a href=""><i class="fa fa-lock"></i>&nbsp; 회원가입</a></li>
@@ -72,14 +71,14 @@
 
 	</div>
 
-	  <div class="navigation">
+	<div class="navigation">
 
-        <nav class="navbar navbar-theme">
+		<nav class="navbar navbar-theme">
 
-          <div class="container">
+			<div class="container">
 
-            <!-- Brand and toggle get grouped for better mobile display -->
-	<!-- 
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<!-- 
             <div class="navbar-header">
 
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navibar" aria-expanded="false">
@@ -96,59 +95,52 @@
 
             </div>-->
 
-            <div class="shop-category nav navbar-nav pull-left">
+				<div class="shop-category pull-left">
 
-                <!-- Single button -->
+					<!-- Single button -->
 
-                <div class="btn-group">
+					<div class="btn-group">
+							<button type="button"
+								class="btn btn-shop-category dropdown-toggle"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">카테고리</button>
 
-                  <button type="button" class="btn btn-shop-category dropdown-toggle" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<div class="dropdown-menu dropdown-category">
 
-                    카테고리 <span class="caret"></span>
+								<a class="dropdown-item" href="">게임</a> 
+								<a class="dropdown-item" href="">디자인</a> 
+								<a class="dropdown-item" href="">생활</a> 
+								<a class="dropdown-item" href="">테크</a>
+								<div role="separator" class="dropdown-divider"></div>
+								<a class="dropdown-item" href="">개최 예정 펀딩</a> 
+								<a class="dropdown-item" href="">종료 임박 펀딩</a>
 
-                  </button>
+							</div>
 
-                  <ul class="dropdown-menu">
+					</div>
 
-                    <li><a href="">게임</a></li>
+				</div>
 
-                    <li><a href="">디자인</a></li>
+				<!-- Collect the nav links, forms, and other content for toggling -->
 
-                    <li><a href="">생활</a></li>
-                    
-                    <li><a href="">테크</a></li>
+				<div class="navbar navbar-expand-sm" id="navibar">
 
-                    <li role="separator" class="dropdown-divider"></li>
+					<ul class="navbar-nav pull-right">
 
-                    <li><a href="">개최 예정 펀딩</a></li>
+						<li><a href="#">Home</a></li>
 
-                    <li><a href="">종료 임박 펀딩</a></li>
+						<li><a href="#">FAQ</a></li>
 
-                  </ul>
+					</ul>
 
-                </div>
+				</div>
+				<!-- /.navbar-collapse -->
 
-            </div>
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-
-            <div class="navbar navbar-expand-sm" id="navibar">
-
-              <ul class="navbar-nav pull-right">
-
-                <li><a href="#">Home</a></li>
-
-                <li><a href="#">FAQ</a></li>
-
-              </ul>
-
-            </div><!-- /.navbar-collapse -->
-
-          </div><!-- /.container-fluid -->
-
-        </nav>
-
-    </div>
+	</div>
 
 
 
