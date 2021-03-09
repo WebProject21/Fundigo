@@ -53,6 +53,7 @@ public class ProductController {
 		}
 		
 		rttr.addFlashAttribute("product", product);
+		rttr.addFlashAttribute("lists", lists);
 		
 		return "redirect:/product/view?pno="+product.getPno();
 		

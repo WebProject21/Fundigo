@@ -28,7 +28,7 @@
 
 				</div>
 
-				<div class="col-md-7 col-sm-5">
+				<div class="col-md-6 col-sm-5">
 
 					<div class="search-form">
 
@@ -39,9 +39,8 @@
 								<input type="text" class="form-control" placeholder="펀딩을 검색하세요">
 
 							</div>
-
 							<button type="submit" class="btn">
-								<i class="fa fa-search"></i>
+								<i class="fa fa-search fa-sm"></i>
 							</button>
 
 						</form>
@@ -50,7 +49,7 @@
 
 				</div>
 
-				<div class="col-md-2 col-sm-3">
+				<div class="col-md-3 col-sm-3">
 
 					<div class="action pull-right">
 
@@ -73,83 +72,83 @@
 
 	</div>
 
-	<div class="navigation">
+	  <div class="navigation">
 
-		<nav class="navbar navbar-theme">
+        <nav class="navbar navbar-theme">
 
-			<div class="container">
+          <div class="container">
 
-				<!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Brand and toggle get grouped for better mobile display -->
+	<!-- 
+            <div class="navbar-header">
 
-				<div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navibar" aria-expanded="false">
 
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                <span class="sr-only">Menu</span>
 
-						<span class="sr-only">Menu</span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-					</button>
+                <span class="icon-bar"></span>
 
-				</div>
+                <span class="icon-bar"></span>
 
-				<div class="shop-category nav navbar-nav navbar-left">
+              </button>
 
-					<!-- Single button -->
+            </div>-->
 
-					<div class="btn-group">
+            <div class="shop-category nav navbar-nav pull-left">
 
-						<button type="button"
-							class="btn btn-shop-category dropdown-toggle"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- Single button -->
 
-							카테고리 <span class="caret"></span>
+                <div class="btn-group">
 
-						</button>
+                  <button type="button" class="btn btn-shop-category dropdown-toggle" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-						<ul class="dropdown-menu">
+                    카테고리 <span class="caret"></span>
 
-							<li><a href="">게임</a></li>
+                  </button>
 
-							<li><a href="">디자인</a></li>
+                  <ul class="dropdown-menu">
 
-							<li><a href="">생활</a></li>
+                    <li><a href="">게임</a></li>
 
-							<li><a href="">테크</a></li>
+                    <li><a href="">디자인</a></li>
 
-							<li role="separator" class="divider"></li>
+                    <li><a href="">생활</a></li>
+                    
+                    <li><a href="">테크</a></li>
 
-							<li><a href="">종료 임박 펀딩</a></li>
+                    <li role="separator" class="dropdown-divider"></li>
 
-							<li><a href="">개체 예정 펀딩</a></li>
+                    <li><a href="">개최 예정 펀딩</a></li>
 
-						</ul>
+                    <li><a href="">종료 임박 펀딩</a></li>
 
-					</div>
+                  </ul>
 
-				</div>
+                </div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
+            </div>
 
-				<div class="collapse navbar-collapse" id="navbar">
+            <!-- Collect the nav links, forms, and other content for toggling -->
 
-					<ul class="nav navbar-nav navbar-right">
+            <div class="navbar navbar-expand-sm" id="navibar">
 
-						<li><a href="#">Home</a></li>
+              <ul class="navbar-nav pull-right">
 
-						<li><a href="#">FAQ</a></li>
+                <li><a href="#">Home</a></li>
 
-					</ul>
+                <li><a href="#">FAQ</a></li>
 
-				</div>
-				<!-- /.navbar-collapse -->
+              </ul>
 
-			</div>
-			<!-- /.container-fluid -->
+            </div><!-- /.navbar-collapse -->
 
-		</nav>
+          </div><!-- /.container-fluid -->
 
-	</div>
+        </nav>
+
+    </div>
 
 
 
