@@ -66,10 +66,11 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
-	public void LoginCheck(LoginVO login) {
+	public LoginVO LoginCheck(LoginVO login) {
 		log.info("login check : "+login);
 		
-		mapper.Clogin(login);
+		
+		return  mapper.Clogin(login) ;
 	}
 	
 	@Override
@@ -77,6 +78,12 @@ public class LoginServiceImp implements LoginService {
 		log.info("Favorite Delete");
 		
 		return mapper.FpnoDelete(id, pno)==1;	
+	}
+
+	@Override
+	public int idCheck(String id) {
+		log.info("login id Check"+id);
+		return mapper.idCheck(id);
 	}
 
 }

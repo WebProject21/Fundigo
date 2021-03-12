@@ -15,10 +15,11 @@ public interface LoginMapper {
 	public List<LoginVO> getList();
 	//client join
 	public void cInsert(LoginVO login);
-	//null values
+	
+	public int idCheck(String id);
 //	public void CchoseInsert(LoginVO login);
 	//login check
-	public void Clogin(LoginVO login);
+	public LoginVO Clogin(LoginVO login);
 	//checked
 	public void cSelect (LoginVO login);
 	//checked

@@ -13,8 +13,12 @@
 	values(#{id},#{name},#{password},#{address},#{phone},#{nickname},#{tag})
 	</insert>
 	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+ 	SELECT count(*) FROM CLIENT WHERE ID =#{id,jdbcType = VARCHAR}
+	</select>
+	
 	<select id="Clogin" resultType="com.fundigo.domain.LoginVO">
-	select id, name, address, phone,nickname,tag from client where id = #{id} and password = #{password}
+	select id, name, address, phone,nickname,tag from client where id = #{id,jdbcType = VARCHAR} and password = #{password,jdbcType = VARCHAR}
 	</select>
 	
 	<select id="cSelect" resultType="com.fundigo.domain.LoginVO">
