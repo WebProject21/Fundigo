@@ -150,9 +150,9 @@
 
                     <li class = "nav-item"><a class = "nav-link active" href="#description" data-load = "true" data-toggle="tab">상품 설명</a></li>
 
-                    <li class = "nav-item"><a class = "nav-link" href="#notice" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/notice?pno=${product.pno }">공지사항</a></li>
+                    <li class = "nav-item"><a class = "nav-link" href="#notice" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/notice?pno=${product.pno }&id=${id}">공지사항</a></li>
                     
-                    <li class = "nav-item"><a class = "nav-link" href="#community" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/community?pno=${product.pno }">커뮤니티</a></li>
+                    <li class = "nav-item"><a class = "nav-link" href="#community" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/community?pno=${product.pno }&id=${id}">커뮤니티</a></li>
                     
                     <li class = "nav-item"><a class = "nav-link" href="#sponsor" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/sponsor?pno=${product.pno }">서포터</a></li>
 

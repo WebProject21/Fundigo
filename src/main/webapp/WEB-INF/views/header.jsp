@@ -20,7 +20,7 @@
 					<div class="logo">
 
 						<a href="index.html"> <img src="../resources/images/logo.png"
-							alt="Orani E-shop">
+							alt="funDigo">
 
 						</a>
 
