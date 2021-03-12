@@ -31,14 +31,8 @@
 	
 					<div class="logo">
 	
-						<a href="index.html"> <img src="../resources/images/logo.png"
-<<<<<<< HEAD
-							alt="funDigo">
+						<a href="index.html"> <img src="../resources/images/logo.png" alt="funDigo">
 
-=======
-							alt="Orani E-shop">
-	
->>>>>>> e129a5219853b137167423dcd7bd4700325d3c38
 						</a>
 	
 					</div>
