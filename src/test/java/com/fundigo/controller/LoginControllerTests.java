@@ -31,6 +31,13 @@ public class LoginControllerTests {
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
+	
+//	@Test
+//	public void IDcheckControllertests() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/mypage/idCheck")
+//				.param("id", "yacobl"))
+//				.andReturn().getModelAndView().getViewName()); 
+//	}
 
 //	@Test
 //	public void LoginCheckControllerTests() throws Exception{
@@ -125,13 +132,13 @@ public class LoginControllerTests {
 //				.andReturn().getModelAndView().getViewName());		
 //				
 //	}
-	@Test
-	public void FundRemove () throws Exception {
-		log.info( mockMvc.perform(MockMvcRequestBuilders.post("/mypage/fund_remove")
-		.param("id", "yacobl")
-		.param("pno", "1")
-		).andReturn().getModelAndView().getViewName());	
-	}
+//	@Test
+//	public void FundRemove () throws Exception {
+//		log.info( mockMvc.perform(MockMvcRequestBuilders.post("/mypage/fund_remove")
+//		.param("id", "yacobl")
+//		.param("pno", "1")
+//		).andReturn().getModelAndView().getViewName());	
+//	}
 
 //	@Test
 //	public void FavoriteDeleteCotrollerTests() throws Exception {

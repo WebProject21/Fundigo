@@ -1,10 +1,17 @@
 package com.fundigo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.FundhistoryVO;
@@ -19,28 +26,66 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/mypage/*")
 @AllArgsConstructor
-public class LoginController {
+public class LoginController  {
 
 	private LoginService lService;
 	private FundhistoryService fService;
-
-	@PostMapping("/memberLogin")
-	public String memberLogin(LoginVO login, RedirectAttributes rttr) {
-		log.info("login : " + login);
-		lService.LoginCheck(login);
-		rttr.addFlashAttribute("result", login.getId());
-
-		return "redirect:/mypage/favorite?id=" + login.getId();
+	
+	@RequestMapping(value="/memberLogin" , method = {RequestMethod.POST,RequestMethod.GET})
+	public void memberLogin(LoginVO login, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+		HttpSession session = req.getSession();
+		LoginVO member = lService.LoginCheck(login);
+		log.info("login "+member);
+		if(member ==null){
+			session.setAttribute("member", null);
+			rttr.addFlashAttribute("msg",false);
+			log.info("fail login");
+		}else if (member != null) {
+			log.info("login success");
+		session.setAttribute("member", login);
+		}
 
 	}
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception{
+		
+		session.invalidate();
+		
+		log.info("logout");
+		
+		return "redirect:/mypage/memberLogin";
+	}
 
-	@PostMapping("/JoinPage")
-	public String JoinPage(LoginVO login, RedirectAttributes rttr) {
-		log.info("Join Page : " + login);
+	
+
+//	@PostMapping("/memberLogin_login")
+//	public String memberLogin(LoginVO login, RedirectAttributes rttr) {
+//		log.info("login : " + login);
+//		lService.LoginCheck(login);
+//		rttr.addFlashAttribute("result", login.getId());
+//
+//		return "redirect:/mypage/favorite?id=" + login.getId();
+//
+//	}
+
+	 @RequestMapping(value="/JoinPage" , method = RequestMethod.POST)
+	public String JoinPage(LoginVO login, RedirectAttributes rttr) throws Exception{
+		log.info("Join Page Post");
+//		int count = lService;
 		lService.ClientJoin(login);
 		rttr.addFlashAttribute("join Result" + login.getId());
 		return "redirect:/mypage/favorite?id=" + login.getId();
 	}
+	 
+	 @ResponseBody
+	 @RequestMapping(value="/idCheck", method=RequestMethod.POST)
+	 public int IdCheck(@RequestBody String id) throws Exception {
+	        
+	        int count = 0;
+	        count = lService.idCheck(id);
+	        log.info("count : "+count);
+	        return count;    
+	    }
 
 	@PostMapping("/withdraw")
 	public String Withdraw(LoginVO login, RedirectAttributes rttr) {
@@ -131,4 +176,5 @@ public class LoginController {
 		lService.FavoriteDelete(id, pno);
 		rttr.addFlashAttribute("result", "success");
 	}
+
 }

@@ -1,61 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 
 <title>funDigo</title>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#logoutBtn").on("click", function(){
+			location.href="/mypage/logout";
+		})
+		
+	})
+</script>
 </head>
 <body>
+	
 	<div class="header">
-
+ 	
 		<div class="container">
-
+	
 			<div class="row">
-
+	
 				<div class="col-md-3 col-sm-4">
-
+	
 					<div class="logo">
-
+	
 						<a href="index.html"> <img src="../resources/images/logo.png"
 							alt="Orani E-shop">
-
+	
 						</a>
-
+	
 					</div>
-
+	
 				</div>
-
+	
 				<div class="col-md-6 col-sm-5">
-
+	
 					<div class="search-form">
-
+	
 						<form class="navbar-form" role="search">
-
+	
 							<div class="form-group d-inline-block">
 								<input type="text" class="form-control" placeholder="펀딩을 검색하세요">
-
+	
 							</div>
 							<button type="submit" class="btn">
 								<i class="fa fa-search"></i>
 							</button>
-
+	
 						</form>
-
+	
 					</div>
-
+	
 				</div>
-
+	
 				<div class="col-md-3 col-sm-3">
-
+	
 					<div class="action pull-right">
-
+					
 						<ul>
-
-							<li><a href=""><i class="fa fa-user"></i>&nbsp; 로그인</a></li>
-
+						<form action="/mypage/memberLogin" method="POST">
+								<c:if test="${member==null}">
+									<li><a href="/mypage/memberLogin"><i
+											class="fa fa-user"></i>&nbsp; 로그인</a></li>
+								</c:if>
+								<c:if test="${member!=null}">
+								<li><p class="fa fa-user">ID : 
+									<c:out  value="${member.id}"></c:out> </p>
+									<button id="logoutBtn" type="button">logout</button> </li>
+										
+								</c:if>
+						</form>
 							<li><a href=""><i class="fa fa-lock"></i>&nbsp; 회원가입</a></li>
 						</ul>
 
