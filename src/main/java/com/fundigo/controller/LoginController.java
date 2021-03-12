@@ -44,7 +44,6 @@ public class LoginController  {
 			log.info("login success");
 		session.setAttribute("member", login);
 		}
-
 	}
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{
@@ -68,14 +67,30 @@ public class LoginController  {
 //
 //	}
 
-	 @RequestMapping(value="/JoinPage" , method = RequestMethod.POST)
-	public String JoinPage(LoginVO login, RedirectAttributes rttr) throws Exception{
+	 @RequestMapping(value="/JoinPage" , method = {RequestMethod.POST,RequestMethod.GET})
+	public void JoinPage(LoginVO login, RedirectAttributes rttr) throws Exception{
 		log.info("Join Page Post");
-//		int count = lService;
-		lService.ClientJoin(login);
+		int count = lService.idCheck(login.getId());
+		try {
+			if(count==0)
+				lService.ClientJoin(login);
+			log.info("회원 가입 되었습니다!!!");
+		} catch (Exception e) {
+			log.info("--------존재하는 아이디 입니다 --------");
+		}
 		rttr.addFlashAttribute("join Result" + login.getId());
-		return "redirect:/mypage/favorite?id=" + login.getId();
+//		return "redirect:/mypage/memberLogin";
+		
+		
 	}
+//	 @RequestMapping(value="/JoinPage" , method = RequestMethod.POST)
+//	 public String JoinPage(LoginVO login, RedirectAttributes rttr) throws Exception{
+//		 log.info("Join Page Post");
+////		int count = lService;
+//		 lService.ClientJoin(login);
+//		 rttr.addFlashAttribute("join Result" + login.getId());
+//		 return "redire5554ct:/mypage/favorite?id=" + login.getId();
+//	 }
 	 
 	 @ResponseBody
 	 @RequestMapping(value="/idCheck", method=RequestMethod.POST)
