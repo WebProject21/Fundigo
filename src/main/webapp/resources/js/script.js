@@ -40,12 +40,6 @@
     });
 
 
-    jQuery(window).load(function(){
-
-        
-    });
-
-
 }(jQuery));
 
 
@@ -83,4 +77,9 @@ $(window).resize(function () {
 });
 
 
+$(document).ready(function () {
+$('html, body').animate({
+scrollTop: $('#contents').offset().top
+}, 'slow');
+});
 

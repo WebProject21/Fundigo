@@ -2,13 +2,11 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-	<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>funDigo</title>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -16,7 +14,7 @@
 			location.href="/mypage/logout";
 		})
 		
-	})
+	});
 </script>
 </head>
 <body>
@@ -43,13 +41,13 @@
 	
 					<div class="search-form">
 	
-						<form class="navbar-form" role="search">
+						<form class="navbar-form" role="search" method = "get" action="/mainpage/search">
 	
 							<div class="form-group d-inline-block">
-								<input type="text" class="form-control" placeholder="펀딩을 검색하세요">
+								<input type="text" name = "keyword" class="form-control" placeholder="펀딩을 검색하세요">
 	
 							</div>
-							<button type="submit" class="btn">
+							<button id = "search" type="submit" class="btn">
 								<i class="fa fa-search"></i>
 							</button>
 	

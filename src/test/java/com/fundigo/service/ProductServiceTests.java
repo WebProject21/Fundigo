@@ -70,12 +70,12 @@ public class ProductServiceTests {
  		
  		service.getTagList("G").forEach(product -> log.info(product));
  	}
- 	*/
+ 
 	@Test
 	public void testGet() {
 		log.info(service.get(16L));
 	}
-/*
+
 	@Test
 	public void testDelete() {
 		log.info(service.remove(19L));
@@ -101,4 +101,9 @@ public class ProductServiceTests {
 		
 	}
 	*/
+	
+	@Test
+	public void testSearch() {
+		service.searchList("구").forEach(result->log.info(result));;
+	}
 }
