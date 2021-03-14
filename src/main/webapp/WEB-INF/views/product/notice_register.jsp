@@ -15,6 +15,20 @@
  
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/board/boardform.css">
+
+<script type="text/javascript">
+	function check_onclick(){
+		if(document.register.title.value == ""){
+			alert("제목을 입력해 주세요.");
+			return false;
+		}
+		if(document.register.content.value == ""){
+			alert("내용을 입력해주세요.");
+			return false;
+		}
+		return true;
+	}
+</script>
 </head>
 
 <body>
@@ -94,6 +108,7 @@
 			});
 			formObj.append(str).submit();
 		});
+		
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 5242880; //5MB
 	
@@ -144,7 +159,7 @@
 			  if(obj.image){
 				  var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
 				  str += "<li data-path='"+obj.uploadPath+"'";
-				  str += " data-uuid='"+obj.uuid+"' datafilename = '"+obj.fileName+"'data-type='"+obj.image+"'";
+				  str += " data-uuid='"+obj.uuid+"' data-filename = '"+obj.fileName+"'data-type='"+obj.image+"'";
 				  str += " ><div>";
 				  str += "<span>"+obj.fileName+"</span>";
 				  str += "<button type = 'button' data-file=\'"+fileCallPath+"'";
