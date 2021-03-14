@@ -1,5 +1,7 @@
 package com.fundigo.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,6 +16,8 @@ public class Criteria {
 	
 	private String type;
 	private String keyword;
+	private Long pno;
+	private String ListLink;
 	
 	public Criteria() {
 		this(1,10);
@@ -28,4 +32,14 @@ public class Criteria {
 		return type == null? new String[] {} : type.split("");
 	}
 	
+	
+	public String getListLink() {
+		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount", this.getAmount())
+				.queryParam("type", this.getType())
+				.queryParam("keyword", this.getKeyword());
+		
+		return builder.toUriString();
+	}
 }

@@ -3,17 +3,20 @@ package com.fundigo.mapper;
 import java.util.List;
 
 import com.fundigo.domain.BoardVO;
+import com.fundigo.domain.Criteria;
 
 public interface BoardMapper {
 //	리스트 조회, 질문, 커뮤니티, 공지
 	public List<BoardVO> getFAQList();
-
 	public List<BoardVO> getCOMMList();
 	public List<BoardVO> getNOTIList();
 
 	public List<BoardVO> getCOMMList(Long pno);
 	public List<BoardVO> getNOTIList(Long pno);
-
+	
+	public List<BoardVO> getFAQListWithPaging(Criteria cri);
+	public List<BoardVO> getCOMMListWithPaging(Criteria cri);
+	public List<BoardVO> getNOTIListWithPaging(Criteria cri);
 	
 //	게시글 1개에 대한 조회
 	public List<BoardVO> selectOne();
@@ -44,6 +47,3 @@ public interface BoardMapper {
 //첨부파일
 	public void addAttach(String fullName);
 }
-
-//수정일자 수정
-	

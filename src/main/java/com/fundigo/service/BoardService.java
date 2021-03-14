@@ -2,7 +2,9 @@ package com.fundigo.service;
 
 import java.util.List;
 
+import com.fundigo.domain.BoardAttachVO;
 import com.fundigo.domain.BoardVO;
+import com.fundigo.domain.Criteria;
 
 public interface BoardService {
 	
@@ -18,9 +20,10 @@ public interface BoardService {
 	
 	public boolean remove(Long bno);
 	
-	public List<BoardVO> getFAQList();
-	public List<BoardVO> getCOMMList(Long pno);
-	public List<BoardVO> getNOTIList(Long pno);
+	public List<BoardVO> getFAQList(Criteria cri);
+	public List<BoardVO> getCOMMList(Long pno, Criteria cri);
+	public List<BoardVO> getNOTIList(Long pno, Criteria cri);
 	long getListcount();
+	public List<BoardAttachVO> getAttachList(Long bno);
 
 }
