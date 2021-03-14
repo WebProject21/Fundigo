@@ -36,7 +36,6 @@
 	<div class = "container">
 		<form role = "form" action = "/product/notice_register?pno=${product.pno}" method = "post" enctype = "">
 			<input type = "hidden" name = "id" value="${id}" />
-			<h1>${id}</h1>
 			<div class = "col-sm-12 pt-3">
 				<div class ="register">
 					<div class = "panel-header panel-header-primary">
