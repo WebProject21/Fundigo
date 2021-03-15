@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fundigo.domain.BoardVO;
 import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ListVO;
+import com.fundigo.domain.PageDTO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
 import com.fundigo.service.FundhistoryService;
@@ -78,6 +79,7 @@ public class ProductController {
 		model.addAttribute("list",bService.getCOMMList(pno, cri));
 		model.addAttribute("product",pService.get(pno));
 		model.addAttribute("count", bService.getListcount());
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}//상품 커뮤니티 페이지
 	
 	@GetMapping("/community_register")
@@ -96,7 +98,7 @@ public class ProductController {
 		log.info(board.getAttachList());
 		rttr.addFlashAttribute("result", board.getBno());
 		model.addAttribute("product",pService.get(pno));  
-		return "redirect:/board/view?pno="+pno+"&bno="+board.getBno();
+		return "redirect:/product/community?pno="+pno+"&id="+board.getId();
 	}
 	
 	@GetMapping("/notice")
@@ -105,6 +107,7 @@ public class ProductController {
 		model.addAttribute("list", bService.getNOTIList(pno, cri));
 		model.addAttribute("id", id);
 		model.addAttribute("product",pService.get(pno));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}//상품 공지 페이지
 	
 	@GetMapping("/notice_register")
@@ -125,7 +128,7 @@ public class ProductController {
 		log.info("=============================================================");
 		rttr.addFlashAttribute("result", board.getBno());
 		model.addAttribute("product",pService.get(pno));  
-		return "redirect:/board/view?pno="+pno+"&bno="+board.getBno();
+		return "redirect:/product/notice?pno="+pno+"&id="+board.getId();
 	}
 	
 	@PostMapping("/modify")
