@@ -1,7 +1,5 @@
 package com.fundigo.controller;
 
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

@@ -73,7 +73,7 @@
     			if(/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/.test(inCheck[6].value)){
     				inCheck[6].classList.add('is-invalid');
     				mPhoneChecker.removeAttribute('disabled');
-    				invalid[6].innerHTML = '휴대폰을 인증해주세요.';
+    				
     			} else {
     				inCheck[6].value = inCheck[6].value.replace(/[^0-9]/gi, '');
     				inCheck[6].classList.add('is-invalid');
@@ -88,7 +88,7 @@
 				if(result){
 					$.ajax({
 						type:'POST',
-						url:"/mypage/phonecheck",
+						url:"mypage/phonecheck",
 						data:{
 							phone:inCheck[6].value
 						},
