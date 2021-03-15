@@ -40,12 +40,6 @@ public class BoardController {
 	private ReplyService rService;
 	private ProductService pService;
 	
-	public void commList(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Criteria cri,Model model) {
-		log.info("commList");
-		model.addAttribute("list",bService.getCOMMList(pno, cri));
-		model.addAttribute("product",pService.get(pno));
-		model.addAttribute("count", bService.getListcount());
-	}
 	@GetMapping("/faq")
 	public void FAQlist(Criteria cri, @RequestParam("id") String id, Model model) {
 		log.info("faq_list");
@@ -61,7 +55,7 @@ public class BoardController {
 		return "redirect:/board/faq?bno="+board.getBno();
 	}
 	
-	@GetMapping({"/view","/ faq_modify"})
+	@GetMapping({"/faq_view","/ faq_modify"})
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		log.info("/view or /modify");
 		model.addAttribute("board",bService.get(bno));

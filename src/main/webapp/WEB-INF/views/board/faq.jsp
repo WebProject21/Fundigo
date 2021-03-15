@@ -35,7 +35,7 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bno}" /></td>
-							<td><a href='/board/view?&bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
+							<td><a href='/board/faq_view?&bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
 							<td><c:out value="${board.id}" /></td>
 							<td><c:out value="${board.regDate}" /></td>
 							<td><c:out value="${board.readCount}" /></td>

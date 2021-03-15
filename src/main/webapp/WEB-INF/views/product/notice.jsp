@@ -36,7 +36,7 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bno}" /></td>
-							<td><a href='/board/view?pno=${product.pno}&bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
+							<td><a class = "move" href='/board/view?pno=${product.pno}&bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
 							<td><c:out value="${board.id}" /></td>
 							<td><c:out value="${board.regDate}" /></td>
 							<td><c:out value="${board.readCount}" /></td>
@@ -51,7 +51,7 @@
 								</li>
 							</c:if>
 							<c:forEach var = "num" begin = "${pageMaker.startPage}" end = "${pageMaker.endPage}">
-								<li class = "paginate_button ${pageMaker.cri.pageNum == num ? "active":""}" style = "list-style-type:none; float: left; outline: 1px dotted red;
+								<li class = "paginate_button ${pageMaker.cri.pageNum == num ? 'active':''}" style = "list-style-type:none; float: left; outline: 1px dotted red;
 								margin-left: 5px" ><a href = "${num}">${num}</a></li>
 							</c:forEach>
 							<c:if test = "${pageMaker.next}">
@@ -81,7 +81,9 @@
 						<!-- /.modal-dialog -->
 					</div>
 					<!--/. modal -->
-					<form id = 'actionForm' action = "/product/notice?pno=${product.pno}&id=${id}" method = "get">
+					<form id = 'actionForm' action = "/product/notice" method = "get">
+						<input type = "hidden" name = "pno" value = "${product.pno}">
+						<input class="id" type = "hidden" name = "id" value = "${id}">						
 						<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum}">
 						<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount}">
 					</form>
@@ -112,12 +114,14 @@
 			$(".paginate_button a").on("click", function(e){
 				e.preventDefault();
 				console.log('click');
-				actionForm.find("input[name = 'pageNum']").val($(this).attr("href"));
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
 			});
-			$(".paginate_button a").on("click", function(e){
+			$(".move").on("click", function(e){
 				e.preventDefault();
-				console.log('click');
-				actionForm.find("input[name='pageNum']").val($(this).arr("href"));
+				$('input').remove('.id');
+				actionForm.append("<input type = 'hidden' name = 'bno' value = '"+$(this).attr("href")+"'>");
+				actionForm.attr("action","/board/view");
 				actionForm.submit();
 			});
 		});
