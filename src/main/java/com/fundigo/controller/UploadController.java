@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -20,16 +22,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.fundigo.domain.AttachFileDTO;
+import com.fundigo.domain.BoardAttachVO;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -37,37 +37,12 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Controller
 @Log4j
 public class UploadController {
-	
-	@GetMapping("/uploadForm")
-	public void uploadForm() {
-		log.info("upload form");
-	}
-	
-	
-	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
+
+	public String getUploadFolderPath(HttpServletRequest request) {
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/");
+		String attach_path = "resources/Upload/";
 		
-		String uploadFolder = "../resources/upload";
-		
-		for(MultipartFile multipartFile : uploadFile) {
-			log.info("----------------------------");
-			log.info("Upload File Name: "+multipartFile.getOriginalFilename());
-			log.info("Upload File size: "+multipartFile.getSize());
-			
-			String uploadFileName = multipartFile.getOriginalFilename();
-			
-			//IE has file path
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
-			log.info("only file name : " + uploadFileName);
-			
-			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
-			
-			try {
-				multipartFile.transferTo(saveFile);
-			}catch(Exception e) {
-				log.error(e.getMessage());
-			}//end catch
-		}//end for
+		return uploadFolder+attach_path;
 	}
 	
 	@GetMapping("/uploadAjax")
@@ -77,15 +52,14 @@ public class UploadController {
 	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO >> uploadAjaxPost(MultipartHttpServletRequest request, MultipartFile[] uploadFile) {
+	public ResponseEntity<List<BoardAttachVO >> uploadAjaxPost(MultipartFile[] uploadFile, HttpServletRequest request) {
 		log.info("update ajax post.................");
 		
-		List<AttachFileDTO > list = new ArrayList<>();
-		String uploadFolder = "../resources/upload";
-		
+		List<BoardAttachVO > list = new ArrayList<>();
+		String rootPath = this.getUploadFolderPath(request);
 		String uploadFolderPath = getFolder();
 		//make folder------------------------------------------------
-		File uploadPath = new File(uploadFolder, uploadFolderPath);
+		File uploadPath = new File(rootPath, uploadFolderPath);
 		log.info("upload path: "+uploadPath);
 		
 		if(uploadPath.exists() == false) {
@@ -96,13 +70,13 @@ public class UploadController {
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			
-			AttachFileDTO  attachDTO = new AttachFileDTO ();
+			BoardAttachVO  attachVO = new BoardAttachVO();
 			String uploadFileName = multipartFile.getOriginalFilename();
 						
 			//IE has file path
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
 			log.info("only file name : " + uploadFileName);
-			attachDTO.setFileName(uploadFileName);
+			attachVO.setFileName(uploadFileName);
 			
 			UUID uuid = UUID.randomUUID();
 			
@@ -114,19 +88,22 @@ public class UploadController {
 				File saveFile = new File(uploadPath, uploadFileName);			
 				multipartFile.transferTo(saveFile);
 				
-				attachDTO.setUuid(uuid.toString());
-				attachDTO.setUploadPath(uploadFolderPath);
+				attachVO.setUuid(uuid.toString());
+				attachVO.setUploadPath(uploadFolderPath);
 				
 				//check image type file
 				if(checkImageType(saveFile)) {
-					attachDTO.setImage(true);
-					
+					attachVO.setImage(true);
+					System.out.println(attachVO.getFileName());
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_"+uploadFileName));
 					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
 					thumbnail.close();
+					System.out.println(attachVO.getFileName());
 				}
 				//add to List
-				list.add(attachDTO);
+				System.out.println(attachVO.getFileName());
+				list.add(attachVO);
+				System.out.println(list);
 			}catch(Exception e) {
 				log.error(e.getMessage());
 			}//end catch
@@ -156,10 +133,10 @@ public class UploadController {
 	
 	@GetMapping("/display")
 	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName){
+	public ResponseEntity<byte[]> getFile(String fileName, HttpServletRequest request){
 		log.info("fileName : "+fileName);
-		
-		File file = new File("../resource/upload/"+fileName);
+		String rootPath = this.getUploadFolderPath(request);
+		File file = new File(rootPath+"\\"+fileName);
 		log.info("file: "+file);
 		ResponseEntity<byte[]> result = null;
 		try {
@@ -174,31 +151,35 @@ public class UploadController {
 	
 	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
-	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName){
+	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, HttpServletRequest request, String fileName){
 		log.info("download file : "+fileName);
 		
-		Resource resource = new FileSystemResource("../resources/upload"+fileName);
+		String rootPath = this.getUploadFolderPath(request);
+		Resource resource = new FileSystemResource(rootPath+fileName);
 		if(resource.exists() == false) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		log.info("resource : "+resource);
 		
 		String resourceName = resource.getFilename();
+		//remove UUID
+		String resourceOriginalName = resourceName.substring(resourceName.indexOf("_")+1);
 		HttpHeaders headers = new HttpHeaders();
 		
 		try {
 			String downloadName = null;
 			if(userAgent.contains("Trident")) {
 				log.info("IE browser");
-				downloadName = URLEncoder.encode(resourceName, "UTF-8").replace("\\+", " ");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replace("\\+", " ");
 			}else if(userAgent.contains("Edge")) {
 				log.info("Edge browser");
-				downloadName = URLEncoder.encode(resourceName, "UTF-8");
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8");
 				log.info("Edge name : " + downloadName);
 			}else {
 				log.info("Chrome browser");
-				downloadName = new String(resourceName.getBytes("UTF-8"),"ISO-8859-1");
+				downloadName = new String(resourceOriginalName.getBytes("UTF-8"),"ISO-8859-1");
 			}
+			log.info("downloadName : "+downloadName);
 			headers.add("Conternt-Disposition","attachment; filename="+downloadName);
 		}catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -208,12 +189,12 @@ public class UploadController {
 	
 	@PostMapping("/deleteFile")
 	@ResponseBody
-	public ResponseEntity<String> deleteFile(String fileName, String type){
+	public ResponseEntity<String> deleteFile(String fileName, String type, HttpServletRequest request){
 		log.info("deleteFile: "+fileName);
 		File file;
-		
+		String rootPath = this.getUploadFolderPath(request);
 		try {
-			file = new File("../resources/upload"+URLDecoder.decode(fileName,"UTF-8"));
+			file = new File(rootPath+"\\"+URLDecoder.decode(fileName,"UTF-8"));
 			file.delete();
 			if(type.equals("image")) {
 				String largeFileName = file.getAbsolutePath().replace("s_", "");
@@ -226,5 +207,5 @@ public class UploadController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
-	}
+	}	
 }

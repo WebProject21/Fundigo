@@ -2,6 +2,7 @@ package com.fundigo.mapper;
 
 import java.util.List;
 
+import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ListVO;
 import com.fundigo.domain.ProAttachVO;
 import com.fundigo.domain.ProductVO;
@@ -48,4 +49,8 @@ public interface ProductMapper {
 	public int lDelete(Long code);
 	
 	public int lUpdate(ListVO list);
+	
+	
+	//searchMapper
+	public List<ProductVO> getSearchListWithPaging(Criteria cri);
 }

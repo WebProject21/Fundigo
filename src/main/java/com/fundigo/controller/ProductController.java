@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.BoardVO;
+import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ListVO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
@@ -72,9 +73,9 @@ public class ProductController {
 	}//상품 등록
 	
 	@GetMapping("/community")
-	public void commList(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Model model) {
+	public void commList(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Criteria cri,Model model) {
 		log.info("commList");
-		model.addAttribute("list",bService.getCOMMList(pno));
+		model.addAttribute("list",bService.getCOMMList(pno, cri));
 		model.addAttribute("product",pService.get(pno));
 		model.addAttribute("count", bService.getListcount());
 	}//상품 커뮤니티 페이지
@@ -95,13 +96,13 @@ public class ProductController {
 		log.info(board.getAttachList());
 		rttr.addFlashAttribute("result", board.getBno());
 		model.addAttribute("product",pService.get(pno));  
-		return "redirect:/board/view?bno="+board.getBno();
+		return "redirect:/board/view?pno="+pno+"&bno="+board.getBno();
 	}
 	
 	@GetMapping("/notice")
-	public void NOTIlist(@RequestParam("pno") Long pno, @RequestParam("id") String id, Model model) {
+	public void NOTIlist(@RequestParam("pno") Long pno, @RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("list");
-		model.addAttribute("list", bService.getNOTIList(pno));
+		model.addAttribute("list", bService.getNOTIList(pno, cri));
 		model.addAttribute("id", id);
 		model.addAttribute("product",pService.get(pno));
 	}//상품 공지 페이지
@@ -124,7 +125,7 @@ public class ProductController {
 		log.info("=============================================================");
 		rttr.addFlashAttribute("result", board.getBno());
 		model.addAttribute("product",pService.get(pno));  
-		return "redirect:/board/view?bno="+board.getBno();
+		return "redirect:/board/view?pno="+pno+"&bno="+board.getBno();
 	}
 	
 	@PostMapping("/modify")

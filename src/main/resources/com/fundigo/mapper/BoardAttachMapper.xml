@@ -5,7 +5,7 @@
 
 <mapper namespace="com.fundigo.mapper.BoardAttachMapper">
 	<insert id = "insert">
-		insert into tbl_attach (uuid, uploadpath, filename, filetype, bno)
+		insert into tbl_attach (uuid, uploadpath, fileName, filetype, bno)
 		values (#{uuid},#{uploadPath},#{fileName},#{fileType},#{bno})
 	</insert>
 	<delete id="delete">
@@ -13,5 +13,11 @@
 	</delete>
 	<select id="findByBno" resultType = "com.fundigo.domain.BoardAttachVO">
 		select * from tbl_attach where bno = #{bno}
+	</select>
+	<delete id="deleteAll">
+		delete tbl_attach where bno = #{bno}
+	</delete>
+	<select id="getOldFiles" resultType="com.fundigo.domain.BoardAttachVO">
+		select * from tbl_attach where uploadpath = to_char(sysdate -1, 'yyyy\mm\dd')
 	</select>
 </mapper>

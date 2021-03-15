@@ -9,4 +9,6 @@ public class BoardAttachVO {
 	private String fileName;
 	private boolean fileType;
 	private Long bno;
+	private boolean image;
+
 }

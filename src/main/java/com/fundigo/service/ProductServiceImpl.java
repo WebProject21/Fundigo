@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ListVO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.mapper.ProductMapper;
@@ -111,5 +112,16 @@ public class ProductServiceImpl implements ProductService {
 		log.info("get List......");
 		
 		return mapper.lGetList(pno);
+	}
+
+	@Override
+	public List<ProductVO> searchList(String keyword) {
+		// TODO Auto-generated method stub
+		
+		log.info("search List....");
+		Criteria cri = new Criteria();
+		cri.setKeyword(keyword);
+		
+		return mapper.getSearchListWithPaging(cri);
 	}
 }

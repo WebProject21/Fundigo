@@ -25,4 +25,6 @@ public interface ProductService {
 	public List<ProductVO> getTagList(String tag); //카테고리별 상품 목록
 	
 	public List<ListVO> getList(Long pno);	//상품에 따른 리스트 목록
+	
+	public List<ProductVO> searchList(String keyword);
 }

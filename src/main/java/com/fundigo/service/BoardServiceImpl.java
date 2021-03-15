@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fundigo.domain.BoardAttachVO;
 import com.fundigo.domain.BoardVO;
+import com.fundigo.domain.Criteria;
 import com.fundigo.mapper.BoardAttachMapper;
 import com.fundigo.mapper.BoardMapper;
 
@@ -30,7 +32,7 @@ public class BoardServiceImpl  implements BoardService{
 	public void FAQregister(BoardVO board) {
 		log.info("register........."+board);
 		bmapper.FAQinsertSelectKey(board);	
-		
+		log.info(board.getAttachList());
 		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
 			return;
 		}
@@ -47,6 +49,7 @@ public class BoardServiceImpl  implements BoardService{
 		bmapper.COMMinsertSelectKey(board);	
 		
 		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
+			System.out.println("null이 들어가 있음.");
 			return;
 		}
 		
@@ -61,7 +64,7 @@ public class BoardServiceImpl  implements BoardService{
 	public void NOTIregister(BoardVO board) {
 		log.info("register........."+board);
 		bmapper.NOTIinsertSelectKey(board);	
-		
+		log.info(board.getAttachList());
 		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
 			System.out.println("null이 들어가 있음.");
 			return;
@@ -78,36 +81,48 @@ public class BoardServiceImpl  implements BoardService{
 		log.info("get.........."+bno);
 		return bmapper.selectOne(bno);
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean modify(BoardVO board) {
 		log.info("modify.........."+board);
-		return bmapper.update(board) == 1;
+		battachMapper.deleteAll(board.getBno());
+		boolean modifyResult = bmapper.update(board) == 1;
+		if(modifyResult && board.getAttachList() != null && board.getAttachList().size() > 0) {
+			board.getAttachList().forEach(attach -> {
+				attach.setBno(board.getBno());
+				battachMapper.insert(attach);
+			});
+		}
+		log.info(board.getAttachList());
+		return modifyResult;
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean remove(Long bno) {
 		log.info("remove.........."+bno);
+		battachMapper.deleteAll(bno);
 		return bmapper.delete(bno) == 1;
 	}
 
 	@Override
-	public List<BoardVO> getFAQList() {
-		log.info("getList...........");
+	public List<BoardVO> getFAQList(Criteria cri) {
+		log.info("getList..........." + cri);
 		
-		return bmapper.getFAQList();
+		return bmapper.getFAQListWithPaging(cri);
 	}
 	@Override
-	public List<BoardVO> getCOMMList(Long pno) {
-		log.info("getList...........");
-		
-		return bmapper.getCOMMList(pno);
+	public List<BoardVO> getCOMMList(Long pno, Criteria cri) {
+		log.info("getList..........." + cri);
+		cri.setPno(pno);
+		return bmapper.getCOMMListWithPaging(cri);
 	}
 	@Override
-	public List<BoardVO> getNOTIList(Long pno) {
-		log.info("getList...........");
-		
-		return bmapper.getNOTIList(pno);
+	public List<BoardVO> getNOTIList(Long pno, Criteria cri) {
+		log.info("getList..........." + cri);
+		cri.setPno(pno);
+		return bmapper.getNOTIListWithPaging(cri);
 	}
 	@Override
 	public boolean countup(BoardVO board) {
@@ -123,6 +138,12 @@ public class BoardServiceImpl  implements BoardService{
 	public long getListcount() {
 		log.info("count..........");
 		return bmapper.getListcount();
+	}
+	@Override
+	public List<BoardAttachVO> getAttachList(Long bno) {
+		log.info("get Attach list by bno : "+bno);
+		
+		return battachMapper.findByBno(bno);
 	}
 	
 }

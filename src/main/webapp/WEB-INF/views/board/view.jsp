@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script  src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <meta charset="UTF-8">
 <title>fundigo</title>
 </head>
@@ -60,22 +61,96 @@
 							<input type="hidden" id = "pno" name = "pno" value="${product.pno}">
 							<input type="hidden" id = "bno" name = "bno" value="${board.bno}">
 						</form>	
+						<div class = 'bigPictureWrapper'>
+							<div class = 'bigPicture'>
+							
+							</div>
+							<div class = "row">
+								<div class = "col-lg-12">
+									<div class = "panel-heading">첨부파일</div>
+									<!-- /.panel-heading -->
+									<div class = "panel-body">
+										<div class = 'uploadResult'>
+											<ul>
+											</ul>
+										</div>
+									</div>
+									<!-- end panel body -->
+								</div>
+								<!-- end panel -->
+							</div>
+							<!-- /.row -->
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+<script type="text/javascript">
+	$(document).ready(function() {
+		(function(){
+			var bno = '<c:out value = "${board.bno}"/>';
+				$.getJSON("/board/getAttachList", {bno : bno}, function(arr){
+					console.log(arr);
+					var str = "";
+					$(arr).each(function(i, attach){
+						//imageType
+						if(attach.fileType){
+							var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+							
+							str += "<li data-path = '" + attach.uploadPath + "' data-uuid = '" + attach.uuid + "'data-filename = '"
+							+ attach.fileName + "' data-type = '" + attach.fileType+"' ><div>";
+							str += "<img src='/display?fileName=" + fileCallPath + "'>";
+							str += "</div>";
+							str + "</li>";
+						}else {
+							str += "<li data-path = '" + attach.uploadPath + "' data-uuid = '" + attach.uuid + "' data-filename = '"
+							+ attach.fileName + "'data-type'" + attach.fileType + "'><div>";
+							str += "<span>" + attach.fileName + "</span><br/>";
+							str += "<img src = '/resources/imags/attach.png'>";
+							str += "</div>";
+							str + "</li>";
+						}
+					});
+					$(".uploadResult ul").html(str);
+				});//end getJson
+			})();//end function
+		});
+		
 		$(document).ready(function(){
 			var operForm = $("#operForm");
 			$("button[data-oper = 'modify']").on("click", function(e){
-				operForm.attr("action", "/board/product_modify").submit();
+				operForm.attr("action", "/board/productBoard_modify").submit();
 			});
-			
-			$("button[data-oper=""]").on("click", function(e){
-				operForm.find("#bno").remove();
-			})
 		});
+		
+		$(".uploadResult").on("click", "li", function(e){
+			console.log("view image");
+			var liObj = $(this);
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+			if(liObj.data("type")){
+				showImage(path.replace(new RegExp(/\\/g),"/"));
+			}else{
+				//download
+				self.location = "/download?fileName="+path;
+				}
+			});
+		
+		function showImage(fileCallPath){
+			alert(fileCallPath);
+			$("bigPictureWrapper").css("display", "flex").show();
+			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
+		}
+		$(".bigPictureWrapper").on("click",function(e){
+			$(".bicPicture").animate({width:'0%', height:'0%'}, 1000);
+			setTimeout(function(){
+				$('.bigPictureWrapper').hide();
+			});
+		})
+		/* $("button[data-oper=""]").on("click", function(e){
+			operForm.find("#bno").remove();
+		}); */
 	</script>
+
 </body>
 </html>

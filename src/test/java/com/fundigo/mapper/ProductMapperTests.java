@@ -1,9 +1,12 @@
 package com.fundigo.mapper;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.fundigo.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -111,5 +114,12 @@ public class ProductMapperTests {
 	}
 	*/
 	
+	@Test
+	public void getListTest() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("구");
+		
+		mapper.getSearchListWithPaging(cri).forEach(result->log.info(result));
+	}
 	
 }
