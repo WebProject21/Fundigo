@@ -24,6 +24,8 @@ public interface LoginMapper {
 	public void cSelect (LoginVO login);
 	//checked
 	public int cUpdate (LoginVO login);
+	
+	public LoginVO phonecheck (LoginVO login);
 	//checked
 	public void cDelete(LoginVO login);
 	//funding History view

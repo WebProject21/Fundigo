@@ -15,7 +15,7 @@ public class LoginServiceTests {
 	
 	@Setter(onMethod_ = {@Autowired})
 	private LoginService service;
-	
+
 //	@Test
 //	public void LoginCheckTests() {
 //		LoginVO login = new LoginVO();
