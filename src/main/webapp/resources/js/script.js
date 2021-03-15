@@ -88,15 +88,19 @@ var actionForm = $("#actionForm");
 
 $("#searchForm button").on("click", function(e){
 	if(!searchForm.find("input[name = 'keyword']").val()){
-		alert("키워드를 입력하세요.");
+		$(".myAlert-top").show();
+	    setTimeout(function(){$(".myAlert-top").hide();}, 2000);
 		return false;
 	}
 	
-	searchForm.find("input[name = 'pageNum']".val("1"));
+	searchForm.find("input[name = 'pageNum']").val("1");
+	searchForm.find("input[name = 'amount']").val("10");
+	
 	e.preventDefault();
 	
 	searchForm.submit();
 });
+
 
 $(".page-item a").on("click", function(e){
 	e.preventDefault();

@@ -37,7 +37,6 @@ private ProductService pService;
 		
 		log.info("/search Result----");
 		
-		
 		List<ProductVO> results = pService.searchList(cri);
 		
 		int total = pService.getTotal(cri);
