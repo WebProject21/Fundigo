@@ -64,7 +64,7 @@
 	</select>
 	<!--  Fpno is Favorite Query -->
 	<insert id="FpnoInsert">
-	INSERT INTO FAVORITE(ID,PNO,DATES) values (#{id},#{pno},sysdate)
+	INSERT INTO FAVORITE(FAV_COUNT,ID,PNO,DATES) values (seq_favorite.NEXTVAL,#{id},#{pno},sysdate)
 	</insert>
 
 	<delete id="FpnoDelete" parameterType = "map" >
