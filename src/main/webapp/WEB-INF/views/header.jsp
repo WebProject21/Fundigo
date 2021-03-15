@@ -76,7 +76,7 @@
 										
 								</c:if>
 						</form>
-							<li><a href=""><i class="fa fa-lock"></i>&nbsp; 회원가입</a></li>
+							<li><a href="/mypage/JoinPage"><i class="fa fa-lock"></i>&nbsp; 회원가입</a></li>
 						</ul>
 
 					</div>

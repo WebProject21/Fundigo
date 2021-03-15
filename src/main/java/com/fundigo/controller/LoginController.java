@@ -1,5 +1,7 @@
 package com.fundigo.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.FundhistoryVO;
@@ -21,6 +24,8 @@ import com.fundigo.service.LoginService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import sendmessage.SendMessage;
+
 
 @Controller
 @Log4j
@@ -75,6 +80,7 @@ public class LoginController  {
 			if(count==0)
 				lService.ClientJoin(login);
 			log.info("회원 가입 되었습니다!!!");
+			
 		} catch (Exception e) {
 			log.info("--------존재하는 아이디 입니다 --------");
 		}
@@ -101,6 +107,58 @@ public class LoginController  {
 	        log.info("count : "+count);
 	        return count;    
 	    }
+	 
+	//휴대폰 인증번호 발송
+		@RequestMapping(value ="/phonecheck", method = RequestMethod.POST)
+		public ModelAndView phonecheck(ModelAndView model, LoginVO login) {
+			String verifyPhoneNumber = login.getPhone();
+			System.out.println("보낸 휴대폰번호 : "+verifyPhoneNumber);
+			SendMessage send = new SendMessage();
+			if(lService.phonecheck(login) == null) {
+				model.addObject("code",200);
+				send.getVerifyNumber(verifyPhoneNumber);
+			} else {
+				model.addObject("code",204);
+			}
+			model.setViewName("jsonView");
+			return model;
+		}
+		
+		//휴대폰 인증번호 입력
+		@RequestMapping(value = "/phoneverify", method = RequestMethod.POST)
+		public ModelAndView phoneverify(ModelAndView model, HttpServletRequest request) {
+			String verifyNumber = request.getParameter("verifyNumber");
+			System.out.println("받은 인증번호 : "+verifyNumber);
+			SendMessage send = new SendMessage();
+			if(request.getSession().getAttribute("verifyfail")!=null) {
+				if((int)request.getSession().getAttribute("verifyfail")>2) {
+					model.addObject("verifyfullfail", 204);
+					model.addObject("code", 204);
+					model.setViewName("jsonView");
+					return model;
+				}
+			}
+			if(send.confirmNumber(verifyNumber)) {
+				if(request.getSession().getAttribute("verifyfail")!=null) {
+					request.getSession().removeAttribute("verifyfail");
+				}
+				model.addObject("code", 200);
+			} else {
+				int verifyfail;
+				if(request.getSession().getAttribute("verifyfail")==null) {
+					verifyfail=1;
+					request.getSession().setAttribute("verifyfail", 1);
+				} else {
+					verifyfail = (int)request.getSession().getAttribute("verifyfail")+1;
+					request.getSession().setAttribute("verifyfail", verifyfail);
+				}
+				model.addObject("verifyfail", verifyfail);
+				model.addObject("code", 204);
+				
+			}
+			model.setViewName("jsonView");
+			return model;
+		}
 
 	@PostMapping("/withdraw")
 	public String Withdraw(LoginVO login, RedirectAttributes rttr) {

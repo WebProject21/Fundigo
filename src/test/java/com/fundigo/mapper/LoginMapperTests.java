@@ -21,6 +21,14 @@ public class LoginMapperTests {
 	private LoginMapper mapper;
 	
 	
+	@Test
+	public void PhoneCheck() {
+		LoginVO login = new LoginVO();
+		login.setPhone("01040529406");
+		mapper.phonecheck(login);
+		log.info("phone check"+login);
+	}
+	
 //	@Test
 //	public void LoginCheckTests() {
 //		LoginVO login = new LoginVO();

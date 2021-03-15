@@ -65,7 +65,6 @@
 								<a href="memberJoin" class="col-6 col-sm-4 loginA">회원가입</a>
 							</div>
 						</c:if>
-						
 						<c:if test="${member != null}">
 							<div>
 							<p>${member.id} 님 으로 로그인 되었습니다 ! </p>	
