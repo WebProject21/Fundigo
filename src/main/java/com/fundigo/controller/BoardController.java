@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fundigo.domain.BoardAttachVO;
 import com.fundigo.domain.BoardVO;
 import com.fundigo.domain.Criteria;
+import com.fundigo.domain.PageDTO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
 import com.fundigo.service.ProductService;
@@ -49,6 +50,7 @@ public class BoardController {
 	public void FAQlist(Criteria cri, @RequestParam("id") String id, Model model) {
 		log.info("faq_list");
 		model.addAttribute("list", bService.getFAQList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
 	
 	@PostMapping("/faq_register")
