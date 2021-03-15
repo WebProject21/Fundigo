@@ -29,6 +29,7 @@
 <body>
 
 	<%@include file="../header.jsp"%>
+	
 	<form id="actionForm" action="/mainpage/search" method="get">
 		<input type="hidden" name="pageNum"
 			value="<c:out value = '${pageMaker.cri.pageNum }'/>"> <input
