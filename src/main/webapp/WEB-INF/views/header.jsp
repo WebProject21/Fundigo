@@ -41,10 +41,12 @@
 	
 					<div class="search-form">
 	
-						<form class="navbar-form" role="search" method = "get" action="/mainpage/search">
+						<form id = "searchForm" class="navbar-form" role="search" method = "get" action="/mainpage/search">
 	
 							<div class="form-group d-inline-block">
 								<input type="text" name = "keyword" class="form-control" placeholder="펀딩을 검색하세요">
+								<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount }">
+								<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum }">
 	
 							</div>
 							<button id = "search" type="submit" class="btn">

@@ -2,6 +2,7 @@ package com.fundigo.service;
 
 import java.util.List;
 
+import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ListVO;
 import com.fundigo.domain.ProductVO;
 
@@ -26,5 +27,7 @@ public interface ProductService {
 	
 	public List<ListVO> getList(Long pno);	//상품에 따른 리스트 목록
 	
-	public List<ProductVO> searchList(String keyword);
+	public List<ProductVO> searchList(Criteria cri);
+	
+	public int getTotal(Criteria cri);
 }

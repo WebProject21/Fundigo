@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fundigo.domain.Criteria;
+import com.fundigo.domain.PageDTO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.service.MainService;
 import com.fundigo.service.ProductService;
@@ -31,12 +33,17 @@ private ProductService pService;
 	}
 	
 	@GetMapping("/search")
-	public void searchList(@RequestParam("keyword") String keyword, Model model){
+	public void searchList(Criteria cri, Model model){
 		
 		log.info("/search Result----");
-		List<ProductVO> results = pService.searchList(keyword);
+		
+		
+		List<ProductVO> results = pService.searchList(cri);
+		
+		int total = pService.getTotal(cri);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		model.addAttribute("results", results);
-		model.addAttribute("keyword", keyword);
 		
 	}
 }
