@@ -115,13 +115,20 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> searchList(String keyword) {
+	public List<ProductVO> searchList(Criteria cri) {
 		// TODO Auto-generated method stub
 		
 		log.info("search List....");
-		Criteria cri = new Criteria();
-		cri.setKeyword(keyword);
 		
 		return mapper.getSearchListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		
+		log.info("get total product Count");
+		
+		return mapper.pGetTotalCount(cri);
 	}
 }

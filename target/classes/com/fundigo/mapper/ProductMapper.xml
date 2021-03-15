@@ -127,4 +127,8 @@ WHERE
 WHERE rn > (#{pageNum}-1)*#{amount} ]]>
 	</select>
 
+
+	<select id = "pGetTotalCount" resultType = "int">
+	select count(*) from product where pno > 0
+	</select>
 </mapper>

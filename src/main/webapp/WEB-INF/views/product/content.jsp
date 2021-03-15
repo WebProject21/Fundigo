@@ -114,10 +114,10 @@
                     </form>
 
                     <p><span class="strong-text">카테고리 : </span>
-                    <c:if test="#{product.tag eq 'G' }"><c:out value = "게임"></c:out></c:if>
-                    <c:if test="#{product.tag eq 'D' }"><c:out value = "디자인"></c:out></c:if>
-                    <c:if test="#{product.tag eq 'L' }"><c:out value = "생활"></c:out></c:if>
-                    <c:if test="#{product.tag eq 'T' }"><c:out value = "테크"></c:out></c:if>
+                    <c:if test="${product.tag eq 'G' }"><c:out value = "게임"></c:out></c:if>
+                    <c:if test="${product.tag eq 'D' }"><c:out value = "디자인"></c:out></c:if>
+                    <c:if test="${product.tag eq 'L' }"><c:out value = "생활"></c:out></c:if>
+                    <c:if test="${product.tag eq 'T' }"><c:out value = "테크"></c:out></c:if>
                     </p>
 
                     <ul class="product-info-btn">
