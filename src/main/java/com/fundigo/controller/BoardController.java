@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,13 +57,13 @@ public class BoardController {
 	}
 	
 	@GetMapping({"/faq_view","/ faq_modify"})
-	public void get(@RequestParam("bno") Long bno, Model model) {
+	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/view or /modify");
 		model.addAttribute("board",bService.get(bno));
 	}
 
 	@GetMapping({"/view","/productBoard_modify"})
-	public void get(@RequestParam ("pno") Long pno, @RequestParam("bno") Long bno, Model model) {
+	public void get(@RequestParam ("pno") Long pno, @RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/view or /modify");
 		model.addAttribute("board",bService.get(bno));
 		model.addAttribute("product",pService.get(pno));

@@ -36,7 +36,7 @@
 					<c:forEach items="${list}" var="board">
 						<tr>
 							<td><c:out value="${board.bno}" /></td>
-							<td><a class = "move" href='/board/view?pno=${product.pno}&bno=<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
+							<td><a class = "move" href='<c:out value="${board.bno}"/>'><c:out value="${board.title}" /></a></td>
 							<td><c:out value="${board.id}" /></td>
 							<td><c:out value="${board.regDate}" /></td>
 							<td><c:out value="${board.readCount}" /></td>

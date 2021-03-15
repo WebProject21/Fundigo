@@ -53,4 +53,5 @@ public interface ProductMapper {
 	
 	//searchMapper
 	public List<ProductVO> getSearchListWithPaging(Criteria cri);
+	public int pGetTotalCount(Criteria cri);
 }

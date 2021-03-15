@@ -148,7 +148,6 @@
 
 	</div>
 
-	</div>
 	
 	<!-- jquery&popper -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -158,6 +157,7 @@
 		crossorigin="anonymous"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="../resources/js/bootstrap.js"></script>
+	<script src="../resources/js/script.js"></script>
 
 </body>
 </html>
