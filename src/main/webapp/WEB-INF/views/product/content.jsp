@@ -8,361 +8,390 @@
 
 <head>
 
-	<meta charset="UTF-8">
-	
+<meta charset="UTF-8">
+
 <title>funDigo</title>
-	
-    
-  
+
+
+
 
 </head>
 
 <body>
-	
+
 	<p>
+	<div class="short-description">
 
-    <div class="short-description">
+		<div class="container">
 
-        <div class="container">
+			<div class="row">
 
-            <div class="row">
+				<div class="col-md-6">
 
-                <div class="col-md-6">
+					<div class="product-thumbnail">
 
-                    <div class="product-thumbnail">
+						<div class="col-md-10 col-sm-10 col-xs-10">
 
-                        <div class="col-md-10 col-sm-10 col-xs-10">
+							<div class="thumb-main-image">
+								<a href=""><img
+									src="../resources/images/single-product-1.jpg" alt=""></a>
+							</div>
 
-                            <div class="thumb-main-image"><a href=""><img src="../resources/images/single-product-1.jpg" alt=""></a></div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="clearfix"></div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <h1 class="product-title">${product.title }</h1>
-
-                    <div class="ratings">
-
-                        <i class="fa fa-star"></i>
-
-                        <i class="fa fa-star"></i>
-
-                        <i class="fa fa-star"></i>
-
-                        <i class="fa fa-star"></i>
-
-                        <i class="fa fa-star"></i>
-
-                        <span class="vote-count">35 vote</span>
-
-                    </div>
-
-                    <div class="product-info">
-
-                        <span class="product-id"><span class="strong-text">Product ID:</span> RST 4562</span>
-
-                        
-
-                        <span class="product-avilability"><span class="strong-text">Availability:</span> In Stock</span>
-
-                    </div>
-
-                    <p class="short-info">${product.description }</p>
-
-                    <div class="price">
-
-                        <span>$522.00</span>
-
-                    </div>
-
-                    <form action="" class="purchase-form">
-
-                       <div class="qt-area">
-
-                           <i class="fa fa-minus"></i>
-
-                           <input name="quantity" class="qt" value="1">
-
-                           <i class="fa fa-plus"></i>
-
-                       </div>
-
-                        <button class="btn btn-theme" type="submit">펀딩하기</button>
-
-                        <div class="social-share">
-
-                            <ul>
-
-                                <li class = ""><a href=""><i class="fa fa-facebook"></i></a></li>
-
-                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-
-                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-
-                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-
-                            </ul>
-
-                        </div>
-
-                    </form>
-
-                    <p><span class="strong-text">카테고리 : </span>
-                    <c:if test="${product.tag eq 'G' }"><c:out value = "게임"></c:out></c:if>
-                    <c:if test="${product.tag eq 'D' }"><c:out value = "디자인"></c:out></c:if>
-                    <c:if test="${product.tag eq 'L' }"><c:out value = "생활"></c:out></c:if>
-                    <c:if test="${product.tag eq 'T' }"><c:out value = "테크"></c:out></c:if>
-                    </p>
-
-                    <ul class="product-info-btn">
-
-                        <li><a href=""><i class="fa fa-heart-o"></i> 찜</a></li>
-
-                        <li><a href=""><i class="fa fa-arrows-h"></i> Compare</a></li>
-
-                        <li><a href=""><i class="fa fa-envelope-o"></i> Email</a></li>
-
-                        <li><a href=""><i class="fa fa-print"></i> Print</a></li>
-
-                    </ul>
-
-                    <p><i class="fa fa-check"></i> Let’s start with the most essential part of any written content. At the early </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div> 
-
-    <div class="container">
-
-        <div class="row">
-
-            <div class="container" id = "menuTab">
-
-                <ul class="nav nav-tabs nav-justified">
-
-                    <li class = "nav-item"><a class = "nav-link active" href="#description" data-load = "true" data-toggle="tab">상품 설명</a></li>
-
-                    <li class = "nav-item"><a class = "nav-link" href="#notice" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/notice?pno=${product.pno }&id=${id}">공지사항</a></li>
-                    
-                    <li class = "nav-item"><a class = "nav-link" href="#community" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/community?pno=${product.pno }&id=${id}">커뮤니티</a></li>
-                    
-                    <li class = "nav-item"><a class = "nav-link" href="#sponsor" data-load = "false" data-toggle="tab" data-url="http://localhost:8181/product/sponsor?pno=${product.pno }">서포터</a></li>
-
-                </ul>
-
-                <div class="tab-content">
-
-                    <div class="container tab-pane active" id="description">
-                    	<div class = "product-desc">
-						<h2>${product.title }</h2>
-
-						<p>${product.description }</p>
 						</div>
-						
-                    </div>
-                    
-                    <div class="container tab-pane fade product-desc" id="notice">
-						
-                    </div>
-                    
-                    <div class="container tab-pane fade product-desc" id="community">
 
-                    </div>
+					</div>
 
-                    <div class="container tab-pane fade product-desc" id="sponsor">
+					<div class="clearfix"></div>
 
-                    </div>
+				</div>
 
-                </div> <!-- tab content 닫히는 곳 -->
+				<div class="col-md-6">
 
-            </div>
+					<h1>
+						<c:set var="now" value="<%=new java.util.Date()%>" />
+						<fmt:parseNumber value="${now.time / (1000*60*60*24)}"
+							integerOnly="true" var="strDate"></fmt:parseNumber>
+						<fmt:parseDate value="${product.goalDate }" var="goal"
+							pattern="yyyy-MM-dd" />
+						<fmt:parseNumber value="${goal.time / (1000*60*60*24)}"
+							integerOnly="true" var="endDate"></fmt:parseNumber>
+						<span class="font-weight-light text-muted">[ D - ${endDate - strDate }
+							]</span> <span class="font-weight-bold"> ${product.title } </span>
+					</h1>
 
-        </div>
 
-    </div>
+					<div class="product-info">
 
-    <div class="container">
+						<strong>카테고리 : &nbsp;</strong>
 
-        <div class="row">
+						<c:if test="${product.tag eq 'G' }">
+							<c:out value="게임"></c:out>
+						</c:if>
+						<c:if test="${product.tag eq 'D' }">
+							<c:out value="디자인"></c:out>
+						</c:if>
+						<c:if test="${product.tag eq 'L' }">
+							<c:out value="생활"></c:out>
+						</c:if>
+						<c:if test="${product.tag eq 'T' }">
+							<c:out value="테크"></c:out>
+						</c:if>
 
-            <div class="related-items">
+						<div class="ratings">
 
-                <ul class="nav nav-tabs">
+							<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+								class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+								class="fa fa-star"></i> <span class="vote-count">35</span>
 
-                    <li class="active"><a href="#related" data-toggle="tab">Related Products</a></li>
+						</div>
+					</div>
 
-                </ul>
 
-                <div class="tab-content">
 
-                    <div class="tab-pane active" id="related">
+					<p class="short-info">${product.description }</p>
+					<p>
+					<p>
+					<p>
+					<hr>
 
-                        <div class="col-md-3 col-sm-4">
+					<form action="/product/purchase" class="purchase-form" method="get">
+						<input type = "hidden" name = "pno" value = "${product.pno }">
+						<button class="btn btn-outline-secondary" type="submit">펀딩하기</button>
 
-                            <div class="single-product">
+						<div class="social-share">
 
-                                <div class="product-block">
+							<ul>
 
-                                    <img src="../resources/images/product-1.jpg" alt="" class="thumbnail">
+								<li class=""><a href=""><i class="fa fa-facebook"></i></a></li>
 
-                                    <div class="product-description text-center">
+								<li><a href=""><i class="fa fa-twitter"></i></a></li>
 
-                                        <p class="title">Date Tiffany Torchiere</p>
+								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
 
-                                        <p class="price">$ 55.00</p>
+								<li><a href=""><i class="fa fa-linkedin"></i></a></li>
 
-                                    </div>
+							</ul>
 
-                                    <div class="product-hover">
+						</div>
 
-                                        <ul>
+					</form>
 
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+					<ul class="product-info-btn">
 
-                                            <li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+						<li><a href=""><i class="fa fa-heart-o"></i> 찜</a></li>
 
-                                            <li><a href=""><i class="fa fa-heart-o"></i></a></li>
+						<li><a href=""><i class="fa fa-arrows-h"></i> Compare</a></li>
 
-                                        </ul>
+						<li><a href=""><i class="fa fa-envelope-o"></i> Email</a></li>
 
-                                    </div>
+						<li><a href=""><i class="fa fa-print"></i> Print</a></li>
 
-                                </div>
+					</ul>
 
-                            </div>
 
-                        </div>
 
-                        <div class="col-md-3 col-sm-4">
+				</div>
 
-                            <div class="single-product">
+			</div>
 
-                                <div class="product-block">
+		</div>
 
-                                    <img src="../resources/images/product-2.jpg" alt="" class="thumbnail">
+	</div>
 
-                                    <div class="product-description text-center">
+	<p>
+	<div class="container">
 
-                                        <p class="title">Date Tiffany Torchiere</p>
+		<div class="row">
 
-                                        <p class="price">$ 55.00</p>
+			<div class="container" id="menuTab">
 
-                                    </div>
+				<ul class="nav nav-tabs nav-justified">
 
-                                    <div class="product-hover">
+					<li class="nav-item"><a class="nav-link active"
+						href="#description" data-load="true" data-toggle="tab">상품 설명</a></li>
 
-                                        <ul>
+					<li class="nav-item"><a class="nav-link" href="#notice"
+						data-load="false" data-toggle="tab"
+						data-url="http://localhost:8181/product/notice?pno=${product.pno }&id=${id}">공지사항</a></li>
 
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+					<li class="nav-item"><a class="nav-link" href="#community"
+						data-load="false" data-toggle="tab"
+						data-url="http://localhost:8181/product/community?pno=${product.pno }&id=${id}">커뮤니티</a></li>
 
-                                            <li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+					<li class="nav-item"><a class="nav-link" href="#sponsor"
+						data-load="false" data-toggle="tab"
+						data-url="http://localhost:8181/product/sponsor?pno=${product.pno }">서포터</a></li>
 
-                                            <li><a href=""><i class="fa fa-heart-o"></i></a></li>
+				</ul>
 
-                                        </ul>
+				<div class="tab-content">
 
-                                    </div>
+					<div class="container-fluid col-lg-12 tab-pane active" id="description">
+						<div class="product-desc">
+							<h2>${product.title }</h2>
 
-                                </div>
+							<p>${product.description }</p>
 
-                            </div>
 
-                        </div>
+							<c:forEach items="${lists}" var="list">
+								<div class="card col-lg-12">
+									<div class="card-body">
+										<h5 class="card-title"><strong><c:out value="${list.title }" /></strong></h5>
+										<p class="card-text font-weight-light">
+										${list.contents }
+										</p>
+										<p class="card-text font-weight-bold">
+											<c:out value="${list.price} 원"></c:out>
+										</p>
 
-                        <div class="col-md-3 col-sm-4">
+									</div>
+								</div>
+								<p>
+							</c:forEach>
 
-                            <div class="single-product">
+						</div>
 
-                                <div class="product-block">
 
-                                    <img src="../resources/images/product-3.jpg" alt="" class="thumbnail">
+					</div>
 
-                                    <div class="product-description text-center">
+					<div class="container tab-pane fade product-desc" id="notice">
 
-                                        <p class="title">Date Tiffany Torchiere</p>
+					</div>
 
-                                        <p class="price">$ 55.00</p>
+					<div class="container tab-pane fade product-desc" id="community">
 
-                                    </div>
+					</div>
 
-                                    <div class="product-hover">
+					<div class="container tab-pane fade product-desc" id="sponsor">
 
-                                        <ul>
+					</div>
 
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+				</div>
+				<!-- tab content 닫히는 곳 -->
 
-                                            <li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+			</div>
 
-                                            <li><a href=""><i class="fa fa-heart-o"></i></a></li>
+		</div>
 
-                                        </ul>
+	</div>
 
-                                    </div>
+	<div class="container">
 
-                                </div>
+		<div class="row">
 
-                            </div>
+			<div class="related-items">
 
-                        </div>
+				<ul class="nav nav-tabs">
 
-                        <div class="col-md-3 col-sm-4">
+					<li class="active"><a href="#related" data-toggle="tab">Related
+							Products</a></li>
 
-                            <div class="single-product">
+				</ul>
 
-                                <div class="product-block">
+				<div class="tab-content">
 
-                                    <img src="../resources/images/product-4.jpg" alt="" class="thumbnail">
+					<div class="tab-pane active" id="related">
 
-                                    <div class="product-description text-center">
+						<div class="col-md-3 col-sm-4">
 
-                                        <p class="title">Date Tiffany Torchiere</p>
+							<div class="single-product">
 
-                                        <p class="price">$ 55.00</p>
+								<div class="product-block">
 
-                                    </div>
+									<img src="../resources/images/product-1.jpg" alt=""
+										class="thumbnail">
 
-                                    <div class="product-hover">
+									<div class="product-description text-center">
 
-                                        <ul>
+										<p class="title">Date Tiffany Torchiere</p>
 
-                                            <li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+										<p class="price">$ 55.00</p>
 
-                                            <li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+									</div>
 
-                                            <li><a href=""><i class="fa fa-heart-o"></i></a></li>
+									<div class="product-hover">
 
-                                        </ul>
+										<ul>
 
-                                    </div>
+											<li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
 
-                                </div>
+											<li><a href=""><i class="fa fa-arrows-h"></i></a></li>
 
-                            </div>
+											<li><a href=""><i class="fa fa-heart-o"></i></a></li>
 
-                        </div>
+										</ul>
 
-                    </div>
+									</div>
 
-                </div>
+								</div>
 
-            </div>
+							</div>
 
-        </div>
+						</div>
 
-    </div>
+						<div class="col-md-3 col-sm-4">
 
+							<div class="single-product">
 
-	
+								<div class="product-block">
+
+									<img src="../resources/images/product-2.jpg" alt=""
+										class="thumbnail">
+
+									<div class="product-description text-center">
+
+										<p class="title">Date Tiffany Torchiere</p>
+
+										<p class="price">$ 55.00</p>
+
+									</div>
+
+									<div class="product-hover">
+
+										<ul>
+
+											<li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+
+											<li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+
+											<li><a href=""><i class="fa fa-heart-o"></i></a></li>
+
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3 col-sm-4">
+
+							<div class="single-product">
+
+								<div class="product-block">
+
+									<img src="../resources/images/product-3.jpg" alt=""
+										class="thumbnail">
+
+									<div class="product-description text-center">
+
+										<p class="title">Date Tiffany Torchiere</p>
+
+										<p class="price">$ 55.00</p>
+
+									</div>
+
+									<div class="product-hover">
+
+										<ul>
+
+											<li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+
+											<li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+
+											<li><a href=""><i class="fa fa-heart-o"></i></a></li>
+
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-3 col-sm-4">
+
+							<div class="single-product">
+
+								<div class="product-block">
+
+									<img src="../resources/images/product-4.jpg" alt=""
+										class="thumbnail">
+
+									<div class="product-description text-center">
+
+										<p class="title">Date Tiffany Torchiere</p>
+
+										<p class="price">$ 55.00</p>
+
+									</div>
+
+									<div class="product-hover">
+
+										<ul>
+
+											<li><a href=""><i class="fa fa-cart-arrow-down"></i></a></li>
+
+											<li><a href=""><i class="fa fa-arrows-h"></i></a></li>
+
+											<li><a href=""><i class="fa fa-heart-o"></i></a></li>
+
+										</ul>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
 
 </body>
 

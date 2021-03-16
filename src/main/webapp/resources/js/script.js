@@ -86,7 +86,7 @@ scrollTop: $('#contents').offset().top
 var searchForm = $("#searchForm");
 var actionForm = $("#actionForm");
 
-$("#searchForm button").on("click", function(e){
+$("#searchButton").on("click", function(e){
 	if(!searchForm.find("input[name = 'keyword']").val()){
 		$(".myAlert-top").show();
 	    setTimeout(function(){$(".myAlert-top").hide();}, 2000);
@@ -110,3 +110,19 @@ $(".page-item a").on("click", function(e){
 	actionForm.submit();
 });
 
+
+$(document).ready(function () {
+$('.radio-group .radio').click(function () {
+	
+	$('.radio').removeClass('selected');
+	$(this).addClass('selected');
+
+	var price = $(this).children('.fundPrice').val();
+	alert(price);
+	$('#priceText').text(price);
+});
+});
+
+$("#purchaseButton").on("click",function(e){
+
+});
