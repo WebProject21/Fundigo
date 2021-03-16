@@ -1,5 +1,6 @@
 package com.fundigo.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.fundigo.domain.BoardAttachVO;
@@ -25,5 +26,9 @@ public interface BoardService {
 	public List<BoardVO> getNOTIList(Long pno, Criteria cri);
 	long getListcount();
 	public List<BoardAttachVO> getAttachList(Long bno);
+	
+	public int getTotal(HashMap<String, Object>map);
+	public int getFAQTotal(HashMap<String, Object>map);
+	
 
 }

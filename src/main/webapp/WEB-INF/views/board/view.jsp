@@ -57,9 +57,9 @@
 						<button data-oper='list' class="btn btn-default"
 							onclick="location.href='http://localhost:8181/product/<c:out value="${list_type}"/>?pno=${product.pno}&id=${board.id}'">목록</button>
 						<form id = "operForm" action = "/board/product_modify" method = "get">
-							
-							<input type="hidden" id = "pno" name = "pno" value="${product.pno}">
-							<input type="hidden" id = "bno" name = "bno" value="${board.bno}">
+							<input type="hidden" id = "pno" name = "pno" value="<c:out value = '${product.pno}'/>">
+							<input type="hidden" id = "bno" name = "bno" value="<c:out value = '${board.bno}'/>">
+							<input type="hidden" id = "pageNum" name = "pageNum" value="<c:out value = '${cri.pageNum }'/>">
 						</form>	
 						<div class = 'bigPictureWrapper'>
 							<div class = 'bigPicture'>

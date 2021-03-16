@@ -1,5 +1,6 @@
 package com.fundigo.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,18 @@ public class BoardServiceImpl  implements BoardService{
 		log.info("get Attach list by bno : "+bno);
 		
 		return battachMapper.findByBno(bno);
+	}
+	@Override
+	public int getTotal(HashMap<String, Object>map) {
+		// TODO Auto-generated method stub
+		log.info("get total count");
+		return bmapper.getTotalCount(map);
+	}
+	@Override
+	public int getFAQTotal(HashMap<String, Object>map) {
+		// TODO Auto-generated method stub
+		log.info("get total count");
+		return bmapper.getFAQTotalCount(map);
 	}
 	
 }
