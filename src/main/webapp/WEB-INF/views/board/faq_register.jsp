@@ -34,7 +34,7 @@
 <body>
 	<input type="hidden" name="pno" value="${product.pno}">
 	<div class = "container">
-		<form role = "form" action = "/product/community_register?pno=${product.pno}" method = "post" enctype = "">
+		<form role = "form" action = "/board/faq_register" method = "post" enctype = "">
 			<input type = "hidden" name = "id" value="${id}" />
 			<div class = "col-sm-12 pt-3">
 				<div class ="register">
@@ -58,7 +58,7 @@
 							</table>
 							<div class = "row" style = "width: 100%; margin: 0px auto;">
 								<button type= "submit" name = "uploadBtn" class = "btn btn-default">등록</button>
-								<button type = "button" value="취소" onclick="location.href='/product/community?pno=${product.pno}&id=${id}'">취소</button>
+								<button type = "button" value="취소" onclick="location.href='/board/faq?id=${id}'">취소</button>
 								<button type = "reset" value="초기화">리셋</button>
 							</div>
 							<div class = "row">

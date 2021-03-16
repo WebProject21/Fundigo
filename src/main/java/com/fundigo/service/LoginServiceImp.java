@@ -86,4 +86,13 @@ public class LoginServiceImp implements LoginService {
 		return mapper.idCheck(id);
 	}
 
+	@Override
+	public LoginVO phonecheck(LoginVO login) {
+		log.info("phone Check"+login);
+		
+		return mapper.phonecheck(login);
+	}
+
+	
+
 }

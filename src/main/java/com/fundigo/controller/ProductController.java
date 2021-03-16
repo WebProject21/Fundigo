@@ -1,5 +1,6 @@
 package com.fundigo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -76,10 +77,15 @@ public class ProductController {
 	@GetMapping("/community")
 	public void commList(@RequestParam ("pno") Long pno, @RequestParam("id") String id, Criteria cri,Model model) {
 		log.info("commList");
+		String bd_type = "COMM";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pno",pno);
+		map.put("bd_type", bd_type);
+		int total = bService.getTotal(map);
 		model.addAttribute("list",bService.getCOMMList(pno, cri));
 		model.addAttribute("product",pService.get(pno));
 		model.addAttribute("count", bService.getListcount());
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}//상품 커뮤니티 페이지
 	
 	@GetMapping("/community_register")
@@ -104,10 +110,15 @@ public class ProductController {
 	@GetMapping("/notice")
 	public void NOTIlist(@RequestParam("pno") Long pno, @RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("list");
+		String bd_type = "NOTI";
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pno",pno);
+		map.put("bd_type", bd_type);
+		int total = bService.getTotal(map);
 		model.addAttribute("list", bService.getNOTIList(pno, cri));
 		model.addAttribute("id", id);
 		model.addAttribute("product",pService.get(pno));
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}//상품 공지 페이지
 	
 	@GetMapping("/notice_register")

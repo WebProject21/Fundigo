@@ -30,6 +30,10 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<form role = "form" action="/board/productBoard_modify" method="post">
+					<input type = "hidden" name ="pageNum" value = "<c:out value = '${cri.pageNum}'/>">
+					<input type = "hidden" name ="amount" value = "<c:out value = '${cri.amount}'/>">
+					<input type = "hidden" name ="pno" value = "<c:out value = '${product.pno}'/>">
+					<input type = "hidden" name ="id" value = "<c:out value = '${board.id}'/>">
 					<div class="form-group">
 						<div class="table-panel">
 							<table class="table">
@@ -98,6 +102,7 @@
 			var pno = '<c:out value = "${product.pno}"/>';
 			var bno = '<c:out value = "${board.bno}"/>';
 			var type = '<c:out value = "${list_type}"/>';
+			var id = '<c:out value = "${board.id}"/>';
 			var formObj = $("form");
 			$('button').on("click", function(e){
 				e.preventDefault();
@@ -108,8 +113,19 @@
 					formObj.attr("action", "/board/remove?pno="+pno+"&bno="+bno);
 				
 				}else if(operation === 'list'){
-					self.location = "/product/"+type+"?pno="+pno+"&id="+"${board.id}";
-					return;
+					//move to list
+					
+					formObj.attr("action", "/product/"+type).attr("method","get");
+					var pageNumTag = $("input[name = 'pageNum']").clone();
+					var amountTag = $("input[name = 'amount']").clone();
+					var pnoTag = $("input[name = 'pno']").clone();
+					var idTag = $("input[name = 'id']").clone();
+					formObj.empty();
+					formObj.append(pnoTag);
+					formObj.append(idTag);
+					formObj.append(pageNumTag);
+					formObj.append(amountTag);
+
 				}else if(operation === "modify"){
 					console.log("submit clicked");
 					var str = "";

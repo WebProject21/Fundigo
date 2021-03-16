@@ -1,10 +1,13 @@
 package com.fundigo.mapper;
 
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.fundigo.domain.LoginVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -17,6 +20,14 @@ public class LoginMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private LoginMapper mapper;
 	
+	
+//	@Test
+//	public void PhoneCheck() {
+//		LoginVO login = new LoginVO();
+//		login.setPhone("01040529406");
+//		mapper.phonecheck(login);
+//		log.info("phone check"+login);
+//	}
 	
 //	@Test
 //	public void LoginCheckTests() {

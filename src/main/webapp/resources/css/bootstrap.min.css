@@ -5100,16 +5100,16 @@ a.custom-card:hover {
 	padding: .5rem .75rem;
 	margin-left: -1px;
 	line-height: 1.25;
-	color: #007bff;
+	color: #516d8d;
 	background-color: #fff;
-	border: 1px solid #dee2e6
+	border: 1px solid #dee2e6;
 }
 
 .page-link:hover {
-	color: #0056b3;
+	color: #fff;
 	text-decoration: none;
 	background-color: #e9ecef;
-	border-color: #dee2e6
+	border-color: 1px solid #dee2e6;
 }
 
 .page-link:focus {
@@ -5136,8 +5136,8 @@ a.custom-card:hover {
 .page-item.active .page-link {
 	z-index: 1;
 	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff
+	background-color: #516d8d;
+	border-color: #516d8d;
 }
 
 .page-item.disabled .page-link {
@@ -5320,6 +5320,17 @@ a.custom-card:hover {
 	margin-bottom: 1rem;
 	border: 1px solid transparent;
 	border-radius: .25rem
+}
+
+.alert-none{
+	display:none;
+}
+
+.myAlert-top{
+    position: fixed;
+    top: 60px; 
+    left:2%;
+    width: 96%;
 }
 
 .alert-heading {
@@ -6692,7 +6703,6 @@ a.bg-dark:focus, a.bg-dark:hover, button.bg-dark:focus, button.bg-dark:hover
 }
 
 .d-flex {
-	display: -webkit-box !important;
 	display: -ms-flexbox !important;
 	display: flex !important
 }

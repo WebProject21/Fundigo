@@ -7,6 +7,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fundigo.domain.Criteria;
+import com.fundigo.domain.ListVO;
+import com.fundigo.domain.ProductVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -24,7 +26,7 @@ public class ProductMapperTests {
 	public void testGetList() {
 		mapper.pGetList().forEach(product -> log.info(product));
 	}
-	
+	*/
 	@Test
 	public void testInsertSelectKey() {
 		
@@ -57,7 +59,7 @@ public class ProductMapperTests {
 		log.info(product);
 		
 	}
-
+/*
 	@Test
 	public void testRead() {
 		ProductVO product = mapper.pRead(10L);

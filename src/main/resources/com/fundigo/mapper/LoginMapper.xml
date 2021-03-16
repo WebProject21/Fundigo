@@ -10,7 +10,7 @@
 	</insert>
 	<insert id="cInsert">
 	INSERT INTO CLIENT(id,name,password,address,phone,nickname,tag) 
-	values(#{id},#{name},#{password},#{address},#{phone},#{nickname},#{tag})
+	values(#{id},#{name},#{password},#{address},#{phone},#{nickname},#{tag, jdbcType = VARCHAR})
 	</insert>
 	
 	<select id="idCheck" parameterType="String" resultType="Integer">
@@ -64,11 +64,14 @@
 	</select>
 	<!--  Fpno is Favorite Query -->
 	<insert id="FpnoInsert">
-	INSERT INTO FAVORITE(ID,PNO,DATES) values (#{id},#{pno},sysdate)
+	INSERT INTO FAVORITE(FAV_COUNT,ID,PNO,DATES) values (seq_favorite.NEXTVAL,#{id},#{pno},sysdate)
 	</insert>
 
 	<delete id="FpnoDelete" parameterType = "map" >
 	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
 	</delete>
-
+	<!-- Phone inValid Check -->
+	<select id="phonecheck" resultType="com.fundigo.domain.LoginVO">
+		SELECT ID FROM CLIENT WHERE PHONE=#{phone}
+	</select>
 </mapper>
