@@ -122,5 +122,12 @@
 	<insert id="addAttach">
 		INSERT INTO tbl_attach(fullname, bno) VALUE (#{fullName}, SEQ_BOARD.CURRVAL)
 	</insert>
-	
+	<!-- 페이징을 위한 쿼리 -->
+	<select id = "getTotalCount" parameterType="hashmap" resultType="int">
+		select count(*) from board where bno > 0 and PNO = #{pno} and BD_TYPE = #{bd_type}
+	</select>
+
+	<select id = "getFAQTotalCount" parameterType="hashmap" resultType="int">
+		select count(*) from board where bno > 0 and bd_type = #{bd_type}
+	</select>
 </mapper>
