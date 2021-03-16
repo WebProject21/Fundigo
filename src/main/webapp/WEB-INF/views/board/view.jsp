@@ -121,7 +121,7 @@
 			var operForm = $("#operForm");
 			$("button[data-oper = 'modify']").on("click", function(e){
 				operForm.attr("action", "/board/productBoard_modify").submit();
-			});
+			}); //이 부분 if 문을 이용해서 바꿀 수 있도록 할것
 		});
 		
 		$(".uploadResult").on("click", "li", function(e){

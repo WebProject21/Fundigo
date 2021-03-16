@@ -85,7 +85,7 @@
 						<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum}">
 						<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount}">
 					</form>
-				<a href="/product/faq_register?id=${id}" class = "btn btn-primary pull-right">글쓰기</a>
+				<a href="/board/faq_register?id=${id}" class = "btn btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>
 	</main>
@@ -118,7 +118,7 @@
 				e.preventDefault();
 				$('input').remove('.id');
 				actionForm.append("<input type = 'hidden' name = 'bno' value = '"+$(this).attr("href")+"'>");
-				actionForm.attr("action","/board/view");
+				actionForm.attr("action","/board/faq_view");
 				actionForm.submit();
 			});
 		});
