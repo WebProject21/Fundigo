@@ -70,8 +70,8 @@
 						<table class="table table-striped table-boardered table-hover">
 							<thead>
 								<tr>
-									<th>#번호</th>
-									<th>펀딩명</th>
+									<th>번호</th>
+									<th>#제품번호</th>
 									<th>펀딩일자</th>
 								</tr>
 
@@ -79,10 +79,9 @@
 
 							<c:forEach items="${list}" var="board">
 								<tr>
-									<td><c:out value="${board.bno}" /></td>
-									<td><c:out value="${board.title}" /></td>
+									<td><c:out value="${member.pno}" /></td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd"
-											value="${board.regdate }" /></td>
+											value="${member.dates }" /></td>
 								
 								<tr>
 							</c:forEach>

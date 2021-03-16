@@ -16,14 +16,14 @@ public class SendMessage {
 		String api_secret = "IOJSPD6DQZYI219JTMRKAYGLWS9VL8QW";
 		Message coolsms = new Message(api_key, api_secret);
 		String number = numberGen(6, 1);
-
+		
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", phoneNumber);
-		params.put("from", "발송할 번호입력");
+		params.put("from", "01040529406");
 		params.put("type", "SMS");
 		params.put("text", "fundigo [" + number + "] 인증번호입니다.");
 		params.put("app_version", "test app 1.2");
-
+		
 		try {
 			JSONObject obj = coolsms.send(params);
 			System.out.println(obj.toString());

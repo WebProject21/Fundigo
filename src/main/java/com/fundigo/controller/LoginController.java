@@ -1,7 +1,5 @@
 package com.fundigo.controller;
 
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -114,6 +112,7 @@ public class LoginController  {
 			System.out.println("보낸 휴대폰번호 : "+verifyPhoneNumber);
 			SendMessage send = new SendMessage();
 			if(lService.phonecheck(login) == null) {
+				log.info("phone: "+login.toString());
 				model.addObject("code",200);
 				send.getVerifyNumber(verifyPhoneNumber);
 			} else {
@@ -122,6 +121,7 @@ public class LoginController  {
 			model.setViewName("jsonView");
 			return model;
 		}
+		
 		
 		//휴대폰 인증번호 입력
 		@RequestMapping(value = "/phoneverify", method = RequestMethod.POST)

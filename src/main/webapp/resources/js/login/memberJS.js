@@ -70,9 +70,10 @@
     		//휴대폰 유효성검사
     		let mPhoneChecker = document.getElementById("mphonechecker");
     		inCheck[6].addEventListener('keyup', function() {
-    			if(/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/.test(inCheck[6].value)){
+    			if(/^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|^(010[1-9][0-9]{7})$/.test(inCheck[6].value)){
     				inCheck[6].classList.add('is-invalid');
     				mPhoneChecker.removeAttribute('disabled');
+    				alert(invalid[6]);
     				invalid[6].innerHTML = '휴대폰을 인증해주세요.';
     			} else {
     				inCheck[6].value = inCheck[6].value.replace(/[^0-9]/gi, '');
@@ -88,7 +89,7 @@
 				if(result){
 					$.ajax({
 						type:'POST',
-						url:"/mypage/phonecheck",
+						url:'phonecheck',
 						data:{
 							phone:inCheck[6].value
 						},
@@ -104,11 +105,76 @@
 								alert('이미 이 번호로 가입된 아이디가 있습니다.');
 								inCheck[6].removeAttribute('readonly');
 							}
-						}
+						},
+						error:function(request,status,error){
+							alert(data);
+        					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+       					}
 					});
 				}
 			});
-    		
+    		//인증번호 유효성검사
+			let validPhoneNumber = document.getElementById('validPhoneNumber');
+			inCheck[7].addEventListener('keyup', function() {
+    			if(inCheck[7].value.length==6){
+    				inCheck[7].classList.add('is-invalid');
+    				validPhoneNumber.removeAttribute('disabled');
+    				invalid[6].innerHTML = '인증버튼을 눌러주세요.';
+    			} else {
+    				inCheck[7].classList.add('is-invalid');
+    				inCheck[7].classList.remove('is-valid');
+    				validPhoneNumber.setAttribute('disabled', 'disabled');
+    			}
+    		}, false);
+			
+    		//휴대폰 인증번호 입력
+			validPhoneNumber.addEventListener('click', function(){
+				let verifyNumber = inCheck[7].value;
+				$.ajax({
+    				type:'POST',
+    				url:'phoneverify',
+    				data:{
+    					verifyNumber:verifyNumber
+    				},
+    				success:function(data){
+    					if(data.code == 200){
+    						alert('인증 되었습니다.');
+    						inCheck[7].classList.remove('is-invalid');
+    						inCheck[7].classList.add('is-valid');
+    						inCheck[7].setAttribute('readonly', 'readonly');
+    						validPhoneNumber.setAttribute('disabled', 'disabled');
+    					} else {
+    						if(data.verifyfullfail!=null){
+    							inCheck[7].value = '';
+    							invalid[7].innerHTML = '인증실패 한도 초과로 당분간 인증이 불가능합니다.';
+    							inCheck[7].setAttribute('readonly', 'readonly');
+    							inCheck[7].setAttribute('disabled', 'disabled');
+    							validPhoneNumber.setAttribute('disabled', 'disabled');
+    							inCheck[6].value = '';
+    							invalid[6].innerHTML = '인증실패 한도 초과로 당분간 인증이 불가능합니다.';
+    							inCheck[6].setAttribute('readonly', 'readonly');
+    							inCheck[6].setAttribute('disabled', 'disabled');
+    							inCheck[6].classList.add('is-invalid');
+    							inCheck[6].classList.remove('is-valid');
+    						} else{
+    							invalid[7].innerHTML = '인증번호가 일치하지 않습니다. 다시 시도해주세요.('+data.verifyfail+'/3)';
+    							inCheck[7].value = '';
+    						}
+    					}
+    				}
+    			});
+			}, false);
+		
+	    //데이터 전송 체크
+    		form.addEventListener('button', function(event) {
+    			for(let i=0; i<inCheck.length; i++) {
+    				if(inCheck[i].classList.contains('is-valid')===false){
+    	    			inCheck[i].classList.add('is-invalid');
+    					event.preventDefault();
+    					event.stopPropagation();
+    				}
+    			}
+	    	}, false);
 	    
     	});
 	}, false);

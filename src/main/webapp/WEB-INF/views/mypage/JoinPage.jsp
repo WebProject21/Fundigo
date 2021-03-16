@@ -11,9 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Sign up Page</title>
-<script type="text/javascript" src="../resources/js/login/memberJS.js"></script>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 function registerCheck() {
     if($.trim($('#nickname').val()) == '') {
@@ -95,6 +94,8 @@ function registerCheck() {
 					<input type="text" class="form-control col-7" autocomplete="off"
 						placeholder="이름" id="name" name="name" maxlength="15" autofocus
 						required>
+						<div class="valid-feedback"></div>
+      			<div class="invalid-feedback text-left"></div>
 				</div>
 				<div class="form-group row">
 					<input type="password" class="form-control" autocomplete="off"
@@ -111,11 +112,15 @@ function registerCheck() {
 				<div class="form-group row">
 					<input type="text" class="form-control" placeholder="주소(시군구)"
 					id="address" name="address" maxlength="15" required>
+				<div class="valid-feedback"></div>
+      			<div class="invalid-feedback text-left"></div>
 				</div>
 				<div class="form-group row">
 					<input type="text" class="form-control col-7" autocomplete="off"
 						placeholder="닉네임" id="nickname" name="nickname" maxlength="15" autofocus
 						required>
+						<div class="valid-feedback"></div>
+      			<div class="invalid-feedback text-left"></div>
 				</div>
 				<div class="form-group row">
 					<input type="tel" class="form-control col-8" placeholder="휴대폰 ( '-'제외 )" id="phone" name="phone" maxlength="11" required>
@@ -166,7 +171,7 @@ function registerCheck() {
 		</div>
 	</div>
 	<%@include file="../footer.jsp"%>
-	
+	<script type="text/javascript" src="../resources/js/login/memberJS.js"></script>
 	 
 	 
 </body>
