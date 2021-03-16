@@ -87,7 +87,6 @@
 						<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum}">
 						<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount}">
 					</form>
-					
 				<a href="/product/notice_register?pno=${product.pno }&id=${id}" class = "btn btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 package com.fundigo.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.fundigo.domain.BoardVO;
@@ -46,4 +47,7 @@ public interface BoardMapper {
 	public int updateDate(BoardVO board);
 //첨부파일
 	public void addAttach(String fullName);
+//페이징
+	public int getTotalCount(HashMap<String, Object>map);
+	public int getFAQTotalCount(HashMap<String, Object>map);
 }
