@@ -29,7 +29,7 @@
 <body>
 
 	<%@include file="../header.jsp"%>
-	
+
 	<form id="actionForm" action="/mainpage/search" method="get">
 		<input type="hidden" name="pageNum"
 			value="<c:out value = '${pageMaker.cri.pageNum }'/>"> <input
@@ -38,7 +38,7 @@
 			type="hidden" name="keyword"
 			value="<c:out value = '${pageMaker.cri.keyword }'/>">
 	</form>
-
+	
 	<p>
 	<div class="container-fluid col-lg-8" id="contents">
 		<div class="card">
