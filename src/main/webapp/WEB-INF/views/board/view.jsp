@@ -86,6 +86,49 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	console.log(replyService);
+});
+	console.log("=================");
+	console.log("JS Test");
+	var bnoValue = '<c:out value = "${board.bno}"/>';
+	/* 
+	//for replyService add test
+	replyService.add({
+		content: "JS Test", id : "test", bno:bnoValue
+	}, function(result){
+		alert("Result:"+result);
+	}); 
+	
+	//reply List Test
+	replyService.getList({bno:bnoValue, page:1}, function(list){
+		for(var i = 0, len = list.length || 0; i<len; i++){
+			console.log(list[i]);
+		}
+	});
+	 */
+	 
+	//댓글 삭제 테스트
+	/* replyService.remove(1, function(count){
+		console.log(count);
+		if(count === "success"){
+			alert("REMOVED");
+		}
+	}, function(err){
+		alert('ERROR');
+	}); */
+ 	
+	//2번 댓글 수정
+	replyService.update({
+		rno : 2,
+		bno : bnoValue,
+		content : "Modified Reply....."
+	}, function(result){
+		alert("수정완료되었습니다. 정말로");
+	})
+</script>	
 <script type="text/javascript">
 	$(document).ready(function() {
 		(function(){
@@ -121,7 +164,7 @@
 			var operForm = $("#operForm");
 			$("button[data-oper = 'modify']").on("click", function(e){
 				operForm.attr("action", "/board/productBoard_modify").submit();
-			}); //이 부분 if 문을 이용해서 바꿀 수 있도록 할것
+			});
 		});
 		
 		$(".uploadResult").on("click", "li", function(e){
@@ -151,6 +194,5 @@
 			operForm.find("#bno").remove();
 		}); */
 	</script>
-
 </body>
 </html>

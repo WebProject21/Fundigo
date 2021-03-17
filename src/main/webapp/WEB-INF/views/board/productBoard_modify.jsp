@@ -64,9 +64,8 @@
 								</tbody>
 							</table>
 							<button type = "submit" data-oper = "modify" class="btn btn-default">수정완료</button>
-							<button type = "submit" data-oper = "remove" class="btn btn-danger">삭제</button>
+							<button type = "submit" data-oper = "remove" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">삭제</button>
 							<button type = "submit" data-oper = "list" class="btn btn-info">목록</button>
-							
 						</div>
 					</div>
 					</form>
@@ -97,6 +96,26 @@
 			</div>
 		</div>
 	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		   <div class="modal-header">
+		      <h5 class="modal-title" id="removeModalLabel">게시물 삭제</h5>
+		       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+			   </button>
+		    </div>
+		  	 <div class="modal-body">
+			  	  게시물을 정말 삭제하시겠습니까?
+           	</div>
+			<div class="modal-footer">
+ 		 		<button type="button" class="btn btn-primary">삭제하기</button>
+  				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
+  			</div>
+   		 </div>
+	</div>
+</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var pno = '<c:out value = "${product.pno}"/>';
@@ -133,16 +152,14 @@
 						var jobj = $(obj);
 						console.dir(jobj);
 						str += "<input type = 'hidden' name = 'attachList["+i+"].fileName' value = '" + jobj.data("filename")+"'>";
-						str += "<input type = 'hidden' name = 'attachList["+i+"].uuid' value = '" + jobj.data("uuid") + "'>";
+						str += "<input type = 'hidden' name = 'attachList["+i+"].uuid' value = '" + jobj.data("uuid")+"'>";
 						str += "<input type = 'hidden' name = 'attachList["+i+"].uploadPath' value = '" + jobj.data("path") + "'>";
-						str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '" + jobj.data("type") + "'>";
-						alert(str);
+						str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '"+jobj.data("type")+"'>";
 					});
 					formObj.append(str).submit();
 				}
 				formObj.submit();
 			});
-			
 		});
 		
 		$(document).ready(function(){
