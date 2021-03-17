@@ -110,7 +110,7 @@ public class BoardController {
 	public void boardView(@RequestParam("bno") Long bno, Model model) {
 		log.info("boardView");
 		model.addAttribute("board", bService.get(bno));
-		model.addAttribute("reply", rService.getList(bno));
+		model.addAttribute("reply", rService.rGetList(bno));
 	}//상품 공지, 커뮤니티 게시판 한 항목 보는 페이지
 	
 	

@@ -7,8 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.fundigo.domain.LoginVO;
-
+import com.fundigo.domain.FundhistoryVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -19,7 +18,12 @@ public class LoginMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private LoginMapper mapper;
-	
+	@Test
+	public void test() {
+		FundhistoryVO login = new FundhistoryVO();
+		login.setId("yacobl");
+		mapper.getFavoriteList(login);
+	}
 	
 //	@Test
 //	public void PhoneCheck() {

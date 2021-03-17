@@ -22,15 +22,15 @@ public class LoginServiceImp implements LoginService {
 	private LoginMapper mapper;
 
 	@Override
-	public List<FundhistoryVO> getFundList(String id) {
+	public List<FundhistoryVO> getFundList(FundhistoryVO login) {
 		log.info("get List-------- ");
-		return mapper.getFundList(id);
+		return mapper.getFundList(login);
 	}
 
 	@Override
-	public List<FundhistoryVO> getFavoriteList(String id) {
+	public List<FundhistoryVO> getFavoriteList(FundhistoryVO login) {
 		log.info("get List-------- ");
-		return mapper.getFavoriteList(id);
+		return mapper.getFavoriteList(login);
 	}
 
 	@Override
@@ -62,7 +62,6 @@ public class LoginServiceImp implements LoginService {
 	public void FavoriteInsert(FundhistoryVO fund) {
 		log.info("Client Favorite : "+fund);
 		mapper.FpnoInsert(fund);
-	
 	}
 
 	@Override

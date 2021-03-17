@@ -40,13 +40,16 @@
 							<h5 style="font-weight: bold;">내 정보</h5>
 						</div>
 						<div class="form-group mt-5">
-							<a href="InfoChangeInput" class="menubar">정보 수정</a>
+							<a href="/mypage/InfoChangeInput" class="menubar">정보 수정</a>
+						</div>
+						<div class="form-group mb-3">
+							<a href="/mypage/Favorite" class="menubar">관심 목록</a>
 						</div>
 						<div class="form-group mb-5">
-							<a href="Favorite" class="menubar">관심 목록</a>
+							<a href="/mypage/Fundhistory" class="menubar">펀딩 목록</a>
 						</div>
 						<div class="form-group ">
-							<a href="Withdraw" class="menubar">회원탈퇴</a>
+							<a href="/mypage/Withdraw" class="menubar">회원탈퇴</a>
 						</div>
 					</div>
 				</div>

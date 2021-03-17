@@ -35,22 +35,22 @@
 	</delete>
 	
 	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
-	select id,pno,dates from favorite where id = #{id}
+	select fav_count,pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates from favorite where id = #{id}
 	</select>
 	<!-- not yet -->
 	<!-- funding history -->
 	<insert id="Finsert">
 	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},sysdate,#{unkno},#{price},#{code})
 	</insert>
-	<!-- C -->
-	<select id="getFundList" resultType="com.fundigo.domain.FundhistoryVO">
-	SELECT pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates ,price FROM FUNDHISTORY WHERE id = #{id}
+	<!-- Client Funding history List print -->
+	<select id="getFundList" parameterType = "String" resultType="com.fundigo.domain.FundhistoryVO">
+	SELECT pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates ,price,code FROM FUNDHISTORY WHERE id = #{id}
 	</select>
-	<!-- not yet -->
+	<!-- product search -->
 	<select id="PnoSelect" resultType="com.fundigo.domain.ProductVO">
 	SELECT * FROM PRODUCT WHERE pno = #{pno}
 	</select> 
-	<!-- not yet -->
+	<!-- funding client search  -->
 	<select id="getFpnoList" resultType="com.fundigo.domain.FundhistoryVO">
 	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates , unkno, price,code FROM FUNDHISTORY WHERE pno = #{pno}
 	</select>
@@ -58,15 +58,15 @@
 	<delete id="Fdelete" parameterType = "map">
 	delete from fundhistory where id = #{id} and pno = #{pno}
 	</delete>
-	
-	<select id="fundSelect" parameterType = "map" resultType="com.fundigo.domain.FundhistoryVO">
-	select * from fundhistory where id = #{id} and pno = #{pno}
+	<!-- product page -->
+	<select id="fundSelect" parameterType = "String" resultType="com.fundigo.domain.FundhistoryVO">
+	select * from fundhistory where id = #{id} and pno = ${pno}
 	</select>
 	<!--  Fpno is Favorite Query -->
 	<insert id="FpnoInsert">
 	INSERT INTO FAVORITE(FAV_COUNT,ID,PNO,DATES) values (seq_favorite.NEXTVAL,#{id},#{pno},sysdate)
 	</insert>
-
+	<!-- multi parameter -->
 	<delete id="FpnoDelete" parameterType = "map" >
 	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
 	</delete>
