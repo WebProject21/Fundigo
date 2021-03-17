@@ -1,5 +1,7 @@
 package com.fundigo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -52,7 +54,7 @@ public class LoginController  {
 		
 		session.invalidate();
 		
-		log.info("logout");
+		log.info("logout Success");
 		
 		return "redirect:/mypage/memberLogin";
 	}
@@ -180,18 +182,33 @@ public class LoginController  {
 	}
 	
 	// modify previous section
-	@PostMapping("/select")
-	public void ClientSelect(LoginVO login , RedirectAttributes rttr) {
-		log.info("client select"+login);
+	@RequestMapping(value="/InfoChangeInput", method = {RequestMethod.POST,RequestMethod.GET})
+	public String ClientSelect(LoginVO login ,ModelAndView model, HttpServletRequest request)throws Exception {
+		LoginVO loginvo = (LoginVO)request.getSession().getAttribute("member");
+		login.setId(loginvo.getId());
 		lService.Clientselect(login);
-		rttr.addAttribute("result", "success");
+		log.info("member info :"+login);
+		model.addObject("member", login);
+
+		log.info("client select"+login);
+		return "/mypage/InfoChangeInput";
 	}
 	
-	@PostMapping("/fundList")
-	public void getFundList(@RequestParam("id") String id, RedirectAttributes rttr) {
-
-		log.info("funList result: " + id);
-		lService.getFundList(id);
+	@RequestMapping(value="/Fundhistory", method = {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView getFundList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
+		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+		login.setId(loginvo.getId());
+		List<FundhistoryVO> getfund = lService.getFundList(login);
+		if(getfund.size()<1) {
+			getfund=null;
+			System.out.println("no favorite data");
+		}
+		System.out.println("favorite data OK");
+		log.info("fund list is : "+getfund);
+		model.addObject("getfund",getfund);
+		model.setViewName("/mypage/Fundhistory");
+		
+		return model;
 	}
 	
 	//fund getList fundSercvice GetList
@@ -210,7 +227,7 @@ public class LoginController  {
 		rttr.addAttribute("result","success");
 	}
 	
-	//Fundservice Get select
+	//Fundservice Get select fpr product
 	@PostMapping("/fund_select")
 	public void FundSelect(String id, Long pno,RedirectAttributes rttr) {
 		log.info("fundSelect");
@@ -218,7 +235,7 @@ public class LoginController  {
 		fService.get(id, pno);
 	}
 	
-	//Fundservice remove History
+	//Fundservice remove at History
 	@PostMapping("/fund_remove")
 	public void FundRemove (String id, Long pno,RedirectAttributes rttr) {
 		log.info("fundRemove");
@@ -228,12 +245,23 @@ public class LoginController  {
 	}
 	
 	// favorite List Search in Client DB
-	@PostMapping("/favorite")
-	public void FavoriteList(@RequestParam("id") String id, Model model) {
-		log.info("/favorite");
-		model.addAttribute("favorite",  lService.getFavoriteList(id));
-//		return "redirect:/mypage/favorite?id=" + lService.getFavoriteList(id);
-	} 
+	@RequestMapping(value = "/Favorite",  method = {RequestMethod.POST,RequestMethod.GET} )
+	public ModelAndView FavoriteList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
+		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+		login.setId(loginvo.getId());
+		List<FundhistoryVO> getfavorite = lService.getFavoriteList(login);
+		if(getfavorite.size()<1) {
+			getfavorite=null;
+			System.out.println("no favorite data");
+		}
+		System.out.println("favorite data OK");
+		log.info("favorite is : "+getfavorite);
+		model.addObject("getfavorite",getfavorite);
+		model.setViewName("/mypage/Favorite");
+//		return "/mypage/Favorite";
+		return model;
+		
+	}
 	
 	// favorite DB insert
 	@PostMapping("/Favorite_insert")

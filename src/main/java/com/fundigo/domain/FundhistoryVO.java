@@ -10,5 +10,6 @@ public class FundhistoryVO {
 	private String unkno;
 	private Integer price;
 	private Long code;
+	private String fav_count;
 	
 }

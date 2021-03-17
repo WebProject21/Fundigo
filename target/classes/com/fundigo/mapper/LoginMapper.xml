@@ -35,7 +35,7 @@
 	</delete>
 	
 	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
-	select pno,dates from favorite where id = #{id}
+	select fav_count,pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates from favorite where id = #{id}
 	</select>
 	<!-- not yet -->
 	<!-- funding history -->
@@ -44,7 +44,7 @@
 	</insert>
 	<!-- Client Funding history List print -->
 	<select id="getFundList" parameterType = "String" resultType="com.fundigo.domain.FundhistoryVO">
-	SELECT pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates ,price FROM FUNDHISTORY WHERE id = #{id}
+	SELECT pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates ,price,code FROM FUNDHISTORY WHERE id = #{id}
 	</select>
 	<!-- product search -->
 	<select id="PnoSelect" resultType="com.fundigo.domain.ProductVO">
