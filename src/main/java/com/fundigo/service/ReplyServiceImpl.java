@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ReplyVO;
 import com.fundigo.mapper.BoardMapper;
 import com.fundigo.mapper.ReplyMapper;
@@ -23,7 +24,7 @@ public class ReplyServiceImpl implements ReplyService {
 	private BoardMapper bMapper;
 	
 	@Override
-	public void register(ReplyVO reply) {
+	public int register(ReplyVO reply) {
 		// TODO Auto-generated method stub
 		log.info("register...."+reply);
 		
@@ -31,7 +32,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		reply.setBd_type(bd_type);
 		
-		mapper.rInsert(reply);
+		return mapper.rInsert(reply);
 	}
 
 	@Override
@@ -42,24 +43,32 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public boolean modify(ReplyVO reply) {
+	public int modify(ReplyVO reply) {
 		// TODO Auto-generated method stub
 		
 		log.info("modify......"+reply);
 		
-		return mapper.rUpdate(reply)==1;
+		return mapper.rUpdate(reply);
 	}
 
 	@Override
-	public boolean remove(Long rno) {
+	public int remove(Long rno) {
 		// TODO Auto-generated method stub
 		log.info("remove...."+rno);
 		
-		return mapper.rDelete(rno) == 1;
+		return mapper.rDelete(rno);
 	}
 
 	@Override
-	public List<ReplyVO> getList(Long bno) {
+	public List<ReplyVO> rGetList(Criteria cri, Long bno) {
+		// TODO Auto-generated method stub
+		
+		log.info("list of board...."+bno);
+		
+		return mapper.rGetListWithPaging(cri, bno);
+	}
+	@Override
+	public List<ReplyVO> rGetList(Long bno) {
 		// TODO Auto-generated method stub
 		
 		log.info("list of board...."+bno);
