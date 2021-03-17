@@ -11,7 +11,13 @@
       select * from reply where bno = #{bno}
       ]]>
    </select>
-
+	
+	<select id="rGetListWithPaging" resultType="com.fundigo.domain.ReplyVO">
+      <![CDATA[
+      select * from reply where bno = #{bno} order by rno asc
+      ]]>
+   </select>
+	
    <insert id="rInsert">
    <selectKey keyProperty = "rno" order = "BEFORE" resultType = "long">
 	select seq_reply.nextval from dual

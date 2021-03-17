@@ -61,48 +61,18 @@
 						</ul>
 					</div>
 					<!--  end Pagination -->
-					<!-- Modal 추가 -->
-					<div class = "modal fade" id = "myModal" tabindex="-1" role = "dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class = "modal-dialog">
-							<div class = "modal-content">
-								<div class = "modal-header">
-									<button type = "button" class = "close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class = "modal-title" id = "myModalLabel">알림창</h4>
-								</div>
-								<div class = "modal-body">처리가 완료되었습니다.</div>
-								<div class = "modal-footer">
-									<button type = "button" class = "btn btn-default" data-dismiss="modal">닫기</button>
-									<button type = "button" class = "btn btn-primary">다시 저장하기</button>
-								</div>
-							</div>
-							<!-- /.modal-content -->
-						</div>
-						<!-- /.modal-dialog -->
-					</div>
-					<!--/. modal -->
 					<form id = 'actionForm' action = "/board/faq" method = "get">
 						<input class="id" type = "hidden" name = "id" value = "${id}">						
 						<input type = "hidden" name = "pageNum" value = "${pageMaker.cri.pageNum}">
 						<input type = "hidden" name = "amount" value = "${pageMaker.cri.amount}">
 					</form>
-				<a href="/product/faq_register?id=${id}" class = "btn btn-primary pull-right">글쓰기</a>
+				<a href="/board/faq_register?id=${id}" class = "btn btn-primary pull-right">글쓰기</a>
 			</div>
 		</div>
 	</main>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var result = '<c:out value = "${result}"/>';
-			checkModal(result);
-			history.replaceState({},null,null);
-			function checkModal(result){
-				if(result === '' || history.state){
-					return;
-				}
-				if(parseInt(result)>0){
-					$(".modal-body").html("게시글"+parseInt(result)+"번이 등록되었습니다.");
-				}
-				$("#myModal").modal("show");
-			}
 			$("#regBtn").on("click", function(){
 				self.location = "/board/faq_register?id='${id}'";
 			});
@@ -118,7 +88,7 @@
 				e.preventDefault();
 				$('input').remove('.id');
 				actionForm.append("<input type = 'hidden' name = 'bno' value = '"+$(this).attr("href")+"'>");
-				actionForm.attr("action","/board/view");
+				actionForm.attr("action","/board/faq_view");
 				actionForm.submit();
 			});
 		});

@@ -3,6 +3,8 @@ package com.fundigo.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,8 +44,37 @@ public class ProductController {
 		
 		log.info("/view----");
 		model.addAttribute("product", pService.get(pno));
-		model.addAttribute("lists", pService.getList(pno));
+		List<ListVO> lists = pService.getList(pno);
+		for(int i = 0; i<lists.size(); i++) {
+			ListVO list = lists.get(i);
+			String contents = list.getContents().replaceAll("\r\n", "<br>");
+			list.setContents(contents);
+		}
+		
+		model.addAttribute("lists", lists);
 	}//상품 뷰
+	
+	@GetMapping("/purchase")
+	public void purchase(@RequestParam("pno") Long pno, Model model) {
+		
+		log.info("/purchasing----");
+		model.addAttribute("product", pService.get(pno));
+		List<ListVO> lists = pService.getList(pno);
+		for(int i = 0; i<lists.size(); i++) {
+			ListVO list = lists.get(i);
+			String contents = list.getContents().replaceAll("\r\n", "<br>");
+			list.setContents(contents);
+		}
+		
+		model.addAttribute("lists", lists);
+	}
+	
+	@PostMapping("/purchase")
+	public void purchaseAfter(@RequestParam ("code") Long code, String unkno, HttpSession session, Model model) {
+
+		String id = session.getId();
+		fService.register(id, unkno, code);
+	}
 	
 	@GetMapping("/register")
 	public void proRegister(@RequestParam("id") String id, Model model) {
