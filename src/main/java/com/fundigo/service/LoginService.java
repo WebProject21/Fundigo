@@ -7,9 +7,9 @@ import com.fundigo.domain.LoginVO;
 
 public interface LoginService {
 	//펀딩 기록 조회하기
-	public List<FundhistoryVO> getFundList(String id);
+	public List<FundhistoryVO> getFundList(FundhistoryVO login);
 	//favorite 관심목록 조회
-	public List<FundhistoryVO> getFavoriteList(String id);
+	public List<FundhistoryVO> getFavoriteList(FundhistoryVO login);
 	
 	public void ClientJoin(LoginVO login);
 	

@@ -29,7 +29,7 @@ public interface LoginMapper {
 	//checked
 	public void cDelete(LoginVO login);
 	//funding History view
-	public List<FundhistoryVO> getFundList (String id);
+	public List<FundhistoryVO> getFundList (FundhistoryVO login);
 	//FundHistory insert
 	public int Finsert(FundhistoryVO fund);
 	//FundHisroty delete
@@ -39,7 +39,7 @@ public interface LoginMapper {
 	public void PnoSelect(ProductVO product);
 
 	//favorite select base in id
-	public List<FundhistoryVO> getFavoriteList(String id);
+	public List<FundhistoryVO> getFavoriteList(FundhistoryVO login);
 	//favorite insert pno
 	public int FpnoInsert(FundhistoryVO fund);
 	//favorite delete base in id

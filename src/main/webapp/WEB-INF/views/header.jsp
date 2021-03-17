@@ -77,14 +77,15 @@
 								<c:if test="${member!=null}">
 									<li><p class="fa fa-user">
 											ID :
-											<c:out value="${member.id}"></c:out>
+											<a href="/mypage/Favorite" >마이페이지(${member.id})</a>
 										</p>
 										<button id="logoutBtn" type="button">logout</button></li>
 
 								</c:if>
 							</form>
+							<c:if test="${member==null}">
 							<li><a href="/mypage/JoinPage"><i class="fa fa-lock"></i>&nbsp;
-									회원가입</a></li>
+									회원가입</a></li></c:if>
 						</ul>
 
 					</div>

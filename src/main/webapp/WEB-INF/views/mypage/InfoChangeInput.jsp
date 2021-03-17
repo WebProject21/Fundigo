@@ -29,6 +29,7 @@
 </style>
 </head>
 <body>
+<%@include file="../header.jsp"%>
 	<div class="container">
 		
 		<div class="row ">
@@ -40,28 +41,28 @@
 					<!-- <form action="mChange" method="post" enctype="multipart/form-data"> -->
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
-							<label for="#mid">아이디</label> 
-							<input class="form-control" type="text" id="mid" disabled="disabled" required="required">
+							<label for="#id">아이디</label> 
+							<input class="form-control" type="text" id="id" name ="id" disabled="disabled" value="${member.id}" required="required">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
-							<label for="#mphone">휴대폰</label>
-							 <input class="form-control" type="tel" placeholder="휴대폰" id="mphone" disabled="disabled"
+							<label for="#phone">휴대폰</label>
+							 <input class="form-control" type="tel" placeholder="휴대폰" id="phone" name = "phone"value="${member.phone}" disabled="disabled"
 								required="required">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
-							<label for="mpw">비밀번호</label>
+							<label for="password">비밀번호</label>
 							 <input class="form-control"
-								type="password" id="mpw" name="mpw" placeholder="비밀번호"
+								type="password" id="password" name="password" placeholder="비밀번호"
 								required="required">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
-							<input class="form-control" type="password" id="mpwCheck"
+							<input class="form-control" type="password" id="passCheck" 
 								placeholder="비밀번호 확인" required="required">
 						</div>
 					</div>
@@ -69,7 +70,13 @@
 						<div class="col-12 offset-md-3 col-md-6">
 							<label for="address">주소</label> 
 							<input class="form-control"
-								type="text" name="address">
+								type="text" name="address" id ="address">
+						</div>
+					</div>
+					<div class="row form-group">
+						<div class="col-12 offset-md-3 col-md-6">
+							<label for="nickname">닉네임</label> 
+							<input class="form-control" type="text" name="nickname" id ="nickname">
 						</div>
 					</div>
 					
@@ -83,7 +90,7 @@
 			</div>
 		</div>
 
-		<!-- </form>
-	 -->
+		<!-- </form> -->
+			<%@include file="../footer.jsp"%>
 </body>
 </html>

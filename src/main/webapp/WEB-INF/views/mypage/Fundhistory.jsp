@@ -41,22 +41,21 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>#제품번호</th>
 									<th>펀딩일자</th>
+									<th>가격</th>
+									<th>펀딩타입</th>
 								</tr>
-							
 							</thead>
 							<c:choose>
 							
-					  	 <c:when test="${getfavorite!=null}"> 
-							<c:forEach items="${getfavorite}" var="getfavorite">
-								
+					  	 <c:when test="${getfund!=null}"> 
+							<p>값이 존재합니다</p>
+							<c:forEach items="${getfund}" var="getfund">
 								<tr>
-								
-									<td><c:out value="${getfavorite.fav_count}" /></td>
-									<td><c:out value="${getfavorite.pno}" /></td>
-									<td><c:out value="${getfavorite.dates}" /></td> 
-								
+									<td><c:out value="${getfund.pno}" /></td>
+									<td><c:out value="${getfund.dates}" /></td>
+									<td><c:out value="${getfund.price}" /></td>
+									<td><c:out value="${getfund.code}" /></td> 
 								<tr>
 							</c:forEach>
 					  	</c:when> 
