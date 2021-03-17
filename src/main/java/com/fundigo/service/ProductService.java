@@ -29,5 +29,7 @@ public interface ProductService {
 	
 	public List<ProductVO> searchList(Criteria cri);
 	
+	public ListVO getOneList(Long code);
+	
 	public int getTotal(Criteria cri);
 }

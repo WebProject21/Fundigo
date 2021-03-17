@@ -124,7 +124,7 @@ p {
 <body>
 
 	<%@include file="../header.jsp"%>
-
+	
 	<section id="contents">
 
 		<div class="container-purchase">
@@ -145,7 +145,6 @@ p {
 								</div>
 							</div>
 							<form name = "infoForm" action="/product/purchase" method="post">
-								<input type="hidden" name="product" value="${product }">
 								<div
 									class="radio-group row justify-content-center px-3 text-center a">
 									<c:forEach items="${lists}" var="list" varStatus="status">
@@ -153,7 +152,7 @@ p {
 											class="col-auto col-lg-7 card-block py-3 text-center radio">
 											<input type="hidden" class="fundPrice" name="fundPrice"
 												value="${list.price }"> <input type="hidden"
-												name="code" value="${ list.code}">
+												name="code" value="${list.code}">
 											<div class="flex-row">
 												<h5 class="card-title">
 													<strong><c:out value="${list.title }" /></strong>
@@ -167,6 +166,7 @@ p {
 										</div>
 									</c:forEach>
 								</div>
+								</form>
 								<div class="row justify-content-center">
 									<div class="col">
 										<p>
@@ -176,6 +176,9 @@ p {
 										</p>
 									</div>
 								</div>
+								<form id = "actionForm" method = "post" action = "/product/purchase">
+								<input type="hidden" name="pno" value="${product.pno }">
+								<input type="hidden" name="code" value="">
 								<div class="row justify-content-center">
 										<p>
 										<div class="col-sm-2 custom-control custom-radio">
@@ -199,7 +202,7 @@ p {
 								</button>
 							</div>
 							<div class="col-auto">
-								<button type="button" id="purchaseButton"
+								<button type="submit" id="purchaseButton"
 									class="btn btn-outline-danger">
 									구매하기 <span class="ml-2"><i class="fa fa-angle-right"
 										aria-hidden="true"></i></span>

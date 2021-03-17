@@ -131,4 +131,10 @@ public class ProductServiceImpl implements ProductService {
 		
 		return mapper.pGetTotalCount(cri);
 	}
+
+	@Override
+	public ListVO getOneList(Long code) {
+		// TODO Auto-generated method stub
+		return mapper.lRead(code);
+	}
 }

@@ -1,5 +1,7 @@
 package com.fundigo.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fundigo.domain.BoardVO;
 import com.fundigo.domain.Criteria;
 import com.fundigo.domain.ListVO;
+import com.fundigo.domain.LoginVO;
 import com.fundigo.domain.PageDTO;
 import com.fundigo.domain.ProductVO;
 import com.fundigo.service.BoardService;
@@ -70,10 +73,27 @@ public class ProductController {
 	}
 	
 	@PostMapping("/purchase")
-	public void purchaseAfter(@RequestParam ("code") Long code, String unkno, HttpSession session, Model model) {
+	public String purchaseAfter(Long code, Long pno, String unkno, HttpSession session, RedirectAttributes rttr) {
 
-		String id = session.getId();
-		fService.register(id, unkno, code);
+		LoginVO login = (LoginVO) session.getAttribute("member");
+		String id = login.getId();
+		
+		log.info(pService.get(pno));
+		
+		fService.register(id, unkno, code);	//fundhistory insert
+		
+		rttr.addFlashAttribute("list",pService.getOneList(code));
+		rttr.addFlashAttribute("product",pService.get(pno));
+		rttr.addFlashAttribute("id", id);
+		rttr.addFlashAttribute("fundhistory", fService.get(id, pno));
+		
+		return "redirect:/product/after?pno="+pno+"&id="+id;
+	}
+	
+	@GetMapping("/after")
+	public void purchaseCheck(@RequestParam("id") String id, @RequestParam("pno") Long pno) {
+		
+		
 	}
 	
 	@GetMapping("/register")

@@ -123,6 +123,15 @@ $('.radio-group .radio').click(function () {
 });
 });
 
-$("#purchaseButton").on("click",function(e){
 
+$("#purchaseButton").on("click",function(e){
+	
+e.preventDefault();
+	
+var code = $('.selected').children('input[name="code"]').val();
+alert(code);
+
+actionForm.find("input[name = 'code']").val(code);
+actionForm.submit();
 });
+
