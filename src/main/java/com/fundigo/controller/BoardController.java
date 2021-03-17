@@ -69,7 +69,7 @@ public class BoardController {
 		return "redirect:/board/faq?id="+board.getId();
 	}
 	
-	@GetMapping({"/faq_view","/ faq_modify"})
+	@GetMapping({"/faq_view","/faq_modify"})
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/view or /modify");
 		model.addAttribute("board",bService.get(bno));
@@ -81,7 +81,8 @@ public class BoardController {
 		model.addAttribute("board",bService.get(bno));
 		model.addAttribute("product",pService.get(pno));
 	}
-	@PostMapping("/FAQmodify")
+	
+	@PostMapping("/faq_modify")
 	public String FAQmodify(BoardVO board, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) {
 		log.info("modify:" + board);
 		if(bService.modify(board)) {
@@ -90,7 +91,7 @@ public class BoardController {
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		
-		return "redirect:/board/FAQlist";
+		return "redirect:/board/faq?id="+board.getId();
 	}
 	
 	@PostMapping("/productBoard_modify")
@@ -128,18 +129,21 @@ public class BoardController {
 		
 		return "redirect:/product/notice?pno="+pno+"&id="+id;
 	}
-//	@PostMapping("/remove")
-//	public String remove(@RequestParam("bno") Long bno,BoardVO board, RedirectAttributes rttr, HttpServletRequest request) {
-//		log.info("remove..."+board.getBno());
-//		List<BoardAttachVO> attachList = bService.getAttachList(board.getBno());
-//		String id = board.getId();
-//		if(bService.remove(board.getBno())) {
-//			
-//			deleteFiles(attachList, request);
-//			rttr.addFlashAttribute("result", "success");
-//		}
-//		return "redirect:/product/notice?id="+id;
-//	}
+	@PostMapping("/faq_remove")
+	public String faq_remove(@RequestParam("bno") Long bno,BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, HttpServletRequest request) {
+		log.info("remove..."+board.getBno());
+		List<BoardAttachVO> attachList = bService.getAttachList(board.getBno());
+		String id = board.getId();
+		if(bService.remove(board.getBno())) {
+			
+			deleteFiles(attachList, request);
+			rttr.addFlashAttribute("result", "success");
+		}
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		
+		return "redirect:/board/faq?id="+id;
+	}
 	
 	@GetMapping(value = "/getAttachList",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
