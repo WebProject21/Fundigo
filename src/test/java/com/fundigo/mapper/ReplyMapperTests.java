@@ -22,13 +22,20 @@ public class ReplyMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
 	
-
+	
 	@Test
-	public void testList() {
-		Criteria cri = new Criteria();
+	public void testList2() {
+		Criteria cri = new Criteria(2, 5);
 		List<ReplyVO> replies = mapper.rGetListWithPaging(cri, 1000L);
-		replies.forEach(reply -> log.info(replies));
+		replies.forEach(reply -> log.info(reply));
 	}
+	
+//	@Test
+//	public void testList() {
+//		Criteria cri = new Criteria();
+//		List<ReplyVO> replies = mapper.rGetListWithPaging(cri, 1000L);
+//		replies.forEach(reply -> log.info(replies));
+//	}
 	
 //	@Test
 //	public void getListTest(){
@@ -47,16 +54,16 @@ public class ReplyMapperTests {
 //		log.info(reply);
 //	}
 	
-	@Test
-	public void testUpdateReply() {
-		ReplyVO reply = new ReplyVO();
-		
-		reply.setContent("수정한 내용입니다.");
-		reply.setRno(2L);
-		
-		mapper.rUpdate(reply);
-		log.info(reply);
-	}
+//	@Test
+//	public void testUpdateReply() {
+//		ReplyVO reply = new ReplyVO();
+//		
+//		reply.setContent("수정한 내용입니다.");
+//		reply.setRno(2L);
+//		
+//		mapper.rUpdate(reply);
+//		log.info(reply);
+//	}
 	
 	
 //	@Test
