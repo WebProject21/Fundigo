@@ -135,7 +135,6 @@ public class ProductController {
 		int total = bService.getTotal(map);
 		model.addAttribute("list",bService.getCOMMList(pno, cri));
 		model.addAttribute("product",pService.get(pno));
-		model.addAttribute("count", bService.getListcount());
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}//상품 커뮤니티 페이지
 	

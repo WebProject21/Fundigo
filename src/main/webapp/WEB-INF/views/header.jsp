@@ -169,7 +169,7 @@
 
 						<li><a href="#">Home</a></li>
 
-						<li><a href="#">FAQ</a></li>
+						<li><a href="/board/faq">FAQ</a></li>
 
 					</ul>
 
