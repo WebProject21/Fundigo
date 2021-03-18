@@ -172,28 +172,53 @@ public class LoginController  {
 	}
 
 	@PostMapping("/modify")
-	public String ClientModify(LoginVO login, RedirectAttributes rttr) {
-		log.info("modify Page:" + login);
+	public String ClientModify(LoginVO login,ModelAndView model ,RedirectAttributes rttr) {
 
 		lService.Clientupdate(login);
 		rttr.addFlashAttribute("result", login.getId());
 
+		
 		return "redirect:/mypage/favorite?id=" + login.getId();
 	}
+	@RequestMapping(value="/MemberCheck", method = {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView MemberCheck(LoginVO login ,ModelAndView model, HttpServletRequest request)throws Exception {
+		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+		HttpSession session = request.getSession();
+		model.addObject("vid", loginvo.getId());
+		log.info("member : "+loginvo.getId());
+		
 	
+//		LoginVO modifyMember = lService.Clientselect(login);
+//		
+//		log.info("member : "+modifyMember);
+//		if(modifyMember !=null) {	
+//			log.info("client select"+modifyMember);
+//			session.setAttribute("client", modifyMember);
+//			
+//		}
+		return model;
+
+	}
+
 	// modify previous section
 	@RequestMapping(value="/InfoChangeInput", method = {RequestMethod.POST,RequestMethod.GET})
-	public String ClientSelect(LoginVO login ,ModelAndView model, HttpServletRequest request)throws Exception {
-		LoginVO loginvo = (LoginVO)request.getSession().getAttribute("member");
-		login.setId(loginvo.getId());
-		lService.Clientselect(login);
-		log.info("member info :"+login);
-		model.addObject("member", login);
-
-		log.info("client select"+login);
-		return "/mypage/InfoChangeInput";
+	public ModelAndView ClientSelect(LoginVO login ,ModelAndView model, HttpServletRequest request)throws Exception {
+		
+		LoginVO member = (LoginVO) request.getSession().getAttribute("member");
+		login.setId(member.getId());
+		String id = login.getId();
+		LoginVO modifyMember = lService.Clientselect(id);
+		 
+		model.addObject("id", modifyMember.getId());
+		model.addObject("name", modifyMember.getName());
+		model.addObject("address", modifyMember.getAddress());
+		model.addObject("phone", modifyMember.getPhone());
+		model.addObject("nick", modifyMember.getNickname());
+		model.setViewName("/mypage/InfoChangeInput");
+		
+		return model;
 	}
-	
+
 	@RequestMapping(value="/Fundhistory", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView getFundList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
 		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
@@ -210,7 +235,7 @@ public class LoginController  {
 		
 		return model;
 	}
-	
+
 	//fund getList fundSercvice GetList
 	@PostMapping("fundlist_pno")
 	public String FundgetList(Long pno, Model model) {
@@ -218,7 +243,7 @@ public class LoginController  {
 		model.addAttribute("pnoList",fService.getList(pno));
 		return "redirect:/mypage/favorite?pno="+pno;
 	}
-	
+
 	//FundHistory insert Finsert in login mapper
 	@PostMapping("fund_insert")
 	public void RegisterFundHistory(String id, String unkno, Long code,RedirectAttributes rttr){
@@ -243,7 +268,7 @@ public class LoginController  {
 		fService.remove(id, pno);
 		rttr.addAttribute("result","success");
 	}
-	
+
 	// favorite List Search in Client DB
 	@RequestMapping(value = "/Favorite",  method = {RequestMethod.POST,RequestMethod.GET} )
 	public ModelAndView FavoriteList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
@@ -262,7 +287,7 @@ public class LoginController  {
 		return model;
 		
 	}
-	
+
 	// favorite DB insert
 	@PostMapping("/Favorite_insert")
 	public void FavoritepnoInsert(FundhistoryVO fund,RedirectAttributes rttr) {

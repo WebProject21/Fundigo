@@ -21,13 +21,17 @@
 	select id, name, address, phone,nickname,tag from client where id = #{id,jdbcType = VARCHAR} and password = #{password,jdbcType = VARCHAR}
 	</select>
 	
-	<select id="cSelect" resultType="com.fundigo.domain.LoginVO">
-	select id, name, address, phone,nickname,tag from client where id = #{id}
+	<select id="cSelect" parameterType="String" resultType="com.fundigo.domain.LoginVO">
+	select id, name, address, phone,nickname,tag from client where id = #{id,jdbcType = VARCHAR}
+	</select>
+	
+	<select id="cCheck" parameterType="String" resultType="com.fundigo.domain.LoginVO">
+	select id client where id = #{id } and password = #{password}
 	</select>
 	
 	<update id="cUpdate" >
-	update client set password=#{password},address=#{address},phone=#{phone},nickname=#{nickname},
-	tag=#{tag} where id = #{id}
+	update client set password=#{password},address=#{address},nickname=#{nickname},
+	where id = #{id} and password = #{password}
 	</update>
 	
 	<delete id="cDelete">

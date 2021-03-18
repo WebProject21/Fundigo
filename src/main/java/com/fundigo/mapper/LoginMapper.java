@@ -21,9 +21,11 @@ public interface LoginMapper {
 	//login check
 	public LoginVO Clogin(LoginVO login);
 	//checked
-	public void cSelect (LoginVO login);
+	public LoginVO cSelect (String id);
 	//checked
 	public int cUpdate (LoginVO login);
+	// before the client update 
+	public LoginVO cCheck(LoginVO login);
 	
 	public LoginVO phonecheck (LoginVO login);
 	//checked
@@ -34,7 +36,7 @@ public interface LoginMapper {
 	public int Finsert(FundhistoryVO fund);
 	//FundHisroty delete
 	public int Fdelete (@Param("id") String id, @Param("pno") Long pno);
-
+	
 	//PnoSelect go product
 	public void PnoSelect(ProductVO product);
 

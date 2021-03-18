@@ -42,13 +42,13 @@
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
 							<label for="#id">아이디</label> 
-							<input class="form-control" type="text" id="id" name ="id" disabled="disabled" value="${member.id}" required="required">
+							<input class="form-control" type="text" id="id" name ="id" disabled="disabled" value="${id}" required="required">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
 							<label for="#phone">휴대폰</label>
-							 <input class="form-control" type="tel" placeholder="휴대폰" id="phone" name = "phone"value="${member.phone}" disabled="disabled"
+							 <input class="form-control" type="tel" placeholder="휴대폰" id="phone" name = "phone"value="${phone}" disabled="disabled"
 								required="required">
 						</div>
 					</div>
@@ -70,13 +70,13 @@
 						<div class="col-12 offset-md-3 col-md-6">
 							<label for="address">주소</label> 
 							<input class="form-control"
-								type="text" name="address" id ="address">
+								type="text" name="address" id ="address" value="${address}">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
 							<label for="nickname">닉네임</label> 
-							<input class="form-control" type="text" name="nickname" id ="nickname">
+							<input class="form-control" type="text" name="nickname" id ="nickname" value ="${nick}">
 						</div>
 					</div>
 					
@@ -89,8 +89,24 @@
 				</div>
 			</div>
 		</div>
-
+<script type="text/javascript">
+	document.getElementById('password').addEventListener('keyup', function(){		
+		if(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}/.test(document.getElementById('mpw').value)) {
+			document.getElementById('password').value = document.getElementById('password').value.trim();
+			document.getElementById('password').style.borderColor = 'green';
+		} else {
+			document.getElementById('password').style.borderColor = 'red';
+		}
+	}, false);
+	document.getElementById('passCheck').addEventListener('keyup', function(){
+		if(document.getElementById('password').value==document.getElementById('passCheck').value){
+			document.getElementById('passCheck').style.borderColor = 'green';
+		} else {
+			document.getElementById('passCheck').style.borderColor = 'red';
+		}
+	}, false);
+</script>
 		<!-- </form> -->
-			<%@include file="../footer.jsp"%>
+		<%@include file="../footer.jsp"%>
 </body>
 </html>
