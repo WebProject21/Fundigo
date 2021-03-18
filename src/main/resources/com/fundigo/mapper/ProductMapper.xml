@@ -129,6 +129,6 @@ WHERE rn > (#{pageNum}-1)*#{amount} ]]>
 
 
 	<select id = "pGetTotalCount" resultType = "int">
-	select count(*) from product where pno > 0
+	select count(*) from product WHERE title LIKE '%'||#{keyword}||'%' OR DESCRIPTION LIKE '%'||#{keyword}||'%' OR id LIKE '%'||#{keyword}||'%'
 	</select>
 </mapper>
