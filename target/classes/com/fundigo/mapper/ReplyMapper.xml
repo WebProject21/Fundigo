@@ -12,9 +12,22 @@
       ]]>
    </select>
 	
+	<select id="getCountByBno" resultType = "int">
+		<![CDATA[
+      select count(rno) from reply where bno = #{bno}
+      ]]>
+	</select>
+	
 	<select id="rGetListWithPaging" resultType="com.fundigo.domain.ReplyVO">
       <![CDATA[
-      select * from reply where bno = #{bno} order by rno asc
+      select rno, bno, content, id, regdate, updatedate
+      from( select /*+INDEX(reply REPLY_PK) */
+      		rownum rn, rno, bno, content, id, regdate, updatedate
+      		from reply
+   			where bno = #{bno} 
+   			and rno > 0  
+   			and rownum <= #{cri.pageNum} * #{cri.amount} )
+   	  where rn > (#{cri.pageNum}-1) * #{cri.amount}
       ]]>
    </select>
 	
@@ -34,7 +47,7 @@
 	select * from reply where rno = #{rno}
 	</select>
 
-
+	
    <update id="rUpdate">
    	update reply set
    	content = #{content},
