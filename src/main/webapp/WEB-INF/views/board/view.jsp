@@ -80,6 +80,39 @@
 								<!-- end panel -->
 							</div>
 							<!-- /.row -->
+							<div class = "row">
+								<div class = "col-lg-12">
+									<!-- /.panel -->
+									<div class ="panel panel-default">
+										<div class = "panel-heading">
+											<i class = "fa fa-comments"></i>댓글
+											<input type = "text" class = "addreply" name = 'reply_content' value = 'Reply'>
+											<input type = "hidden" class = "addreply" name = 'reply_id' value = '<c:out value = '${board.id}'/>'>
+											<input type = "hidden" class = "addreply" name = 'reply_bd_type' value = '<c:out value="${list_type}"/>'>
+											<button data-oper='addreply' type = "button" id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
+										</div> 
+										<!-- /.panel-heading -->
+										<div class = "panel-body">
+											<ul class = "chat">
+												<!-- 댓글 시작 -->
+												<li class = "left clearfix" data-rno = '12'>
+													<div>
+														<div class = "header">
+															<strong class = "primary-font">user00</strong>
+															<small class = "pull-right text-muted">2021-01-01</small>
+														</div>
+														<p>Good job!</p>
+													</div>
+												</li>
+												<!-- end reply -->
+											</ul>
+											<!-- . / end ul -->
+										</div>
+										<!-- /. panel .chat-panel -->
+									</div>
+								</div>
+								<!-- ./ end row -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -88,46 +121,49 @@
 	</div>
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	console.log(replyService);
-});
-	console.log("=================");
-	console.log("JS Test");
-	var bnoValue = '<c:out value = "${board.bno}"/>';
-	/* 
-	//for replyService add test
-	replyService.add({
-		content: "JS Test", id : "test", bno:bnoValue
-	}, function(result){
-		alert("Result:"+result);
-	}); 
+		var bnoValue = '<c:out value = "${board.bno}"/>';
+		var replyUL = $(".chat");
+	$(document).ready(function(){	
+		
+		showList(1);
+		
+		function showList(page){
+			replyService.getList({bno:bnoValue, page: page||1}, function(list){
+				var str = "";
+				if(list == null || list.length == 0){
+					replyUL.html("");
+					return;
+				}
+				for(var i = 0, len = list.length || 0; i<len; i++){
+					str += "<li class = 'left clearfix' data-rno = '"+list[i].rno+"'>";
+					str += "	<div><div class = 'header'><strong class = 'primary-font'>"+list[i].id+"</strong>";
+					str += "	<small class = 'pull-rigth text-muted'>"+replyService.displayTime(list[i].regDate)+"</small></div>";
+					str += "	<p>"+list[i].content+"</p></div></li>";
+				}
+				replyUL.html(str);
+			});//end function
+		}//end showList
+	});	
+		
 	
-	//reply List Test
-	replyService.getList({bno:bnoValue, page:1}, function(list){
-		for(var i = 0, len = list.length || 0; i<len; i++){
-			console.log(list[i]);
-		}
-	});
-	 */
-	 
-	//댓글 삭제 테스트
-	/* replyService.remove(1, function(count){
-		console.log(count);
-		if(count === "success"){
-			alert("REMOVED");
-		}
-	}, function(err){
-		alert('ERROR');
-	}); */
- 	
-	//2번 댓글 수정
-	replyService.update({
-		rno : 2,
-		bno : bnoValue,
-		content : "Modified Reply....."
-	}, function(result){
-		alert("수정완료되었습니다. 정말로");
-	})
+		$(document).ready(function(){
+			$("button[data-oper = 'addreply']").on("click",function(e){
+				var replyInputContent = $("input[name = 'reply_content']").clone();
+				var replyInputid = $("input[name = 'reply_id']").clone();
+				var replyInputbd_type = $("input[name = 'reply_bd_type']").clone();
+				
+				var reply = {
+						content : replyInputContent.val(),
+						id : replyInputid.val(),
+						bd_type : replyInputbd_type.val(),
+						bno : bnoValue
+				};
+				console.log(reply);
+				replyService.add(reply, function(result){
+					alert(result);
+				});
+			});
+		});
 </script>	
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -179,7 +215,7 @@ $(document).ready(function(){
 				}
 			});
 		
-		function showImage(fileCallPath){
+		/*  function showImage(fileCallPath){
 			alert(fileCallPath);
 			$("bigPictureWrapper").css("display", "flex").show();
 			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
@@ -190,7 +226,7 @@ $(document).ready(function(){
 				$('.bigPictureWrapper').hide();
 			});
 		})
-		/* $("button[data-oper=""]").on("click", function(e){
+		$("button[data-oper='']").on("click", function(e){
 			operForm.find("#bno").remove();
 		}); */
 	</script>
