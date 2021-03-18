@@ -85,11 +85,11 @@
 									<!-- /.panel -->
 									<div class ="panel panel-default">
 										<div class = "panel-heading">
-											<i class = "fa fa-comments fa-fw"></i>댓글
-											<input type = "text" class = "addreply" name = 'content' value = 'Reply'>
-											<input type = "hidden" class = "addreply" name = 'id' value = '<c:out value = '${board.id}'/>'>
-											<input type = "hidden" class = "addreply" name = 'bd_type' value = '<c:out value="${list_type}"/>'>
-											<button id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
+											<i class = "fa fa-comments"></i>댓글
+											<input type = "text" class = "addreply" name = 'reply_content' value = 'Reply'>
+											<input type = "hidden" class = "addreply" name = 'reply_id' value = '<c:out value = '${board.id}'/>'>
+											<input type = "hidden" class = "addreply" name = 'reply_bd_type' value = '<c:out value="${list_type}"/>'>
+											<button data-oper='addreply' type = "button" id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
 										</div> 
 										<!-- /.panel-heading -->
 										<div class = "panel-body">
@@ -121,9 +121,9 @@
 	</div>
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){	
 		var bnoValue = '<c:out value = "${board.bno}"/>';
 		var replyUL = $(".chat");
+	$(document).ready(function(){	
 		
 		showList(1);
 		
@@ -144,20 +144,24 @@
 			});//end function
 		}//end showList
 	});	
-		var addreply = $(".addreply");
-		var replyInputContent = addreply.find("input[name='content']");
-		var replyInputid = addreply.find("input[name='id']");
-		var replyInputbd_type = addreply.find("input[name='bd_type']");
 		
-		$("addReplyBtn").on("click",function(e){
-			var reply = {
-					content : replyInputContent,
-					id : replyInputid,
-					bd_type : replyInputbd_type,
-					bno : bnoValue
-			};
-			replyService.add(reply, function(result){
-				alert(result);
+	
+		$(document).ready(function(){
+			$("button[data-oper = 'addreply']").on("click",function(e){
+				var replyInputContent = $("input[name = 'reply_content']").clone();
+				var replyInputid = $("input[name = 'reply_id']").clone();
+				var replyInputbd_type = $("input[name = 'reply_bd_type']").clone();
+				
+				var reply = {
+						content : replyInputContent.val(),
+						id : replyInputid.val(),
+						bd_type : replyInputbd_type.val(),
+						bno : bnoValue
+				};
+				console.log(reply);
+				replyService.add(reply, function(result){
+					alert(result);
+				});
 			});
 		});
 </script>	
@@ -211,7 +215,7 @@
 				}
 			});
 		
-		function showImage(fileCallPath){
+		/*  function showImage(fileCallPath){
 			alert(fileCallPath);
 			$("bigPictureWrapper").css("display", "flex").show();
 			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
@@ -222,7 +226,7 @@
 				$('.bigPictureWrapper').hide();
 			});
 		})
-		/* $("button[data-oper=""]").on("click", function(e){
+		$("button[data-oper='']").on("click", function(e){
 			operForm.find("#bno").remove();
 		}); */
 	</script>
