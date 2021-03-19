@@ -13,9 +13,4 @@ public class LoginVO {
 	private String nickname;
 	
 	private String tag;
-
-
-	
-	
-	
 }

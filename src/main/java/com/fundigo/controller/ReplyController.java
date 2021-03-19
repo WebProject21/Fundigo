@@ -1,7 +1,5 @@
 package com.fundigo.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fundigo.domain.Criteria;
+import com.fundigo.domain.ReplyDTO;
 import com.fundigo.domain.ReplyVO;
 import com.fundigo.service.ReplyService;
 
@@ -42,14 +41,14 @@ public class ReplyController {
 	@GetMapping(value = "/pages/{bno}/{page}", produces = {
 			MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(
+	public ResponseEntity<ReplyDTO> getList(
 			@PathVariable("page") int page,
 			@PathVariable("bno") Long bno){
-		
+			
 			log.info("get List..........");
 			Criteria cri = new Criteria(page, 10);
-			log.info(cri);
-			return new ResponseEntity<List<ReplyVO>>(rservice.rGetList(cri, bno), HttpStatus.OK);
+			log.info("cri : "+cri);
+			return new ResponseEntity<ReplyDTO>(rservice.getListPage(cri, bno), HttpStatus.OK);
 	}
 	@GetMapping(value = "/{rno}", produces = {
 			MediaType.APPLICATION_XML_VALUE,

@@ -18,12 +18,14 @@ public interface LoginService {
 	public int idCheck(String id);
 	
 	public void FavoriteInsert(FundhistoryVO fund);
+	//search for the update
+	public LoginVO Clientselect(String id);
 	
-	public void Clientselect(LoginVO login);
+	public LoginVO clientCheck (LoginVO login);
 	
 	public void Clientupdate(LoginVO login);
 	
-	public void Clientwithdraw (LoginVO login);
+	public int Clientwithdraw (LoginVO login);
 	
 	public boolean FavoriteDelete(String id, Long pno);
 	

@@ -6,6 +6,9 @@
 <html>
 <head>
 <script  src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <meta charset="UTF-8">
 <title>fundigo</title>
 </head>
@@ -86,10 +89,7 @@
 									<div class ="panel panel-default">
 										<div class = "panel-heading">
 											<i class = "fa fa-comments"></i>댓글
-											<input type = "text" class = "addreply" name = 'reply_content' value = 'Reply'>
-											<input type = "hidden" class = "addreply" name = 'reply_id' value = '<c:out value = '${board.id}'/>'>
-											<input type = "hidden" class = "addreply" name = 'reply_bd_type' value = '<c:out value="${list_type}"/>'>
-											<button data-oper='addreply' type = "button" id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
+											<button data-oper='addReplyBtn' type = "button" id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
 										</div> 
 										<!-- /.panel-heading -->
 										<div class = "panel-body">
@@ -98,10 +98,9 @@
 												<li class = "left clearfix" data-rno = '12'>
 													<div>
 														<div class = "header">
-															<strong class = "primary-font">user00</strong>
-															<small class = "pull-right text-muted">2021-01-01</small>
+															
 														</div>
-														<p>Good job!</p>
+														
 													</div>
 												</li>
 												<!-- end reply -->
@@ -109,9 +108,46 @@
 											<!-- . / end ul -->
 										</div>
 										<!-- /. panel .chat-panel -->
+										<div class = "panel-footer">
+										
+										</div>
 									</div>
 								</div>
 								<!-- ./ end row -->
+								<!-- Modal -->
+								<div class = "modal fade" id = "MyModal" tabindex = "-1" role = "dialog"
+								aria-labelledby = "myModalLabel" aria-hidden = "true">
+									<div class = "modal-dialog">
+										<div class = "modal-content">
+											<div class = "modal-header">
+												<button  type = "button" class = "close" data-dismiss = "modal"
+													aria-hidden = "true">&times;</button>
+												<h4 class = "modal-title" id = "myModalLabel">댓글작성FORM</h4>
+											</div>
+											<div class = "modal-body">
+												<div class = "form-group">
+													<label>댓글작성</label>
+													<input class = "form-control" name = 'reply-content' value = '' placeholder = "댓글을 입력해주세요.">
+												</div>
+												<div class = "form-group">
+													<label>작성자</label>
+													<input class = "form-control" name = "reply-id" value = '' placeholder = "작성자">
+												</div>
+												<div class = "form-group">
+													<label>작성일</label>
+													<input class = "form-control" name = "reply-regDate" value = "">
+													<input type = "hidden" name = "reply-bd_type" value = '<c:out value="${list_type}"/>'>
+												</div>
+											</div>
+											<div class = "modal-footer">
+												<button id = "modalModBtn" type = "button" class = "btn btn-warning">수정</button>
+												<button id = "modalRemoveBtn" type = "button" class = "btn btn-danger">삭제</button>
+												<button id = "modalRegisterBtn" type = "button" class = "btn btn-primary" data-dismiss = "modal">등록</button>
+												<button id = "modalCloseBtn" type = "button" class = "btn btn-default" data-dismiss = "modal">닫기 </button>
+											</div>
+										</div>
+									</div>	
+								</div>
 							</div>
 						</div>
 					</div>
@@ -128,42 +164,144 @@
 		showList(1);
 		
 		function showList(page){
-			replyService.getList({bno:bnoValue, page: page||1}, function(list){
+			console.log("show list : " + page);
+			
+			replyService.getList({bno:bnoValue, page: page||1}, function(replyCnt, list){
+				console.log("replyCnt : " + replyCnt);
+				console.log("list :" + list);
+				console.log(list);
+				
+				if(page == -1){
+					pageNum = Math.ceil(replyCnt/10.0);
+					showList(pageNum);
+					return;
+				}
+				
 				var str = "";
 				if(list == null || list.length == 0){
 					replyUL.html("");
 					return;
 				}
-				for(var i = 0, len = list.length || 0; i<len; i++){
+				
+				for(var i = 0, len = list.length || 0; i < len; i++){
 					str += "<li class = 'left clearfix' data-rno = '"+list[i].rno+"'>";
-					str += "	<div><div class = 'header'><strong class = 'primary-font'>"+list[i].id+"</strong>";
+					str += "	<div><div class = 'header'><strong class = 'primary-font'>["+list[i].rno+"] "+list[i].id+"</strong>";
 					str += "	<small class = 'pull-rigth text-muted'>"+replyService.displayTime(list[i].regDate)+"</small></div>";
 					str += "	<p>"+list[i].content+"</p></div></li>";
 				}
 				replyUL.html(str);
+				showReplyPage(replyCnt);
 			});//end function
 		}//end showList
-	});	
 		
-	
-		$(document).ready(function(){
-			$("button[data-oper = 'addreply']").on("click",function(e){
-				var replyInputContent = $("input[name = 'reply_content']").clone();
-				var replyInputid = $("input[name = 'reply_id']").clone();
-				var replyInputbd_type = $("input[name = 'reply_bd_type']").clone();
-				
-				var reply = {
-						content : replyInputContent.val(),
-						id : replyInputid.val(),
-						bd_type : replyInputbd_type.val(),
-						bno : bnoValue
-				};
-				console.log(reply);
-				replyService.add(reply, function(result){
-					alert(result);
-				});
+		var modal = $(".modal");
+		var modalInputContent = modal.find("input[name='reply-content']");
+		var modalInputId = modal.find("input[name = 'reply-id']");
+		var modalInputRegDate = modal.find("input[name = 'reply-regDate']");
+		var modalInputBd_type = modal.find("input[name = 'reply-bd_type']");
+		
+		var modalModBtn = $("#modalModBtn");
+		var modalRemoveBtn = $("#modalRemoveBtn");
+		var modalRegisterBtn = $("#modalRegisterBtn");
+		
+		$('#addReplyBtn').on("click", function(e) {
+			modal.find("input").val("");
+			modalInputRegDate.closest("div").hide();
+			modal.find("button[id !='modalCloseBtn']").hide();
+			modalRegisterBtn.show();
+
+		    $(".modal").modal("show");
+		});
+		modalRegisterBtn.on("click", function(e){
+			
+			var reply = {
+					content : modalInputContent.val(),
+					id : modalInputId.val(),
+					bd_type : modalInputBd_type.val(),
+					bno : bnoValue
+			};
+			replyService.add(reply, function(result){
+				alert(result);
+				modal.find("input").val("");
+				modal.modal("hide");
+				showList(-1);
 			});
 		});
+		
+		$(".chat").on("click", "li", function(e){
+			var rno = $(this).data("rno");
+			console.log(rno);
+			replyService.get(rno, function(reply){
+				modalInputContent.val(reply.content);
+				modalInputId.val(reply.id);
+				modalInputRegDate.val(replyService.displayTime(reply.regDate));
+				modalInputBd_type.val(reply.bd_type);
+				modal.data("rno",reply.rno);
+				
+				modal.find("button[id != 'modalCoseBtn']").hide();
+				modalModBtn.show();
+				modalRemoveBtn.show();
+				
+				$(".modal").modal("show");
+			});
+		});
+		
+		modalModBtn.on("click", function(e){
+			var reply = {rno : modal.data("rno"), content : modalInputContent.val()};
+			replyService.update(reply, function(result){
+				alert(result);
+				modal.modal("hide");
+				showList(pageNum);
+			});
+		});
+		
+		modalRemoveBtn.on("click", function(e){
+			var rno = modal.data("rno");
+			replyService.remove(rno, function(result){
+				alert(result);
+				modal.modal("hide");
+				showList(pageNum);
+			});
+		});
+		
+	var pageNum = 1;
+	var replyPageFooter = $(".panel-footer");
+	
+	function showReplyPage(replyCnt){
+		var endNum = Math.ceil(pageNum / 10.0)* 10;
+		var startNum = endNum - 9;
+		
+		var prev = startNum != 1;
+		var next = false;
+		
+		if(endNum * 10 >= replyCnt){
+			endNum = Math.ceil(replyCnt/10.0);
+		}
+		if(endNum * 10 < replyCnt){
+			next = true;
+		}
+		var str = "<ul class = 'pagination pull-right'>";
+		if(prev){
+			str += "<li class = 'page-item'><a class = 'page-link' href = '"+(startNum -1)+"'>이전</a></li>";
+		}
+		for(var i = startNum; i <= endNum; i++){
+			var active = pageNum == i? "active":"";
+			str += "<li class ='page-item"+active+"'><a class = 'page-link' href = '"+i+"'>"+i+"</a></li>";
+		}
+		str += "</ul></div>";
+		console.log(str);
+		replyPageFooter.html(str);
+	}
+	
+	replyPageFooter.on("click", "li a", function(e){
+		e.preventDefault();
+		console.log("page click");
+		var targetPageNum = $(this).attr("href");
+		console.log("targetPageNum: "+targetPageNum);
+		pageNum = targetPageNum;
+		showList(pageNum);
+	});
+});	
 </script>	
 <script type="text/javascript">
 	$(document).ready(function() {

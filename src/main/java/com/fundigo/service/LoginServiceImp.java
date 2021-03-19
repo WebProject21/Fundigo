@@ -40,9 +40,10 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
-	public void Clientselect(LoginVO login) {
-		log.info("login select : "+login);
-		mapper.cSelect(login);
+	public LoginVO Clientselect(String id) {
+		log.info("login select : "+id);
+		
+		return mapper.cSelect(id);
 	}
 	
 	@Override
@@ -53,9 +54,10 @@ public class LoginServiceImp implements LoginService {
 	}
 
 	@Override
-	public void Clientwithdraw(LoginVO login) {
+	public int Clientwithdraw(LoginVO login) {
 		log.info("client delete: "+login);
-		mapper.cDelete(login);
+		
+		return mapper.cDelete(login);
 	}
 
 	@Override
@@ -90,6 +92,12 @@ public class LoginServiceImp implements LoginService {
 		log.info("phone Check"+login);
 		
 		return mapper.phonecheck(login);
+	}
+	
+	@Override
+	public LoginVO clientCheck(LoginVO login) {
+		
+		return mapper.cCheck(login);
 	}
 
 	

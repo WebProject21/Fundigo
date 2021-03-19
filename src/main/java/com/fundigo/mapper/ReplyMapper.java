@@ -11,6 +11,8 @@ public interface ReplyMapper {
 	
 	public List<ReplyVO> rGetListWithPaging(@Param("cri") Criteria cri, @Param("bno") Long bno); //한 게시판의 댓글 리스트
 	
+	public int getCountByBno(Long bno);
+	
 	public List<ReplyVO> rGetList(Long bno);
 	
 	public ReplyVO rRead(Long rno);

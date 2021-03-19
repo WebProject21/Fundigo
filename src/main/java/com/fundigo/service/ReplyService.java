@@ -3,6 +3,7 @@ package com.fundigo.service;
 import java.util.List;
 
 import com.fundigo.domain.Criteria;
+import com.fundigo.domain.ReplyDTO;
 import com.fundigo.domain.ReplyVO;
 
 public interface ReplyService {
@@ -18,4 +19,6 @@ public interface ReplyService {
 	public List<ReplyVO> rGetList(Criteria cri,Long bno);
 
 	public List<ReplyVO> rGetList(Long bno);
+	
+	public ReplyDTO getListPage(Criteria cri, Long bno);
 }
