@@ -50,7 +50,6 @@
 						<div class="form-group">
 							<button type="submit" class="btn btn-dark col-8">정보 수정</button>
 						</div>
-			
 			</div>
 		</div>
 	</div>

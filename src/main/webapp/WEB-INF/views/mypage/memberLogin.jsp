@@ -32,10 +32,8 @@
 		$("#logoutBtn").on("click", function(){
 			location.href="/mypage/logout";
 		})
-		
 	})
 </script>
-
 </head>
 <body>
 	<%@include file="../header.jsp"%>

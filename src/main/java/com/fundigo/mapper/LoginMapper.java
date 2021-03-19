@@ -28,8 +28,8 @@ public interface LoginMapper {
 	public LoginVO cCheck(LoginVO login);
 	
 	public LoginVO phonecheck (LoginVO login);
-	//checked
-	public void cDelete(LoginVO login);
+	//client delete
+	public int cDelete(LoginVO login);
 	//funding History view
 	public List<FundhistoryVO> getFundList (FundhistoryVO login);
 	//FundHistory insert

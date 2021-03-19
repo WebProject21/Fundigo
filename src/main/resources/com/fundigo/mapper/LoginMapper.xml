@@ -26,12 +26,12 @@
 	</select>
 	
 	<select id="cCheck" parameterType="String" resultType="com.fundigo.domain.LoginVO">
-	select id client where id = #{id } and password = #{password}
+	select id client where id = #{id} and password = #{password}
 	</select>
 	
-	<update id="cUpdate" >
-	update client set password=#{password},address=#{address},nickname=#{nickname},
-	where id = #{id} and password = #{password}
+	<update id="cUpdate" parameterType="String" >
+	update client set password=#{password},address=#{address},nickname=#{nickname}
+	where id = #{id} 
 	</update>
 	
 	<delete id="cDelete">

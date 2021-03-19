@@ -31,17 +31,17 @@
 <body>
 <%@include file="../header.jsp"%>
 	<div class="container">
-		
+		<form action="modify" method="post" enctype="multipart/form-data">
 		<div class="row ">
-			<jsp:include page="menu.jsp"></jsp:include>
+			<jsp:include page="menu.jsp"/>
 			<div class="col-12 col-md-6 form-group ml-3"
 				style=" border-radius: 10px; text-align: center; margin-top: 10%;">
-					
+					<c:if test="${id!=null}">
 					<h1>내 정보 수정</h1>
-					<!-- <form action="mChange" method="post" enctype="multipart/form-data"> -->
+					
 					<div class="row form-group">
 						<div class="col-12 offset-md-3 col-md-6">
-							<label for="#id">아이디</label> 
+							<label for="id">아이디</label> 
 							<input class="form-control" type="text" id="id" name ="id" disabled="disabled" value="${id}" required="required">
 						</div>
 					</div>
@@ -86,12 +86,20 @@
 								onclick="return confirm('정말 수정하시겠습니까?');">수정</button>
 						</div>
 					</div>
+				</c:if>
+				<c:if test="${id == null}">
+							<div class="col-12 offset-md-3 ">
+							<p>회원정보 수정되었습니다!</p>	
+							</div>
+						</c:if>
 				</div>
+				
 			</div>
+		</form>
 		</div>
 <script type="text/javascript">
 	document.getElementById('password').addEventListener('keyup', function(){		
-		if(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}/.test(document.getElementById('mpw').value)) {
+		if(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}/.test(document.getElementById('password').value)) {
 			document.getElementById('password').value = document.getElementById('password').value.trim();
 			document.getElementById('password').style.borderColor = 'green';
 		} else {

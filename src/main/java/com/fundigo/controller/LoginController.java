@@ -161,44 +161,78 @@ public class LoginController  {
 			return model;
 		}
 
-	@PostMapping("/withdraw")
-	public String Withdraw(LoginVO login, RedirectAttributes rttr) {
-		log.info("withdraw Page: " + login);
+	@RequestMapping(value="/Withdraw",method=RequestMethod.GET)
+	public ModelAndView Withdrawview(ModelAndView model,LoginVO login,  HttpServletRequest request) {
+		LoginVO member = (LoginVO) request.getSession().getAttribute("member");
+		model.addObject("id", member.getId());
+		model.setViewName("mypage/Withdraw");
+		return model;
+	}
 
-		lService.Clientwithdraw(login);
-		rttr.addFlashAttribute("result" + "sucess");
-
-		return "/mypage/memberLogin";
+	@RequestMapping(value="/WithdrawDelete", method=RequestMethod.POST)
+	public ModelAndView Withdraw(LoginVO login,HttpServletRequest request ,
+		ModelAndView model,	RedirectAttributes rttr) {
+		LoginVO member = (LoginVO) request.getSession().getAttribute("member");
+		String id = login.getId();
+		String getid = member.getId();
+		log.info("withdraw "+id);
+		log.info("session id "+getid);
+		
+		if(id.equals(getid)) {
+			
+			log.info("with draw final"+login.getPassword());
+			if(lService.Clientwithdraw(login)>0){
+				lService.Clientwithdraw(login);
+				request.getSession().invalidate();
+				model.setViewName("/mypage/memberLogin");
+			}else {
+			log.info("failed");
+			model.addObject("id", member.getId());
+			model.setViewName("/mypage/Withdraw");
+			System.out.println("Withdraw Failed1");
+			}
+		}
+		else {
+		log.info("unmatch");
+		model.addObject("id", member.getId());
+		model.setViewName("/mypage/Withdraw");
+		System.out.println("Withdraw Failed2");
+		}
+		return model;
 	}
 
 	@PostMapping("/modify")
-	public String ClientModify(LoginVO login,ModelAndView model ,RedirectAttributes rttr) {
-
+	public ModelAndView ClientModify(LoginVO login,ModelAndView model ,RedirectAttributes rttr,HttpServletRequest request) {
+		LoginVO member = (LoginVO) request.getSession().getAttribute("member");
+		login.getPassword();
+		login.getAddress();
+		login.getNickname();
+		login.setId(member.getId());
+		log.info("update : "+login);
 		lService.Clientupdate(login);
+		
 		rttr.addFlashAttribute("result", login.getId());
-
+		model.setViewName("/mypage/InfoChangeInput");
 		
-		return "redirect:/mypage/favorite?id=" + login.getId();
-	}
-	@RequestMapping(value="/MemberCheck", method = {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView MemberCheck(LoginVO login ,ModelAndView model, HttpServletRequest request)throws Exception {
-		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
-		HttpSession session = request.getSession();
-		model.addObject("vid", loginvo.getId());
-		log.info("member : "+loginvo.getId());
-		
-	
-//		LoginVO modifyMember = lService.Clientselect(login);
-//		
-//		log.info("member : "+modifyMember);
-//		if(modifyMember !=null) {	
-//			log.info("client select"+modifyMember);
-//			session.setAttribute("client", modifyMember);
-//			
-//		}
 		return model;
-
 	}
+	/*
+	 * @RequestMapping(value="/MemberCheck", method =
+	 * {RequestMethod.POST,RequestMethod.GET}) public ModelAndView
+	 * MemberCheck(LoginVO login ,ModelAndView model, HttpServletRequest
+	 * request)throws Exception { LoginVO loginvo = (LoginVO)
+	 * request.getSession().getAttribute("member"); HttpSession session =
+	 * request.getSession(); model.addObject("vid", loginvo.getId());
+	 * log.info("member : "+loginvo.getId());
+	 * 
+	 * 
+	 * // LoginVO modifyMember = lService.Clientselect(login); // //
+	 * log.info("member : "+modifyMember); // if(modifyMember !=null) { //
+	 * log.info("client select"+modifyMember); // session.setAttribute("client",
+	 * modifyMember); // // } return model;
+	 * 
+	 * }
+	 */
 
 	// modify previous section
 	@RequestMapping(value="/InfoChangeInput", method = {RequestMethod.POST,RequestMethod.GET})
@@ -208,7 +242,7 @@ public class LoginController  {
 		login.setId(member.getId());
 		String id = login.getId();
 		LoginVO modifyMember = lService.Clientselect(id);
-		 
+		
 		model.addObject("id", modifyMember.getId());
 		model.addObject("name", modifyMember.getName());
 		model.addObject("address", modifyMember.getAddress());
@@ -218,7 +252,7 @@ public class LoginController  {
 		
 		return model;
 	}
-
+	
 	@RequestMapping(value="/Fundhistory", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView getFundList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
 		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");

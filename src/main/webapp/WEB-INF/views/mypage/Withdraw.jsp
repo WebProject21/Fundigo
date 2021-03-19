@@ -27,33 +27,36 @@
 </head>
 <body>
 
-
+<%@include file="../header.jsp"%>
 	<div class="container">
 		<div class="row">
 			<jsp:include page="menu.jsp" />
-			<div class="offset-1 col-xs-10 col-md-5 p-5"
-				style="text-align: center; border-radius: 0/.5px; margin-top: 10%;">
+		<form action="WithdrawDelete" method="post" enctype="multipart/form-data">
+			
+			<div class="offset-5 col-12 md-4 mt-5 xs-4 p-5"
+				style="text-align: center; border-radius: 0/.5px; margin-top: 5%;">
 				<div class="m-3">
-				<h1>Withdrawal</h1>
+				<h1>&nbsp  Withdrawal</h1>
 				</div>
-				
-				<form action="withdraw" method="POST">
+			
 					<div class="form-group">
 						<input type="text" autocomplete="username"
-							class="form-control offset-1 col-10" placeholder="아이디" name="mid">
+							class="form-control offset-1 col-12" placeholder="아이디" name="id" required>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control offset-1 col-10"
-							placeholder="비밀번호" name="mpw">
+						<input type="password" class="form-control offset-1 col-12"
+							placeholder="비밀번호" id="password" id="password" name="password" required>
 					</div>
 
-					<div class="form-group">
+					<div class="form-group offset-1">
 						<button type="submit" class="btn btn-dark col-8">회원탈퇴</button>
 					</div>
 
-				</form>
 			</div>
+			</form>
+		
 		</div>
 	</div>
+			
 </body>
 </html>
