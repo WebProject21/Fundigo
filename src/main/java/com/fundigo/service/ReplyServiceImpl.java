@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fundigo.domain.Criteria;
+import com.fundigo.domain.ReplyDTO;
 import com.fundigo.domain.ReplyVO;
 import com.fundigo.mapper.BoardMapper;
 import com.fundigo.mapper.ReplyMapper;
@@ -74,6 +75,14 @@ public class ReplyServiceImpl implements ReplyService {
 		log.info("list of board...."+bno);
 		
 		return mapper.rGetList(bno);
+	}
+
+	@Override
+	public ReplyDTO getListPage(Criteria cri, Long bno) {
+		
+		return new ReplyDTO(
+				mapper.getCountByBno(bno), 
+				mapper.rGetListWithPaging(cri, bno));
 	}
 	
 }
