@@ -73,6 +73,21 @@
 											name="goalPrice" placeholder="목표 날짜 입력"> * yyyy-mm-dd
 											형식으로 입력해 주세요</td>
 									</tr>
+									<tr>
+										<td>옵션</td>
+										<td><input type="text" class="form-control"
+											name="title" placeholder="옵션 이름 입력"></td>
+									</tr>
+									<tr>
+										<td>옵션 설명</td>
+										<td><input type="text" class="form-control"
+											name="contents" placeholder="옵션 설명 입력"></td>
+									</tr>
+									<tr>
+										<td>옵션 가격</td>
+										<td><input type="text" class="form-control"
+											name="price" placeholder="옵션 금액 입력"></td>
+									</tr>
 
 								</tbody>
 							</table>

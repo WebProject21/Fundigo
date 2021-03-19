@@ -110,6 +110,7 @@ public class ProductController {
 		
 		pService.pRegister(product);
 		
+		/*
 		for(int i = 0; i< lists.size(); i++) {
 			pService.lRegister(lists.get(i));
 		}
@@ -117,6 +118,7 @@ public class ProductController {
 			product.getAttachList().forEach(attach -> log.info(attach));
 		}
 		log.info(product.getAttachList());
+		*/
 		
 		rttr.addFlashAttribute("product", product);
 		rttr.addFlashAttribute("lists", lists);
