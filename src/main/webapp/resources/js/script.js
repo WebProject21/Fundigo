@@ -135,3 +135,21 @@ actionForm.find("input[name = 'code']").val(code);
 actionForm.submit();
 });
 
+$("#purchaseButton").on("click",function(e){
+	
+e.preventDefault();
+	
+var code = $('.selected').children('input[name="code"]').val();
+alert(code);
+
+actionForm.find("input[name = 'code']").val(code);
+actionForm.submit();
+});
+
+$("#optionButton").on("click",function(e){
+	alert("무야호");
+	 $('.option').append (                        
+                   	'<tr> <td>옵션</td> <td><input type="text" class="form-control" name="title" placeholder="옵션 이름 입력"></td>	</tr> <tr> <td>옵션 설명</td> <td><input type="text" class="form-control" name="contents" placeholder="옵션 설명 입력"></td> </tr> <tr> <td>옵션 가격</td> <td><input type="text" class="form-control" name="price" placeholder="옵션 금액 입력"></td> </tr>'                
+                );
+
+});

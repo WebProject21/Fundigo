@@ -27,6 +27,8 @@
 
 <body>
 	<%@include file="../header.jsp"%>
+	
+	<section id = "contents">
 	<input type="hidden" name="pno" value="${product.pno}">
 	<div class="container">
 		<form role="form" action="/product/register" method="post" enctype="">
@@ -73,7 +75,11 @@
 											name="goalPrice" placeholder="목표 날짜 입력"> * yyyy-mm-dd
 											형식으로 입력해 주세요</td>
 									</tr>
-									<tr>
+								</tbody>
+							</table>
+							<h5>옵션 설정 <input class = "btn btn-outline-secondary pull-right" id = "optionButton" type = "button" value = "옵션 추가"> </h5>
+							<table class = "table option">
+							<tr>
 										<td>옵션</td>
 										<td><input type="text" class="form-control"
 											name="title" placeholder="옵션 이름 입력"></td>
@@ -88,8 +94,6 @@
 										<td><input type="text" class="form-control"
 											name="price" placeholder="옵션 금액 입력"></td>
 									</tr>
-
-								</tbody>
 							</table>
 							<div class="row">
 								<div class="col-lg-12">
@@ -125,6 +129,7 @@
 			</div>
 		</form>
 	</div>
+	</section>
 	<%@include file="../footer.jsp"%>
 	<script>
 		$(document)
