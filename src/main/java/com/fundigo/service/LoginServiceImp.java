@@ -75,10 +75,10 @@ public class LoginServiceImp implements LoginService {
 	}
 	
 	@Override
-	public boolean FavoriteDelete(String id , Long pno) {
+	public void FavoriteDelete(String id , Long pno) {
 		log.info("Favorite Delete");
 		
-		return mapper.FpnoDelete(id, pno)==1;	
+		mapper.FpnoDelete(id, pno);	
 	}
 
 	@Override
@@ -100,6 +100,5 @@ public class LoginServiceImp implements LoginService {
 		return mapper.cCheck(login);
 	}
 
-	
 
 }
