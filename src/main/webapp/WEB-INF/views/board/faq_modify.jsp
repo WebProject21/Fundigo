@@ -6,6 +6,9 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <meta charset="UTF-8">
 <title>fundigo</title>
 </head>
@@ -130,6 +133,45 @@
 			}
 			formObj.submit();
 		});
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 5242880; //5MB
+
+		function checkExtension(fileName, fileSize){
+			if(fileSize >= maxSize){
+				alert("파일 사이즈 초과");
+				return false;
+			}
+			if(regex.test(fileName)){
+				alert("해당 종류의 파일은 업로드가 불가능합니다.");
+				return false;
+			}
+			return true;
+		}
+		
+		$("input[type = 'file']").change(function(e){
+			var formData = new FormData();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
+		
+			for(var i=0; i<files.length; i++){
+				if(!checkExtension(files[i].name, files[i].size)){
+					return false;
+				}
+				formData.append("uploadFile", files[i]);
+			}
+			$.ajax({
+				url : '/uploadAjaxAction',
+				processData : false,
+				contentType : false, 
+				data : formData,
+				type : 'POST',
+				dataType : 'json',
+				success:function(result){
+					console.log(result);
+					showUploadResult(result); //업로드 결과 처리 함수
+				}
+			}); //$.ajax
+		});
 	});
 	
 	$(document).ready(function(){
@@ -140,7 +182,7 @@
 			$(arr).each(function(i, attach){		
 				//image type
 				if(attach.fileType){
-					var fileCallPath = encodeURIComponent(attach.uploadPath+"./s_"+attach.uuid+"_"+ attach.fileName);
+					var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+ attach.fileName);
 					str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
 					str += "<span>"+attach.fileName+"</span>";
 					str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'image' ";
@@ -169,45 +211,7 @@
 			targetLi.remove();
 		}
 	});
-	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-	var maxSize = 5242880; //5MB
-
-	function checkExtension(fileName, fileSize){
-		if(fileSize >= maxSize){
-			alert("파일 사이즈 초과");
-			return false;
-		}
-		if(regex.test(fileName)){
-			alert("해당 종류의 파일은 업로드가 불가능합니다.");
-			return false;
-		}
-		return true;
-	}
 	
-	$("input[type = 'file']").change(function(e){
-		var formData = new FormData();
-		var inputFile = $("input[name='uploadFile']");
-		var files = inputFile[0].files;
-	
-		for(var i=0; i<files.length; i++){
-			if(!checkExtension(files[i].name, files[i].size)){
-				return false;
-			}
-			formData.append("uploadFile", files[i]);
-		}
-		$.ajax({
-			url : '/uploadAjaxAction',
-			processData : false,
-			contentType : false, 
-			data : formData,
-			type : 'POST',
-			dataType : 'json',
-			success:function(result){
-				console.log(result);
-				showUploadResult(result); //업로드 결과 처리 함수
-			}
-		}); //$.ajax
-	});
 	function showUploadResult(uploadResultArr){
 		if(!uploadResultArr || uploadResultArr.length == 0){return ;}
 		var uploadUL = $(".uploadResult ul");

@@ -18,11 +18,11 @@
 
 <script type="text/javascript">
 	function check_onclick(){
-		if(document.register.title.value == ""){
+		if(document.table.title.value == ""){
 			alert("제목을 입력해 주세요.");
 			return false;
 		}
-		if(document.register.content.value == ""){
+		if(document.table.content.value == ""){
 			alert("내용을 입력해주세요.");
 			return false;
 		}
@@ -57,7 +57,7 @@
 								</tbody>
 							</table>
 							<div class = "row" style = "width: 100%; margin: 0px auto;">
-								<button type= "submit" name = "uploadBtn" class = "btn btn-default">등록</button>
+								<button type= "submit" name = "uploadBtn" class = "btn btn-default" onclick="check_onclick()">등록</button>
 								<button type = "button" value="취소" onclick="location.href='/board/faq?id=${id}'">취소</button>
 								<button type = "reset" value="초기화">리셋</button>
 							</div>
@@ -175,7 +175,7 @@
 				  str += "<span> "+ obj.fileName+"</span>";
 				  str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type='file'";
 				  str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br>";
-				  str += "<img src = '/resources/img/attach.png'></a>";
+				  str += "<img src = '/resources/images/attach.png'></a>";
 				  str += "</div>";
 				  str += "</li>";
 			  }
