@@ -6,6 +6,9 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <meta charset="UTF-8">
 <title>fundigo</title>
 </head>
@@ -29,7 +32,7 @@
 		<div class="col-lg-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form role = "form" action="/board/productBoard_modify" method="post">
+					<form role = "form" action="/board/productBoard_modify" method="post" >
 					<input type = "hidden" name ="pageNum" value = "<c:out value = '${cri.pageNum}'/>">
 					<input type = "hidden" name ="amount" value = "<c:out value = '${cri.amount}'/>">
 					<input type = "hidden" name ="pno" value = "<c:out value = '${product.pno}'/>">
@@ -122,6 +125,7 @@
 			var bno = '<c:out value = "${board.bno}"/>';
 			var type = '<c:out value = "${list_type}"/>';
 			var id = '<c:out value = "${board.id}"/>';
+			
 			var formObj = $("form");
 			$('button').on("click", function(e){
 				e.preventDefault();
@@ -152,9 +156,9 @@
 						var jobj = $(obj);
 						console.dir(jobj);
 						str += "<input type = 'hidden' name = 'attachList["+i+"].fileName' value = '" + jobj.data("filename")+"'>";
-						str += "<input type = 'hidden' name = 'attachList["+i+"].uuid' value = '" + jobj.data("uuid")+"'>";
+						str += "<input type = 'hidden' name = 'attachList["+i+"].uuid' value = '" + jobj.data("uuid") + "'>";
 						str += "<input type = 'hidden' name = 'attachList["+i+"].uploadPath' value = '" + jobj.data("path") + "'>";
-						str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '"+jobj.data("type")+"'>";
+						str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '" + jobj.data("type") + "'>";
 					});
 					formObj.append(str).submit();
 				}
@@ -162,49 +166,11 @@
 			});
 		});
 		
-		$(document).ready(function(){
-			(function(){
-				var bno = '<c:out value = "${board.bno}"/>';
-				$.getJSON("/board/getAttachList",{bno: bno}, function(arr){
-					console.log(arr);
-					var str = "";
-					$(arr).each(function(i, attach){
-						
-						//image type
-						if(attach.fileType){
-							var fileCallPath = encodeURIComponent(attach.uploadPath+"./s_"+attach.uuid+"_"+ attach.fileName);
-							str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
-							str += "<span>"+attach.fileName+"</span>";
-							str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'image' ";
-							str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
-							str += "<img src='/display?fileName="+fileCallPath+"'>";
-							str += "</div>";
-							str += "</li>";
-						}else{
-							str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
-							str += "<span>"+attach.fileName+"</span><br/>";
-							str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'file'";
-							str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
-							str += "<img src = '/resources/imags/attach.png'>";
-							str += "</div>";
-							str += "</li>"
-						}
-					});
-					$(".uploadResult ul").html(str);
-				});
-			})();
-		});
-		$(".uploadResult").on("click", "button", function(e){
-			console.log("delete file");
-			if(confirm("Remove this file?")){
-				var targetLi = $(this).closest("li");
-				targetLi.remove();
-			}
-		});
 		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 5242880; //5MB
 	
 		function checkExtension(fileName, fileSize){
+			alert("checkExtentison");
 			if(fileSize >= maxSize){
 				alert("파일 사이즈 초과");
 				return false;
@@ -239,8 +205,47 @@
 				}
 			}); //$.ajax
 		});
+		
+		$(document).ready(function(){
+			(function(){
+				var bno = '<c:out value = "${board.bno}"/>';
+				$.getJSON("/board/getAttachList",{bno: bno}, function(arr){
+					console.log(arr);
+					var str = "";
+					$(arr).each(function(i, attach){
+						
+						//image type
+						if(attach.fileType){
+							var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+ attach.fileName);
+							str += "<li data-path = '"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+							str += "<span>"+attach.fileName+"</span>";
+							str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'image' ";
+							str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
+							str += "<img src='/display?fileName="+fileCallPath+"'>";
+							str += "</div>";
+							str += "</li>";
+						}else{
+							str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+							str += "<span>"+attach.fileName+"</span><br/>";
+							str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'file'";
+							str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
+							str += "<img src = '/resources/imags/attach.png'>";
+							str += "</div>";
+							str += "</li>"
+						}
+					});
+					$(".uploadResult ul").html(str);
+				});
+			})();
+		});
+		$(".uploadResult").on("click", "button", function(e){
+			console.log("delete file");
+			if(confirm("Remove this file?")){
+				var targetLi = $(this).closest("li");
+				targetLi.remove();
+			}
+		});
 
-	
 	function showUploadResult(uploadResultArr){
 		if(!uploadResultArr || uploadResultArr.length == 0){return ;}
 			var uploadUL = $(".uploadResult ul");
