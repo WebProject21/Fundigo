@@ -71,7 +71,7 @@
 	INSERT INTO FAVORITE(FAV_COUNT,ID,PNO,DATES) values (seq_favorite.NEXTVAL,#{id},#{pno},sysdate)
 	</insert>
 	<!-- multi parameter -->
-	<delete id="FpnoDelete" parameterType = "map" >
+	<delete id="FpnoDelete"  >
 	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
 	</delete>
 	<!-- Phone inValid Check -->

@@ -1,5 +1,6 @@
 package com.fundigo.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -187,16 +188,16 @@ public class LoginController  {
 				model.setViewName("/mypage/memberLogin");
 			}else {
 			log.info("failed");
-			model.addObject("id", member.getId());
+			rttr.addFlashAttribute("msg", false);
 			model.setViewName("/mypage/Withdraw");
 			System.out.println("Withdraw Failed1");
 			}
 		}
 		else {
 		log.info("unmatch");
-		model.addObject("id", member.getId());
+		rttr.addFlashAttribute("msgi", false);
 		model.setViewName("/mypage/Withdraw");
-		System.out.println("Withdraw Failed2");
+		System.out.println("Withdraw fail unmatch ID");
 		}
 		return model;
 	}
@@ -252,7 +253,7 @@ public class LoginController  {
 		
 		return model;
 	}
-	
+	//마이페이지 펀딩참여기록
 	@RequestMapping(value="/Fundhistory", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView getFundList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
 		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
@@ -303,7 +304,7 @@ public class LoginController  {
 		rttr.addAttribute("result","success");
 	}
 
-	// favorite List Search in Client DB
+	//마이페이지 장바구니 목록
 	@RequestMapping(value = "/Favorite",  method = {RequestMethod.POST,RequestMethod.GET} )
 	public ModelAndView FavoriteList(ModelAndView model,FundhistoryVO login ,HttpServletRequest request) {
 		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
@@ -317,23 +318,64 @@ public class LoginController  {
 		log.info("favorite is : "+getfavorite);
 		model.addObject("getfavorite",getfavorite);
 		model.setViewName("/mypage/Favorite");
-//		return "/mypage/Favorite";
+
 		return model;
 		
 	}
 
 	// favorite DB insert
+	@ResponseBody
 	@PostMapping("/Favorite_insert")
-	public void FavoritepnoInsert(FundhistoryVO fund,RedirectAttributes rttr) {
+	public ModelAndView FavoritepnoInsert(FundhistoryVO login,
+	ModelAndView model,@RequestParam("pno") Long pno,HttpServletRequest request) {
+		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+		login.setId(loginvo.getId());
 		
-		log.info("Favorite insert"+fund);
-		lService.FavoriteInsert(fund);
-		rttr.addFlashAttribute("result", "insertSuccess");
+		if(login.getId()!=null) {
+			login.setPno(pno);
+			lService.FavoriteInsert(login);
+			System.out.println("장바구니에 추가되었습니다.");
+			model.addObject("cart", true);
+			return model;
+		}else {
+			log.info("favorite insert failed");
+			return model;
+		}
+		
 	}
-	@PostMapping("/Favorite_delete")
-	public void FavoriteDelete(@RequestParam("id") String id  , @RequestParam("pno") Long pno,RedirectAttributes rttr) {
-		lService.FavoriteDelete(id, pno);
-		rttr.addFlashAttribute("result", "success");
+	//장바구니 목록에서 삭제
+	@ResponseBody
+	@RequestMapping(value = "/Favorite_delete", method = {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView FavoriteDelete(FundhistoryVO login
+			,ModelAndView model,@RequestParam("pno") Long pno,HttpServletRequest request) {
+		
+		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+		
+		log.info("favorite delete access");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		if(loginvo.getId()!= null){
+			login.setId(loginvo.getId());
+			String id = login.getId();
+			map.put("pno",pno);
+			map.put("id", id);
+			lService.FavoriteDelete(id, pno);
+			
+			List<FundhistoryVO> getfavorite = lService.getFavoriteList(login);
+			if(getfavorite.size()<1) {
+				getfavorite=null;
+				System.out.println("no favorite data");
+			}
+			System.out.println("favorite data OK");
+			log.info("after favorite delete data : "+getfavorite);
+			model.addObject("getfavorite",getfavorite);
+			model.setViewName("/mypage/Favorite");
+		}else {
+			log.info("favorite data delete failed");
+			model.setViewName("/mypage/Favorite");
+		}
+		
+	return model;
 	}
 
 }

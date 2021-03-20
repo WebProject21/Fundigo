@@ -118,7 +118,7 @@
 
 					<ul class="product-info-btn">
 
-						<li><a href=""><i class="fa fa-heart-o"></i> 찜</a></li>
+						<li><a href="/mypage/Favorite_insert?pno=${product.pno}"><i class="fa fa-heart-o"></i> 찜</a></li>
 
 						<li><a href=""><i class="fa fa-arrows-h"></i> Compare</a></li>
 

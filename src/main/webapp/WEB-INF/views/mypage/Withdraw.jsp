@@ -24,6 +24,22 @@
 }
 
 </style>
+<script type="text/javascript">
+function registerCheck() {
+    if($.trim($('#midchecker').val()) == '') {
+        alert("아이디를 입력해주세요.");
+        return false;
+    }
+    if($.trim($('#password').val()) == '') {
+        alert("비밀번호를 입력해주세요.");
+        return false;
+    }
+    if(confirm("회원탈퇴 하시겠습니까?")){
+        alert("회원탈퇴처리 ");
+         $("form").submit();    
+    }
+} 
+</script>
 </head>
 <body>
 
@@ -37,20 +53,27 @@
 				style="text-align: center; border-radius: 0/.5px; margin-top: 5%;">
 				<div class="m-3">
 				<h1>&nbsp  Withdrawal</h1>
+				<c:if test="${msg== false}">
+					<p> 다시 한번 확인해주세요 </p>
+					</c:if>
 				</div>
 			
 					<div class="form-group">
 						<input type="text" autocomplete="username"
-							class="form-control offset-1 col-12" placeholder="아이디" name="id" required>
+							class="form-control offset-1 col-12" placeholder="아이디" id="midchecker" name="id" required>
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control offset-1 col-12"
-							placeholder="비밀번호" id="password" id="password" name="password" required>
+							placeholder="비밀번호" id="password" name="password" required>
 					</div>
 
 					<div class="form-group offset-1">
-						<button type="submit" class="btn btn-dark col-8">회원탈퇴</button>
+						<button type="submit" onclick="registerCheck()" class="btn btn-dark col-8">회원탈퇴</button>
 					</div>
+					<c:if test="${msgi== false}">
+					<p>아이디가 틀렸습니다.</p>
+					</c:if>
+					
 
 			</div>
 			</form>

@@ -154,7 +154,7 @@ public class ProductController {
 		model.addAttribute("product",pService.get(pno));  
 		return "redirect:/product/community?pno="+pno+"&id="+board.getId();
 	}
-	
+
 	@GetMapping("/notice")
 	public void NOTIlist(@RequestParam("pno") Long pno, @RequestParam("id") String id, Criteria cri, Model model) {
 		log.info("list");
