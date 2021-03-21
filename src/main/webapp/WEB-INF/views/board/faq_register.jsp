@@ -18,11 +18,11 @@
 
 <script type="text/javascript">
 	function check_onclick(){
-		if(document.table.title.value == ""){
+		if($('#title').val() == ""){
 			alert("제목을 입력해 주세요.");
 			return false;
 		}
-		if(document.table.content.value == ""){
+		if($('#content').val() == ""){
 			alert("내용을 입력해주세요.");
 			return false;
 		}
@@ -105,6 +105,7 @@
 				str += "<input type = 'hidden' name = 'attachList["+i+"].uploadPath' value = '" + jobj.data("path") + "'>";
 				str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '" + jobj.data("type") + "'>";
 			});
+			alert("${board.attachList}");
 			formObj.append(str).submit();
 		});
 		

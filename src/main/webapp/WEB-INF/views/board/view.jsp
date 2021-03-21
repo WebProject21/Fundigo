@@ -99,6 +99,25 @@
 							</div>	
 						</div>
 						<!-- /.row -->
+						<div class = 'bigPictureWrapper'>
+							<div class = 'bigPicture'>
+							
+							</div>
+							<div class = "row">
+								<div class = "col-lg-12">
+									<div class = "panel-heading">첨부파일</div>
+									<!-- /.panel-heading -->
+									<div class = "panel-body">
+										<div class = 'uploadResult'>
+											<ul>
+											</ul>
+										</div>
+									</div>
+									<!-- end panel body -->
+								</div>
+								<!-- end panel -->
+							</div>
+						</div>
 						<div class = "row">
 							<div class = "col-lg-12">
 								<!-- /.panel -->
@@ -131,25 +150,6 @@
 							</div>
 							<!-- ./ end row -->
 						</div>	
-						<div class = 'bigPictureWrapper'>
-							<div class = 'bigPicture'>
-							
-							</div>
-							<div class = "row">
-								<div class = "col-lg-12">
-									<div class = "panel-heading">첨부파일</div>
-									<!-- /.panel-heading -->
-									<div class = "panel-body">
-										<div class = 'uploadResult'>
-											<ul>
-											</ul>
-										</div>
-									</div>
-									<!-- end panel body -->
-								</div>
-								<!-- end panel -->
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -345,25 +345,29 @@
 			console.log("view image");
 			var liObj = $(this);
 			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
-			if(liObj.data("type")){
+			/* if(liObj.data("type")){
 				showImage(path.replace(new RegExp(/\\/g),"/"));
-			}else{
+			}else{ */
 				//download
 				self.location = "/download?fileName="+path;
-				}
+				
+				//}
 			});
-		function showImage(fileCallPath){
+		
+		/* function showImage(fileCallPath){
 			alert(fileCallPath);
 			$(".bigPictureWrapper").css("display", "flex").show();
+			console.log("view image");
 			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
-		}
+		} */
 		
-		$(".bigPictureWrapper").on("click",function(e){
-			$(".bicPicture").animate({width:'0%', height:'0%'}, 1000);
+		/* $(".bigPictureWrapper").on("click",function(e){
+			$(".bigPicture").animate({width:'0%', height:'0%'}, 1000);
 			setTimeout(function(){
 				$('.bigPictureWrapper').hide();
 			});
-		})
+		}); */
+		
 		$("button[data-oper='']").on("click", function(e){
 			operForm.find("#bno").remove();
 		});

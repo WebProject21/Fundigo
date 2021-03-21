@@ -29,11 +29,7 @@
 <body>
 
 	<%@include file="../header.jsp"%>
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 2a397226b4d5157ef93508e4c984cf3582bf7075
 	<form id="actionForm" action="/mainpage/search" method="get">
 		<input type="hidden" name="pageNum"
 			value="<c:out value = '${pageMaker.cri.pageNum }'/>"> <input
@@ -87,7 +83,7 @@
 
 				<c:forEach var="num" begin="${pageMaker.startPage }"
 					end="${pageMaker.endPage }">
-					<li class="page-item ${pageMaker.cri.pageNum == num ? "active" : "" }"><a class="page-link" href="${num }">${num }</a></li>
+					<li class="page-item ${pageMaker.cri.pageNum == num ? 'active' : '' }"><a class="page-link" href="${num }">${num }</a></li>
 				</c:forEach>
 
 				<c:if test="${pageMaker.next }">

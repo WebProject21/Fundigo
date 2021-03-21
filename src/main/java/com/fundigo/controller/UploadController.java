@@ -81,6 +81,8 @@ public class UploadController {
 			UUID uuid = UUID.randomUUID();
 			
 			uploadFileName = uuid.toString() + "_"+uploadFileName;
+			System.out.println(attachVO.toString());
+			System.out.println(attachVO.getBno());
 			
 //			File saveFile = new File(uploadFolder, multipartFile.getOriginalFilename());
 			
@@ -94,11 +96,9 @@ public class UploadController {
 				//check image type file
 				if(checkImageType(saveFile)) {
 					attachVO.setImage(true);
-					System.out.println(attachVO.getFileName());
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_"+uploadFileName));
 					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
 					thumbnail.close();
-					System.out.println(attachVO.getFileName());
 				}
 				//add to List
 				System.out.println(attachVO.getFileName());
