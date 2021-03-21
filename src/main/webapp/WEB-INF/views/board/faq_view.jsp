@@ -315,7 +315,7 @@
 							str += "<li data-path = '" + attach.uploadPath + "' data-uuid = '" + attach.uuid + "' data-filename = '"
 							+ attach.fileName + "'data-type'" + attach.fileType + "'><div>";
 							str += "<span>" + attach.fileName + "</span><br/>";
-							str += "<img src = '/resources/imags/attach.png'>";
+							str += "<img src = '/resources/images/attach.png'>";
 							str += "</div>";
 							str + "</li>";
 						}
@@ -336,25 +336,28 @@
 			console.log("view image");
 			var liObj = $(this);
 			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
-			if(liObj.data("type")){
+			/* if(liObj.data("type")){
 				showImage(path.replace(new RegExp(/\\/g),"/"));
 			}else{
-				//download
+				//download */
 				self.location = "/download?fileName="+path;
-				}
+				//}
 			});
 		
-		function showImage(fileCallPath){
+		/* function showImage(fileCallPath){
 			alert(fileCallPath);
 			$(".bigPictureWrapper").css("display", "flex").show();
 			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
 		}
-		$(".bigPictureWrapper").on("click",function(e){
-			$(".bicPicture").animate({width:'0%', height:'0%'}, 1000);
-			setTimeout(function(){
-				$('.bigPictureWrapper').hide();
+		
+		$(document).ready(function() {
+			$(".bigPictureWrapper").on("click", function(e){
+				$(".bigPicture").animate({width:'0%', height:'0%'}, 1000);
+				setTimeout(function(){
+					$('.bigPictureWrapper').hide();
+				}, 1000);
 			});
-		})
+		}); */
 		$("button[data-oper='']").on("click", function(e){
 			operForm.find("#bno").remove();
 		}); 
