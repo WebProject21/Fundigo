@@ -37,7 +37,7 @@ public interface LoginMapper {
 	//FundHisroty delete
 	public int Fdelete (@Param("id") String id, @Param("pno") Long pno);
 	
-	//PnoSelect go product
+	//PnoSelect go product favorite fundhistory
 	public void PnoSelect(ProductVO product);
 
 	//favorite select base in id
@@ -48,6 +48,6 @@ public interface LoginMapper {
 	public int FpnoDelete(@Param("id") String id,@Param("pno") Long pno);
 	//favorite pno view
 	public List<FundhistoryVO> getFpnoList(Long pno);
-	//fundItem client List
+	//purchased client List in product
 	public FundhistoryVO fundSelect(@Param("id") String id, @Param("pno") Long pno);
 }

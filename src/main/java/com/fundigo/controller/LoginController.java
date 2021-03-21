@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fundigo.domain.FundhistoryVO;
 import com.fundigo.domain.LoginVO;
+import com.fundigo.domain.ProductVO;
 import com.fundigo.service.FundhistoryService;
 import com.fundigo.service.LoginService;
 
@@ -261,9 +262,9 @@ public class LoginController  {
 		List<FundhistoryVO> getfund = lService.getFundList(login);
 		if(getfund.size()<1) {
 			getfund=null;
-			System.out.println("no favorite data");
+			System.out.println("no fund data");
 		}
-		System.out.println("favorite data OK");
+		System.out.println("fundhistory data OK");
 		log.info("fund list is : "+getfund);
 		model.addObject("getfund",getfund);
 		model.setViewName("/mypage/Fundhistory");
@@ -295,13 +296,40 @@ public class LoginController  {
 		fService.get(id, pno);
 	}
 	
-	//Fundservice remove at History
-	@PostMapping("/fund_remove")
-	public void FundRemove (String id, Long pno,RedirectAttributes rttr) {
-		log.info("fundRemove");
+	//Fundservice remove at the FundHistory
+	@RequestMapping(value="/fund_remove", method = {RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView FundRemove (String id, FundhistoryVO login
+			,ModelAndView model,@RequestParam("pno") Long pno,HttpServletRequest request) {
 		
-		fService.remove(id, pno);
-		rttr.addAttribute("result","success");
+		LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+		
+		log.info("fund delete access");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		if(loginvo.getId()!= null){
+			login.setId(loginvo.getId());
+			id = login.getId();
+			map.put("id", id);
+			map.put("pno",pno);
+			System.out.println(id+"_"+pno);
+			model.addObject("pno", pno);
+			fService.remove(id, pno);
+		
+			List<FundhistoryVO> getfund = lService.getFundList(login);
+			if(getfund.size()<1) {
+				getfund=null;
+				System.out.println("no fundhistory data");
+			}
+			log.info("after fundhistory delete data : "+getfund);
+			model.addObject("getfund",getfund);
+			model.setViewName("/mypage/Fundhistory");
+		}else {
+			log.info("fundhistory data delete failed");
+			model.setViewName("/mypage/Fundhistory");
+		}
+		
+	return model;
+	
 	}
 
 	//마이페이지 장바구니 목록
@@ -377,5 +405,47 @@ public class LoginController  {
 		
 	return model;
 	}
+	
+	//마이페이지 펀드히스토리 pno 상품페이지이동 
+		@RequestMapping(value = "/Fund_select",  method = {RequestMethod.POST,RequestMethod.GET} )
+		public ModelAndView FundhistoryPno(ModelAndView model,ProductVO product ,HttpServletRequest request,
+				@RequestParam("pno") Long pno) {
+			LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+			product.setId(loginvo.getId());
+
+			if(loginvo.getId()!=null) {
+				System.out.println("session OK");
+				product.setPno(pno);
+				lService.PnoSelect(product);
+				log.info("fund pno is : ");
+				model.addObject("getfavorite");
+				model.setViewName("/product/");
+			}
+			System.out.println("session error");
+
+			return model;
+			
+		}
+		
+		//마이페이지 장바구니 pno 상품페이지이동 
+		@RequestMapping(value = "/Favorite_select",  method = {RequestMethod.POST,RequestMethod.GET} )
+		public ModelAndView FavoritePno(ModelAndView model,ProductVO product ,HttpServletRequest request,
+				@RequestParam("pno") Long pno) {
+			LoginVO loginvo = (LoginVO) request.getSession().getAttribute("member");
+			product.setId(loginvo.getId());
+
+			if(loginvo.getId()!=null) {
+				System.out.println("session OK");
+				product.setPno(pno);
+				lService.PnoSelect(product);
+				log.info("favorite pno is : ");
+				model.addObject("getfavorite");
+				model.setViewName("/product/");
+			}
+			System.out.println("session error");
+
+			return model;
+			
+		}
 
 }

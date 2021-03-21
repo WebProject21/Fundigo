@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fundigo.domain.FundhistoryVO;
 import com.fundigo.domain.LoginVO;
+import com.fundigo.domain.ProductVO;
 
 public interface LoginService {
 	//펀딩 기록 조회하기
@@ -30,4 +31,6 @@ public interface LoginService {
 	public void FavoriteDelete(String id, Long pno);
 	
 	public LoginVO phonecheck(LoginVO login);
+	//favorie + fundhistory search
+	public void PnoSelect(ProductVO product);
 }

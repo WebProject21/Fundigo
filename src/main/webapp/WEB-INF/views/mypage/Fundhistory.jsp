@@ -44,18 +44,23 @@
 									<th>펀딩일자</th>
 									<th>가격</th>
 									<th>펀딩타입</th>
+									<th>펀딩취소</th>
 								</tr>
 							</thead>
 							<c:choose>
 							
 					  	 <c:when test="${getfund!=null}"> 
-							<p>값이 존재합니다</p>
+							
+							<c:if test="${pno!=null}">
+							<p>${pno} 펀딩이 취소되었습니다.</p>
+							</c:if>
 							<c:forEach items="${getfund}" var="getfund">
 								<tr>
 									<td><c:out value="${getfund.pno}" /></td>
 									<td><c:out value="${getfund.dates}" /></td>
 									<td><c:out value="${getfund.price}" /></td>
-									<td><c:out value="${getfund.code}" /></td> 
+									<td><c:out value="${getfund.code}" /></td>
+									<td><button type = "button" value="삭제" onclick="location.href='/mypage/fund_remove?pno=${getfund.pno}'">취소</button></td> 
 								<tr>
 							</c:forEach>
 					  	</c:when> 

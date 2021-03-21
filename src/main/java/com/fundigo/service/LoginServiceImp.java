@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fundigo.domain.FundhistoryVO;
 import com.fundigo.domain.LoginVO;
+import com.fundigo.domain.ProductVO;
 import com.fundigo.mapper.LoginMapper;
 
 import lombok.AllArgsConstructor;
@@ -98,6 +99,12 @@ public class LoginServiceImp implements LoginService {
 	public LoginVO clientCheck(LoginVO login) {
 		
 		return mapper.cCheck(login);
+	}
+
+	@Override
+	public void PnoSelect(ProductVO product) {
+		
+		mapper.PnoSelect(product);
 	}
 
 
