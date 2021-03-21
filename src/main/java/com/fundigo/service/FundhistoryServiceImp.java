@@ -58,11 +58,11 @@ public class FundhistoryServiceImp implements FundhistoryService{
 	}
 
 	@Override
-	public boolean remove(String id, Long pno) {
+	public void remove(String id, Long pno) {
 		// TODO Auto-generated method stub
 		log.info("delete.......");
 
-		return mapper.Fdelete(id, pno) == 1;
+		 mapper.Fdelete(id, pno);
 	}
 
 }
