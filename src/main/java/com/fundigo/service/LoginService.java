@@ -27,7 +27,7 @@ public interface LoginService {
 	
 	public int Clientwithdraw (LoginVO login);
 	
-	public boolean FavoriteDelete(String id, Long pno);
+	public void FavoriteDelete(String id, Long pno);
 	
 	public LoginVO phonecheck(LoginVO login);
 }

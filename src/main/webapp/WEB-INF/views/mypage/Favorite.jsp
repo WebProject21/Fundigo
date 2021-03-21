@@ -27,10 +27,10 @@
 <body>
 <%@include file="../header.jsp"%>
 	<div class="container">
-
+<form action="Favorite" method="post" enctype="multipart/form-data">
 		<div class="row">
 		<jsp:include page="menu.jsp" />
-			<!-- DataTales Example -->
+	
 			<div class="offset-1 col-xs-10 col-md-5 p-5"
 				style="text-align: center; border-radius: 0/.5px; margin-top: 10%;">
 
@@ -41,22 +41,21 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>#제품번호</th>
-									<th>펀딩일자</th>
+									<th>제품번호</th>
+									<th>담은날짜</th>
+									<th>비우기</th>
 								</tr>
-							
+
 							</thead>
 							<c:choose>
-							
-					  	 <c:when test="${getfavorite!=null}"> 
+
+					 <c:when test="${getfavorite!=null}"> 
 							<c:forEach items="${getfavorite}" var="getfavorite">
-								
 								<tr>
-								
 									<td><c:out value="${getfavorite.fav_count}" /></td>
 									<td><c:out value="${getfavorite.pno}" /></td>
 									<td><c:out value="${getfavorite.dates}" /></td> 
-								
+									<td><button type = "button" value="삭제" onclick="location.href='/mypage/Favorite_delete?pno=${getfavorite.pno}'">취소</button></td>
 								<tr>
 							</c:forEach>
 					  	</c:when> 
@@ -81,6 +80,7 @@
 			</div>
 
 		</div>
+		</form>
 	</div>
 	<%@include file="../footer.jsp"%>
 </body>

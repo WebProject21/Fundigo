@@ -164,7 +164,7 @@ function registerCheck() {
 						<button type="button" id="submit" class="btn btn-dark"  disabled="disabled" onclick="registerCheck()">회원가입</button>
 					</div>
 					<div class="col-4">
-					<button type="button" id="submit" class="btn btn-dark"onclick="location.href='/'" >홈으로</button>
+					<button type="button" id="submit" class="btn btn-dark"onclick="location.href='/mypage/memberLogin'" >로그인페이지</button>
 					</div>
 				</div>
 
