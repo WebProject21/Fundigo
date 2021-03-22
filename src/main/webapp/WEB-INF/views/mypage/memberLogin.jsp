@@ -60,7 +60,7 @@
 							<button type="submit" class="btn btn-dark col-8">로그인</button>
 						</div>
 							<div class="form-group">
-								<a href="memberJoin" class="col-6 col-sm-4 loginA">회원가입</a>
+								<a href="JoinPage" class="col-6 col-sm-4 loginA">회원가입</a>
 							</div>
 						</c:if>
 						<c:if test="${member != null}">

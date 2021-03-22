@@ -189,14 +189,14 @@ public class LoginController  {
 				model.setViewName("/mypage/memberLogin");
 			}else {
 			log.info("failed");
-			rttr.addFlashAttribute("msg", false);
+			model.addObject("msg", false);
 			model.setViewName("/mypage/Withdraw");
 			System.out.println("Withdraw Failed1");
 			}
 		}
 		else {
 		log.info("unmatch");
-		rttr.addFlashAttribute("msgi", false);
+		model.addObject("msgi", false);
 		model.setViewName("/mypage/Withdraw");
 		System.out.println("Withdraw fail unmatch ID");
 		}
@@ -288,14 +288,14 @@ public class LoginController  {
 		rttr.addAttribute("result","success");
 	}
 	
-	//Fundservice Get select fpr product
+	//Fundservice Get select fpno product
 	@PostMapping("/fund_select")
 	public void FundSelect(String id, Long pno,RedirectAttributes rttr) {
 		log.info("fundSelect");
 		rttr.addFlashAttribute("result", "success");
 		fService.get(id, pno);
 	}
-	
+
 	//Fundservice remove at the FundHistory
 	@RequestMapping(value="/fund_remove", method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView FundRemove (String id, FundhistoryVO login
@@ -419,7 +419,7 @@ public class LoginController  {
 				lService.PnoSelect(product);
 				log.info("fund pno is : ");
 				model.addObject("getfavorite");
-				model.setViewName("/product/");
+				model.setViewName("/product/content");
 			}
 			System.out.println("session error");
 
@@ -440,7 +440,7 @@ public class LoginController  {
 				lService.PnoSelect(product);
 				log.info("favorite pno is : ");
 				model.addObject("getfavorite");
-				model.setViewName("/product/");
+				model.setViewName("/product/content");
 			}
 			System.out.println("session error");
 

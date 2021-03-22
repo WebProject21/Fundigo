@@ -14,6 +14,4 @@ public interface FundhistoryService {
 
 	public void remove(String id, Long pno);
 
-
-
 }
