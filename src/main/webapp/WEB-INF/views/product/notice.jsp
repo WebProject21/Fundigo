@@ -47,7 +47,7 @@
 						<ul class = "pagenation" style = "list-style-type:none; float: left;">
 							<c:if test = "${pageMaker.prev}">
 								<li class = "paginate_button previous">
-									<a href= "${pageMaker.endPage -1}">이전</a>
+									<a href= "${pageMaker.startPage -1}">이전</a>
 								</li>
 							</c:if>
 							<c:forEach var = "num" begin = "${pageMaker.startPage}" end = "${pageMaker.endPage}">
