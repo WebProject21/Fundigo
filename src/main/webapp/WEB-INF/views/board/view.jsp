@@ -63,7 +63,42 @@
 							<input type="hidden" id = "pno" name = "pno" value="<c:out value = '${product.pno}'/>">
 							<input type="hidden" id = "bno" name = "bno" value="<c:out value = '${board.bno}'/>">
 							<input type="hidden" id = "pageNum" name = "pageNum" value="<c:out value = '${cri.pageNum }'/>">
-						</form>	
+						</form>
+						<!-- Modal -->
+						<div class = "modal fade" id = "MyModal" tabindex = "-1" role = "dialog"
+						aria-labelledby = "myModalLabel" aria-hidden = "true">
+							<div class = "modal-dialog">
+								<div class = "modal-content">
+									<div class = "modal-header">
+										<button  type = "button" class = "close" data-dismiss = "modal"
+											aria-hidden = "true">&times;</button>
+										<h4 class = "modal-title" id = "myModalLabel">댓글작성FORM</h4>
+									</div>
+									<div class = "modal-body">
+										<div class = "form-group">
+											<label>댓글작성</label>
+											<input class = "form-control" name = 'reply-content' value = '' placeholder = "댓글을 입력해주세요.">
+										</div>
+										<div class = "form-group">
+											<label>작성자</label>
+											<input class = "form-control" name = "reply-id" value = '' placeholder = "작성자">
+										</div>
+										<div class = "form-group">
+											<label>작성일</label>
+											<input class = "form-control" name = "reply-regDate" value = "">
+											<input type = "hidden" name = "reply-bd_type" value = '<c:out value="${list_type}"/>'>
+										</div>
+									</div>
+									<div class = "modal-footer">
+										<button id = "modalModBtn" type = "button" class = "btn btn-warning">수정</button>
+										<button id = "modalRemoveBtn" type = "button" class = "btn btn-danger">삭제</button>
+										<button id = "modalRegisterBtn" type = "button" class = "btn btn-primary" data-dismiss = "modal">등록</button>
+										<button id = "modalCloseBtn" type = "button" class = "btn btn-default" data-dismiss = "modal">닫기 </button>
+									</div>
+								</div>
+							</div>	
+						</div>
+						<!-- /.row -->
 						<div class = 'bigPictureWrapper'>
 							<div class = 'bigPicture'>
 							
@@ -82,74 +117,39 @@
 								</div>
 								<!-- end panel -->
 							</div>
-							<!-- /.row -->
-							<div class = "row">
-								<div class = "col-lg-12">
-									<!-- /.panel -->
-									<div class ="panel panel-default">
-										<div class = "panel-heading">
-											<i class = "fa fa-comments"></i>댓글
-											<button data-oper='addReplyBtn' type = "button" id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
-										</div> 
-										<!-- /.panel-heading -->
-										<div class = "panel-body">
-											<ul class = "chat">
-												<!-- 댓글 시작 -->
-												<li class = "left clearfix" data-rno = '12'>
-													<div>
-														<div class = "header">
-															
-														</div>
+						</div>
+						<div class = "row">
+							<div class = "col-lg-12">
+								<!-- /.panel -->
+								<div class ="panel panel-default">
+									<div class = "panel-heading">
+										<i class = "fa fa-comments"></i>댓글
+										<button data-oper='addReplyBtn' type = "button" id = 'addReplyBtn' class = 'btn btn-primary btn-xs pull-right'>댓글작성</button>
+									</div> 
+									<!-- /.panel-heading -->
+									<div class = "panel-body">
+										<ul class = "chat">
+											<!-- 댓글 시작 -->
+											<li class = "left clearfix" data-rno = '12'>
+												<div>
+													<div class = "header">
 														
 													</div>
-												</li>
-												<!-- end reply -->
-											</ul>
-											<!-- . / end ul -->
-										</div>
-										<!-- /. panel .chat-panel -->
-										<div class = "panel-footer">
-										
-										</div>
+													
+												</div>
+											</li>
+											<!-- end reply -->
+										</ul>
+										<!-- . / end ul -->
+									</div>
+									<!-- /. panel .chat-panel -->
+									<div class = "panel-footer">
+									
 									</div>
 								</div>
-								<!-- ./ end row -->
-								<!-- Modal -->
-								<div class = "modal fade" id = "MyModal" tabindex = "-1" role = "dialog"
-								aria-labelledby = "myModalLabel" aria-hidden = "true">
-									<div class = "modal-dialog">
-										<div class = "modal-content">
-											<div class = "modal-header">
-												<button  type = "button" class = "close" data-dismiss = "modal"
-													aria-hidden = "true">&times;</button>
-												<h4 class = "modal-title" id = "myModalLabel">댓글작성FORM</h4>
-											</div>
-											<div class = "modal-body">
-												<div class = "form-group">
-													<label>댓글작성</label>
-													<input class = "form-control" name = 'reply-content' value = '' placeholder = "댓글을 입력해주세요.">
-												</div>
-												<div class = "form-group">
-													<label>작성자</label>
-													<input class = "form-control" name = "reply-id" value = '' placeholder = "작성자">
-												</div>
-												<div class = "form-group">
-													<label>작성일</label>
-													<input class = "form-control" name = "reply-regDate" value = "">
-													<input type = "hidden" name = "reply-bd_type" value = '<c:out value="${list_type}"/>'>
-												</div>
-											</div>
-											<div class = "modal-footer">
-												<button id = "modalModBtn" type = "button" class = "btn btn-warning">수정</button>
-												<button id = "modalRemoveBtn" type = "button" class = "btn btn-danger">삭제</button>
-												<button id = "modalRegisterBtn" type = "button" class = "btn btn-primary" data-dismiss = "modal">등록</button>
-												<button id = "modalCloseBtn" type = "button" class = "btn btn-default" data-dismiss = "modal">닫기 </button>
-											</div>
-										</div>
-									</div>	
-								</div>
 							</div>
-						</div>
+							<!-- ./ end row -->
+						</div>	
 					</div>
 				</div>
 			</div>
@@ -345,28 +345,32 @@
 			console.log("view image");
 			var liObj = $(this);
 			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
-			if(liObj.data("type")){
+			/* if(liObj.data("type")){
 				showImage(path.replace(new RegExp(/\\/g),"/"));
-			}else{
+			}else{ */
 				//download
 				self.location = "/download?fileName="+path;
-				}
+				
+				//}
 			});
 		
-		/*  function showImage(fileCallPath){
+		/* function showImage(fileCallPath){
 			alert(fileCallPath);
-			$("bigPictureWrapper").css("display", "flex").show();
+			$(".bigPictureWrapper").css("display", "flex").show();
+			console.log("view image");
 			$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>").animate({width:'100%',height:'100%'}, 1000);
-		}
-		$(".bigPictureWrapper").on("click",function(e){
-			$(".bicPicture").animate({width:'0%', height:'0%'}, 1000);
+		} */
+		
+		/* $(".bigPictureWrapper").on("click",function(e){
+			$(".bigPicture").animate({width:'0%', height:'0%'}, 1000);
 			setTimeout(function(){
 				$('.bigPictureWrapper').hide();
 			});
-		})
+		}); */
+		
 		$("button[data-oper='']").on("click", function(e){
 			operForm.find("#bno").remove();
-		}); */
+		});
 	</script>
 </body>
 </html>
