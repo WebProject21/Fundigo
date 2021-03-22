@@ -16,7 +16,7 @@ public interface BoardService {
 	public BoardVO get(Long bno);
 	
 	public boolean modify(BoardVO board);
-	public boolean countup(BoardVO board); 
+	public boolean countup(Long bno); 
 	public boolean updateDate(BoardVO board);
 	
 	public boolean remove(Long bno);
