@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/board/boardform.css">
 
+<<<<<<< HEAD
 <script type="text/javascript">
 	function check_onclick(){
 		if(document.frm.title.value.length == 0){
@@ -31,6 +32,8 @@
 		return true;
 	}
 </script>
+=======
+>>>>>>> wh
 </head>
 
 <body>
@@ -95,6 +98,17 @@
 		var formObj = $("form[role='form']");
 		
 		$("button[type='submit']").on("click", function(e){
+			if(document.frm.title.value.length == 0){
+				alert("제목을 입력해 주세요.");
+				frm.title.focus();
+				return false;
+			}
+			if(document.frm.content.value.length == 0){
+				alert("내용을 입력해주세요.");
+				frm.content.focus();
+				return false;
+			}
+			
 			e.preventDefault();
 			console.log("submit clicked");
 			var str = "";
