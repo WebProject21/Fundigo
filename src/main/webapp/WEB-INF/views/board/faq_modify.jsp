@@ -104,8 +104,9 @@
 			console.log(operation);
 		
 			if(operation === 'faq_remove'){
-				formObj.attr("action", "/board/faq_remove?bno="+bno);
-		
+				if(confirm("Remove this file?")){
+					formObj.attr("action", "/board/faq_remove?bno="+bno);
+				}
 			}else if(operation === 'list'){
 				//move to list
 			

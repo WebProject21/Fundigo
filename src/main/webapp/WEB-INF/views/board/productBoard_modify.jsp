@@ -67,7 +67,7 @@
 									</tbody>
 								</table>
 								<button type = "submit" data-oper = "modify" class="btn btn-default">수정완료</button>
-								<button type = "submit" data-oper = "remove" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">삭제</button>
+								<button type = "submit" data-oper = "remove" class="btn btn-danger">삭제</button>
 								<button type = "submit" data-oper = "list" class="btn btn-info">목록</button>
 							</div>
 						</div>
@@ -102,6 +102,7 @@
 	</div>
 	
 	<script type="text/javascript">
+	
 	var bno = '<c:out value = "${board.bno}"/>';
 	var pno = '<c:out value = "${product.pno}"/>';
 	var type = '<c:out value = "${list_type}"/>';
@@ -230,8 +231,9 @@
 			console.log(operation);
 			
 			if(operation === 'remove'){
-				formObj.attr("action", "/board/remove?pno="+pno+"&bno="+bno);
-			
+				if(confirm("Remove this file?")){
+					formObj.attr("action", "/board/remove?pno="+pno+"&bno="+bno);
+				}
 			}else if(operation === 'list'){
 				//move to list
 				
@@ -263,6 +265,7 @@
 			formObj.submit();
 		});
 	});
+	
 	</script>
 
 </body>

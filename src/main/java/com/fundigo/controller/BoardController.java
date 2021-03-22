@@ -72,12 +72,14 @@ public class BoardController {
 	@GetMapping({"/faq_view","/faq_modify"})
 	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/view or /modify");
+		bService.countup(bno);
 		model.addAttribute("board",bService.get(bno));
 	}
 
 	@GetMapping({"/view","/productBoard_modify"})
 	public void get(@RequestParam ("pno") Long pno, @RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		log.info("/view or /modify");
+		bService.countup(bno);
 		model.addAttribute("board",bService.get(bno));
 		model.addAttribute("product",pService.get(pno));
 	}

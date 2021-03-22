@@ -43,6 +43,7 @@
 						</tr>
 					</c:forEach>
 				</table>
+<<<<<<< HEAD
 					
 
 			</div>
@@ -74,6 +75,25 @@
 								</c:if>
 							</ul>
 						</nav>
+=======
+					<div class = 'pull-right'style = "margin: 0 auto;">
+						<ul class = "pagenation" style = "list-style-type:none; float: left;">
+							<c:if test = "${pageMaker.prev}">
+								<li class = "paginate_button previous">
+									<a href= "${pageMaker.startPage -1}">이전</a>
+								</li>
+							</c:if>
+							<c:forEach var = "num" begin = "${pageMaker.startPage}" end = "${pageMaker.endPage}">
+								<li class = "paginate_button ${pageMaker.cri.pageNum == num ? 'active':''}" style = "list-style-type:none; float: left; outline: 1px dotted red;
+								margin-left: 5px" ><a href = "${num}">${num}</a></li>
+							</c:forEach>
+							<c:if test = "${pageMaker.next}">
+								<li class = "paginate_button next">
+									<a href="${pageMaker.endPage +1}">다음</a>
+								</li>
+							</c:if>
+						</ul>
+>>>>>>> wh
 					</div>
 					<form id='actionForm' action="/board/faq" method="get">
 
