@@ -48,7 +48,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-<<<<<<< HEAD
 			</div>
 			<div class="container">
 				<div class="row">
@@ -78,34 +77,16 @@
 								</c:if>
 							</ul>
 						</nav>
-=======
-				<div class = 'pull-right'style = "margin: 0 auto;">
-						<ul class = "pagenation" style = "list-style-type:none; float: left;">
-							<c:if test = "${pageMaker.prev}">
-								<li class = "paginate_button previous">
-									<a href= "${pageMaker.startPage -1}">이전</a>
-								</li>
-							</c:if>
-							<c:forEach var = "num" begin = "${pageMaker.startPage}" end = "${pageMaker.endPage}">
-								<li class = "paginate_button ${pageMaker.cri.pageNum == num ? 'active':''}" style = "list-style-type:none; float: left; outline: 1px dotted red;
-								margin-left: 5px" ><a href = "${num}">${num}</a></li>
-							</c:forEach>
-							<c:if test = "${pageMaker.next}">
-								<li class = "paginate_button next">
-									<a href="${pageMaker.endPage +1}">다음</a>
-								</li>
-							</c:if>
-						</ul>
->>>>>>> wh
 					</div>
-					<form id='actionForm' action="/board/faq" method="get">
+					<form id='actionForm' action="/product/community" method="get">
 
 						<input class="id" type="hidden" name="id" value="${id}"> <input
 							type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 						<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+						<input type="hidden" name="pno" value="${product.pno}">
 					</form>
 					<div class="col-sm">
-						<a href="/board/faq_register?id=${id}"
+						<a href="/product/community_register?id=${id}&pno=${product.pno}"
 							class="btn btn-outline-secondary pull-right">글쓰기</a>
 					</div>
 				</div>

@@ -163,7 +163,6 @@
 						str += "</div>";
 						str + "</li>";
 					}
-					alert(str);
 				});
 				$(".uploadResult ul").html(str);
 			})//end getjson
