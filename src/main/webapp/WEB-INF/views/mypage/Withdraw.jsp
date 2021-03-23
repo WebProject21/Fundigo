@@ -56,6 +56,9 @@ function registerCheck() {
 				<c:if test="${msg== false}">
 					<p> 다시 한번 확인해주세요 </p>
 					</c:if>
+					<c:if test="${msgi== false}">
+						<p>아이디가 틀렸습니다.</p>
+						</c:if>
 				</div>
 			
 					<div class="form-group">
@@ -70,9 +73,7 @@ function registerCheck() {
 					<div class="form-group offset-1">
 						<button type="submit" onclick="registerCheck()" class="btn btn-dark col-8">회원탈퇴</button>
 					</div>
-					<c:if test="${msgi== false}">
-					<p>아이디가 틀렸습니다.</p>
-					</c:if>
+					
 					
 
 			</div>

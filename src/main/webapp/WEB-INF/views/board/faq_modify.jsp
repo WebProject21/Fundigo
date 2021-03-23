@@ -6,6 +6,9 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <meta charset="UTF-8">
 <title>fundigo</title>
 </head>
@@ -68,22 +71,22 @@
 					</div>
 					<div class = "row">
 						<div class = "col-lg-12">
-							<div class = "panel-heading">첨부파일</div>
-							<!-- /.panel-heading -->
-							<div class = "panel-body">
-								<div class = "form-group uploadDiv">
-									<input type = "file" name = 'uploadFile' multiple="multiple">
+							<div class = "panel panel-default">
+								<div class = "panel-heading">첨부파일</div>
+								<!-- /end panel-heading -->
+								<div class = "panel-body">
+									<div class = "form-group uploadDiv">
+										<input type = "file" name = "uploadFile" multiple="multiple">
+									</div>
+									
+									<div class = "uploadResult">
+										<ul>
+										</ul>
+									</div>
 								</div>
-								<div class = 'uploadResult'>
-									<ul>
-									</ul>
-								</div>
-							</div>
-							<!-- end panel body -->
+							</div><!-- /end panel -->
 						</div>
-						<!-- end panel -->
-					</div>
-					<!-- /.row -->
+					</div><!-- /end row -->
 				</div>
 			</div>
 		</div>
@@ -92,17 +95,18 @@
 	var bno = '<c:out value = "${board.bno}"/>';
 	var type = '<c:out value = "${list_type}"/>';
 	var id = '<c:out value = "${board.id}"/>'
-
+	var formObj = $("form");
+	//기존에 있는 첨부파일 데이터에 문제가 있어서 등록이 안됨. 기존에 있는 데이터에 무엇이 부족한 것일까?
 	$(document).ready(function(){
-		var formObj = $("form");
 		$('button').on("click", function(e){
 			e.preventDefault();
 			var operation = $(this).data("oper");
 			console.log(operation);
 		
 			if(operation === 'faq_remove'){
-				formObj.attr("action", "/board/faq_remove?bno="+bno);
-		
+				if(confirm("Remove this file?")){
+					formObj.attr("action", "/board/faq_remove?bno="+bno);
+				}
 			}else if(operation === 'list'){
 				//move to list
 			
@@ -131,44 +135,41 @@
 			formObj.submit();
 		});
 	});
-	
+
 	$(document).ready(function(){
 		(function(){
-		$.getJSON("/board/getAttachList",{bno: bno}, function(arr){
-			console.log(arr);
-			var str = "";
-			$(arr).each(function(i, attach){		
-				//image type
-				if(attach.fileType){
-					var fileCallPath = encodeURIComponent(attach.uploadPath+"./s_"+attach.uuid+"_"+ attach.fileName);
-					str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
-					str += "<span>"+attach.fileName+"</span>";
-					str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'image' ";
-					str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
-					str += "<img src='/display?fileName="+fileCallPath+"'>";
-					str += "</div>";
-					str += "</li>";
-				}else{
-					str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename'"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
-					str += "<span>"+attach.fileName+"</span><br/>";
-					str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'file'";
-					str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
-					str += "<img src = '/resources/imags/attach.png'>";
-					str += "</div>";
-					str += "</li>";				}
+			var bno = '<c:out value = "${board.bno}"/>';
+			$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+				console.log(arr);
+				var str = "";
+				$(arr).each(function(i, attach){
+					//image type
+					if(attach.fileType){ 
+						var fileCallPath = encodeURIComponent(attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+						
+						str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+						str += "<span>"+attach.fileName+"</span>";
+						str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'image' ";
+						str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
+						str += "<img src='/display?fileName="+fileCallPath+"'>";
+						str += "</div>";
+						str + "</li>";
+					}else{
+						str += "<li data-path = '"+attach.uploadPath+"'data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"'data-type='"+attach.fileType+"'><div>";
+						str += "<span>"+attach.fileName+"</span>";
+						str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type = 'file'";
+						str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br/>";
+						str += "<img src = '/resources/imags/attach.png'>";
+						str += "</div>";
+						str + "</li>";
+					}
+					alert(str);
 				});
 				$(".uploadResult ul").html(str);
-			});
-		})();
+			})//end getjson
+		})();//end function
 	});
 	
-	$(".uploadResult").on("click", "button", function(e){
-		console.log("delete file");
-		if(confirm("Remove this file?")){
-			var targetLi = $(this).closest("li");
-			targetLi.remove();
-		}
-	});
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5242880; //5MB
 
@@ -183,7 +184,6 @@
 		}
 		return true;
 	}
-	
 	$("input[type = 'file']").change(function(e){
 		var formData = new FormData();
 		var inputFile = $("input[name='uploadFile']");
@@ -208,40 +208,50 @@
 			}
 		}); //$.ajax
 	});
+	
 	function showUploadResult(uploadResultArr){
 		if(!uploadResultArr || uploadResultArr.length == 0){return ;}
-		var uploadUL = $(".uploadResult ul");
-		var str = "";
+			var uploadUL = $(".uploadResult ul");
+			var str = "";
 		
-		$(uploadResultArr).each(function(i, obj){
-			//image type
-			if(obj.image){
-				var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
-				str += "<li data-path='"+obj.uploadPath+"'";
-				str += " data-uuid='"+obj.uuid+"' data-filename = '"+obj.fileName+"'data-type='"+obj.image+"'";
-				str += " ><div>";
-				str += "<span>"+obj.fileName+"</span>";
-				str += "<button type = 'button' data-file=\'"+fileCallPath+"'";
-				str += "data-type='image' class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br>";
-				str += "<img src='/display?fileName="+fileCallPath+"'>";
-				str += "</div>";
-				str += "</li>";
-		  }else{
-				var fileCallPath = encodeURIComponent( obj.uploadPath + "/"+obj.uuid+"_"+obj.fileName);
-				var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-				str += "<li ";
-				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>";
-				str += "<span> "+ obj.fileName+"</span>";
-				str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type='file'";
-				str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br>";
-				str += "<img src = '/resources/img/attach.png'></a>";
-				str += "</div>";
-				str += "</li>";
-			}
-		});
-		uploadUL.append(str);
-	};
+		  $(uploadResultArr).each(function(i, obj){
+			  //image type
+			  if(obj.image){
+				  var fileCallPath = encodeURIComponent( obj.uploadPath + "/s_"+obj.uuid+"_"+obj.fileName);
+				  str += "<li data-path='"+obj.uploadPath+"'";
+				  str += " data-uuid='"+obj.uuid+"' data-filename = '"+obj.fileName+"'data-type='"+obj.image+"'";
+				  str += " ><div>";
+				  str += "<span>"+obj.fileName+"</span>";
+				  str += "<button type = 'button' data-file=\'"+fileCallPath+"'";
+				  str += "data-type='image' class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br>";
+				  str += "<img src='/display?fileName="+fileCallPath+"'>";
+				  str += "</div>";
+				  str += "</li>";
+			  }else{
+				  var fileCallPath = encodeURIComponent( obj.uploadPath + "/"+obj.uuid+"_"+obj.fileName);
+				  var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+				  
+				  str += "<li ";
+				  str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'data-filename='"+obj.fileName+"' data-type='"+obj.image+"'><div>";
+				  str += "<span> "+ obj.fileName+"</span>";
+				  str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type='file'";
+				  str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br>";
+				  str += "<img src = '/resources/images/attach.png'></a>";
+				  str += "</div>";
+				  str += "</li>";
+			  }
+		  });
+		  
+		  uploadUL.append(str);
+	}
+	
+	$(".uploadResult").on("click", "button", function(e){
+		console.log("delete file");
+		if(confirm("Remove this file?")){
+			var targetLi = $(this).closest("li");
+			targetLi.remove();
+		}
+	});
 </script>
-
 </body>
 </html>

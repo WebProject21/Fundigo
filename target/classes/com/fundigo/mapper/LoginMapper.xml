@@ -41,7 +41,7 @@
 	<select id="getFavoriteList" resultType="com.fundigo.domain.FundhistoryVO">
 	select fav_count,pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates from favorite where id = #{id}
 	</select>
-	<!-- not yet -->
+	
 	<!-- funding history -->
 	<insert id="Finsert">
 	INSERT INTO FUNDHISTORY(ID,PNO,DATES,UNKNO,PRICE,CODE) VALUES (#{id},#{pno},sysdate,#{unkno},#{price},#{code})
@@ -50,27 +50,27 @@
 	<select id="getFundList" parameterType = "String" resultType="com.fundigo.domain.FundhistoryVO">
 	SELECT pno,TO_CHAR(DATES , 'yyyy-MM-dd') dates ,price,code FROM FUNDHISTORY WHERE id = #{id}
 	</select>
-	<!-- product search -->
+	<!-- product search + favorite search -->
 	<select id="PnoSelect" resultType="com.fundigo.domain.ProductVO">
 	SELECT * FROM PRODUCT WHERE pno = #{pno}
 	</select> 
-	<!-- funding client search  -->
+	<!-- favorite client search  -->
 	<select id="getFpnoList" resultType="com.fundigo.domain.FundhistoryVO">
 	SELECT id,pno,TO_CHAR (DATES , 'yyyy-MM-dd') dates , unkno, price,code FROM FUNDHISTORY WHERE pno = #{pno}
 	</select>
 	<!-- not yet -->
-	<delete id="Fdelete" parameterType = "map">
+	<delete id="Fdelete">
 	delete from fundhistory where id = #{id} and pno = #{pno}
 	</delete>
-	<!-- product page -->
+	<!-- product page purchased client -->
 	<select id="fundSelect" parameterType = "String" resultType="com.fundigo.domain.FundhistoryVO">
 	select * from fundhistory where id = #{id} and pno = ${pno}
 	</select>
-	<!--  Fpno is Favorite Query -->
+	<!--  favorite insert -->
 	<insert id="FpnoInsert">
 	INSERT INTO FAVORITE(FAV_COUNT,ID,PNO,DATES) values (seq_favorite.NEXTVAL,#{id},#{pno},sysdate)
 	</insert>
-	<!-- multi parameter -->
+	<!-- favorite delete in favorite jsp -->
 	<delete id="FpnoDelete"  >
 	DELETE FROM FAVORITE  WHERE id = #{id} AND PNO = #{pno} 
 	</delete>

@@ -16,25 +16,30 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/board/boardform.css">
 
+<<<<<<< HEAD
 <script type="text/javascript">
 	function check_onclick(){
-		if(document.register.title.value == ""){
+		if(document.frm.title.value.length == 0){
 			alert("제목을 입력해 주세요.");
+			frm.title.focus();
 			return false;
 		}
-		if(document.register.content.value == ""){
+		if(document.frm.content.value.length == 0){
 			alert("내용을 입력해주세요.");
+			frm.content.focus();
 			return false;
 		}
 		return true;
 	}
 </script>
+=======
+>>>>>>> wh
 </head>
 
 <body>
 	<input type="hidden" name="pno" value="${product.pno}">
 	<div class = "container">
-		<form role = "form" action = "/board/faq_register" method = "post" enctype = "">
+		<form name = "frm" role = "form" action = "/board/faq_register" method = "post" enctype = "">
 			<input type = "hidden" name = "id" value="${id}" />
 			<div class = "col-sm-12 pt-3">
 				<div class ="register">
@@ -57,7 +62,7 @@
 								</tbody>
 							</table>
 							<div class = "row" style = "width: 100%; margin: 0px auto;">
-								<button type= "submit" name = "uploadBtn" class = "btn btn-default">등록</button>
+								<button type= "submit" name = "uploadBtn" class = "btn btn-default" onclick="return check_onclick()">등록</button>
 								<button type = "button" value="취소" onclick="location.href='/board/faq?id=${id}'">취소</button>
 								<button type = "reset" value="초기화">리셋</button>
 							</div>
@@ -93,6 +98,17 @@
 		var formObj = $("form[role='form']");
 		
 		$("button[type='submit']").on("click", function(e){
+			if(document.frm.title.value.length == 0){
+				alert("제목을 입력해 주세요.");
+				frm.title.focus();
+				return false;
+			}
+			if(document.frm.content.value.length == 0){
+				alert("내용을 입력해주세요.");
+				frm.content.focus();
+				return false;
+			}
+			
 			e.preventDefault();
 			console.log("submit clicked");
 			var str = "";
@@ -105,6 +121,7 @@
 				str += "<input type = 'hidden' name = 'attachList["+i+"].uploadPath' value = '" + jobj.data("path") + "'>";
 				str += "<input type = 'hidden' name = 'attachList["+i+"].fileType' value = '" + jobj.data("type") + "'>";
 			});
+			alert("${board.attachList}");
 			formObj.append(str).submit();
 		});
 		
@@ -175,7 +192,7 @@
 				  str += "<span> "+ obj.fileName+"</span>";
 				  str += "<button type = 'button' data-file = \'"+fileCallPath+"\' data-type='file'";
 				  str += "class = 'btn btn-warning btn-circle'><i class = 'fa fa-times'></i></button><br>";
-				  str += "<img src = '/resources/img/attach.png'></a>";
+				  str += "<img src = '/resources/images/attach.png'></a>";
 				  str += "</div>";
 				  str += "</li>";
 			  }

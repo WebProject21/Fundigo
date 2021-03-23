@@ -77,7 +77,7 @@
 								<c:if test="${member!=null}">
 									<li><p class="fa fa-user">
 											ID :
-											<a href="/mypage/Favorite" >마이페이지(${member.id})</a>
+											<a href="/mypage/Favorite" >마이페이지</a>
 										</p>
 										<button id="logoutBtn" type="button">logout</button></li>
 

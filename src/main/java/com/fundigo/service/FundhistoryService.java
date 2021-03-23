@@ -12,8 +12,6 @@ public interface FundhistoryService {
 
 	public FundhistoryVO get(String id, Long pno);
 
-	public boolean remove(String id, Long pno);
-
-
+	public void remove(String id, Long pno);
 
 }
