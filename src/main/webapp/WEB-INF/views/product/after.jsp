@@ -63,7 +63,7 @@
 								<hr>
 								<p>
 								<fmt:parseDate value="${fundhistory.dates}" var="datesFmt"
-									pattern="yyyy-MM-dd hh:mm:ss.s" />
+									pattern="yyyy-MM-dd HH:mm:ss.S" />
 								<fmt:formatDate value="${datesFmt}" var = "datesR" pattern="yyyy-MM-dd hh:mm:ss" />
 									<small class="text-muted"><strong><c:out value = "${datesR }"/></strong>에 후원되었습니다. 이용해주셔서 감사합니다. 펀딩
 										이후 상품 정보, 배송, 반품 등에 대한 문의는 판매자에게 문의해주세요.</small>

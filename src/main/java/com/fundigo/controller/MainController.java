@@ -30,6 +30,13 @@ private ProductService pService;
 		//화면에 뿌릴 프로덕트 리스트 객체를 받아와야한다. 조건에 맞춰서. 서비스에 해당 쿼리 작성
 	}
 	
+	@GetMapping("/design")
+	public void main(Model model) {
+		
+		model.addAttribute("products", pService.getProducts());
+		
+	}
+	
 	@GetMapping("/search")
 	public void searchList(Criteria cri, Model model){
 		

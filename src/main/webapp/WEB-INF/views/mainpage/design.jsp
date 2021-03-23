@@ -26,13 +26,31 @@
 <script src = "js/main.js"></script>
 
 <!--  bootstrap grid 그리드 적용을 위한 부트스트랩 적용 -->
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/bootstrap-grid.min.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/board/boardform.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/bootstrap.min.css">
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
-<link rel="stylesheet" type="text/css" href="css/main.css?after"> <!-- 폰트 css -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Font -->
+
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Raleway:400,300,500,700,600'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"
+	type="text/css">
 
 
 </head>
 <body>
+<%@include file="../header.jsp"%>
 	<header>
 		<!-- <div class = "top_navigation">
 			<div class = "container">
@@ -266,6 +284,6 @@
 			</ul>
 		</section>
 	</main>
-	<footer></footer>
+	<%@include file="../footer.jsp"%>
 </body>
 </html>
