@@ -63,7 +63,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-<<<<<<< HEAD
 
 		
 				<!--  end Pagination -->
@@ -80,14 +79,7 @@
 									href="${pageMaker.startPage -1 }" aria-label="Previous"> <span
 										aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
 								</a></li>
-=======
-				<div class = 'pull-right'style = "margin: 0 auto;">
-						<ul class = "pagenation" style = "list-style-type:none; float: left;">
-							<c:if test = "${pageMaker.prev}">
-								<li class = "paginate_button previous">
-									<a href= "${pageMaker.startPage -1}">이전</a>
-								</li>
->>>>>>> wh
+
 							</c:if>
 
 							<c:forEach var="num" begin="${pageMaker.startPage }"
@@ -130,7 +122,6 @@
 											function() {
 												self.location = "/board/faq_register?id='${id}'";
 											});
-
 							var actionForm = $("#actionForm");
 							$(".page-item a").on(
 									"click",
