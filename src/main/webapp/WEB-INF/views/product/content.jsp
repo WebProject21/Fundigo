@@ -34,7 +34,7 @@
 
 							<div class="thumb-main-image">
 								<a href=""><img
-									src="../resources/images/single-product-1.jpg" alt=""></a>
+									src="../resources/images/board.jpg" alt=""></a>
 							</div>
 
 						</div>

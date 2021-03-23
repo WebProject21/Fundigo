@@ -30,7 +30,7 @@
 
 					<div class="logo">
 
-						<a href="index.html"> <img src="../resources/images/logo.png"
+						<a href="/mainpage/design"> <img src="../resources/images/logo.png"
 							alt="funDigo">
 
 						</a>
