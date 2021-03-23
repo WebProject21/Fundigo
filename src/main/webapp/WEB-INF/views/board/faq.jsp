@@ -122,7 +122,6 @@
 											function() {
 												self.location = "/board/faq_register?id='${id}'";
 											});
-
 							var actionForm = $("#actionForm");
 							$(".page-item a").on(
 									"click",
