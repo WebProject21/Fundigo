@@ -43,7 +43,7 @@ public interface BoardMapper {
 	
 // 게시글 수정
 	public int update(BoardVO board);
-	public int countup(BoardVO board);
+	public int countup(Long bno);
 	public int updateDate(BoardVO board);
 //첨부파일
 	public void addAttach(String fullName);

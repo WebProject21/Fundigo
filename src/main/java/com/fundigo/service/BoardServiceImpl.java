@@ -80,6 +80,7 @@ public class BoardServiceImpl  implements BoardService{
 	@Override
 	public BoardVO get(Long bno) {
 		log.info("get.........."+bno);
+		bmapper.countup(bno);
 		return bmapper.selectOne(bno);
 	}
 	
@@ -126,9 +127,9 @@ public class BoardServiceImpl  implements BoardService{
 		return bmapper.getNOTIListWithPaging(cri);
 	}
 	@Override
-	public boolean countup(BoardVO board) {
+	public boolean countup(Long bno) {
 		log.info("countup.....");
-		return bmapper.countup(board) == 1;
+		return bmapper.countup(bno) == 1;
 	}
 	@Override
 	public boolean updateDate(BoardVO board) {
