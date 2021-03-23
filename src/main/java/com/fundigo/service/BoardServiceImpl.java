@@ -80,6 +80,7 @@ public class BoardServiceImpl  implements BoardService{
 	@Override
 	public BoardVO get(Long bno) {
 		log.info("get.........."+bno);
+		bmapper.countup(bno);
 		return bmapper.selectOne(bno);
 	}
 	
