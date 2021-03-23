@@ -16,24 +16,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/board/boardform.css">
 
-<<<<<<< HEAD
-<script type="text/javascript">
-	function check_onclick(){
-		if(document.frm.title.value.length == 0){
-			alert("제목을 입력해 주세요.");
-			frm.title.focus();
-			return false;
-		}
-		if(document.frm.content.value.length == 0){
-			alert("내용을 입력해주세요.");
-			frm.content.focus();
-			return false;
-		}
-		return true;
-	}
-</script>
-=======
->>>>>>> wh
 </head>
 
 <body>
@@ -62,7 +44,7 @@
 								</tbody>
 							</table>
 							<div class = "row" style = "width: 100%; margin: 0px auto;">
-								<button type= "submit" name = "uploadBtn" class = "btn btn-default" onclick="return check_onclick()">등록</button>
+								<button type= "submit" name = "uploadBtn" class = "btn btn-default">등록</button>
 								<button type = "button" value="취소" onclick="location.href='/product/notice?pno=${product.pno}&id=${id}'">취소</button>
 								<button type = "reset" value="초기화">리셋</button>
 							</div>
