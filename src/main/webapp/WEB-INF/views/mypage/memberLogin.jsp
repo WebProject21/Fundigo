@@ -11,6 +11,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -34,6 +35,27 @@
 		})
 	})
 </script>
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/bootstrap-grid.min.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/board/boardform.css">
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/bootstrap.min.css">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Font -->
+
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Raleway:400,300,500,700,600'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"
+	type="text/css">
 </head>
 <body>
 	<%@include file="../header.jsp"%>

@@ -63,7 +63,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-<<<<<<< HEAD
 
 		
 				<!--  end Pagination -->

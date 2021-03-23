@@ -129,7 +129,6 @@ $("#purchaseButton").on("click",function(e){
 e.preventDefault();
 	
 var code = $('.selected').children('input[name="code"]').val();
-alert(code);
 
 actionForm.find("input[name = 'code']").val(code);
 actionForm.submit();
@@ -140,7 +139,6 @@ $("#purchaseButton").on("click",function(e){
 e.preventDefault();
 	
 var code = $('.selected').children('input[name="code"]').val();
-alert(code);
 
 actionForm.find("input[name = 'code']").val(code);
 actionForm.submit();
